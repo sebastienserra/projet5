@@ -1,11 +1,28 @@
 <?php
 
-require('./controller/controller.php');
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Projet5\Controller\BackendController;
+use Projet5\Controller\FrontendController;
+use Twig\Environment;
+use Twig\Extra\String\StringExtension;
+use Twig\Loader\FilesystemLoader;
+
+/* INIT Twig*/
+$loader = new FilesystemLoader(__DIR__ . '/src/view');
+$twig = new Environment($loader, ['cache' => false]);
+$twig->addExtension(new StringExtension());
+
+/* Controller as class */
+$frontendController = new FrontendController($twig);
+$backendController = new BackendController($twig);
+
+//require('./controller/controller.php');
 
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'home_view') {
-            home();
+            $frontendController->home();
         }
         elseif ($_GET['action'] == 'postandcomments') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -128,7 +145,7 @@ try { // On essaie de faire des choses
             }    
             
     else {
-        home();
+        $frontendController->home();
     }
 }
 catch(Exception $e) { // S'il y a eu une erreur, alors...

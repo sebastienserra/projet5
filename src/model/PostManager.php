@@ -1,8 +1,8 @@
 <?php
 
-namespace Sebastien\Blog\Model;
+namespace Projet5\Model;
 
-require_once("./model/Manager.php");
+//require_once("./model/Manager.php");
 
 class PostManager extends Manager
 {
@@ -63,8 +63,7 @@ class PostManager extends Manager
          return $popularity;
   }
   public function lastPosts(){
-        $db = $this->dbConnect(); 
-        $reponse =  $db->query("SELECT COUNT(*) AS nb_posts FROM posts");
+        $reponse =  $this->db->query("SELECT COUNT(*) AS nb_posts FROM posts");
         $donnees = $reponse->fetch();
         $nb_posts=$donnees['nb_posts'];
         $results_per_page=3;
@@ -75,12 +74,11 @@ class PostManager extends Manager
           $page= $_GET['page'];
         }
         $this_page_first_result=($page-1)*$results_per_page;
-        $articles = $db->query("SELECT * FROM posts ORDER BY id DESC limit $this_page_first_result, $results_per_page");
-        return $articles;
+        $articles = $this->db->query("SELECT * FROM posts ORDER BY id DESC limit $this_page_first_result, $results_per_page");
+        return $articles->fetchAll();
   }
   public function paginate(){
-        $db = $this->dbConnect();
-        $reponse =  $db->query("SELECT COUNT(*) AS nb_posts FROM posts");
+        $reponse =  $this->db->query("SELECT COUNT(*) AS nb_posts FROM posts");
         $donnees = $reponse->fetch();
         $nb_posts=$donnees['nb_posts'];
         $results_per_page=3;

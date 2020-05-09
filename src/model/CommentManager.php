@@ -1,5 +1,5 @@
 <?php
-namespace Sebastien\Blog\Model;
+namespace Projet5\Model;
 
 require_once('./model/Manager.php');
 
