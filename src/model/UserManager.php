@@ -10,8 +10,7 @@ class UserManager extends Manager{
     	if(isset($_POST['login-submit'])){
 			$email= ($_POST['email']);
 			$_POST['password'] = ($_POST['password']);
-			$db = $this->dbConnect();
-			$req = $db->query('SELECT id, email, password FROM users');
+			$req = $this->db->query('SELECT id, email, password FROM users');
 			$data = $req->fetch();
 
 			$isPasswordCorrect = password_verify($_POST['password'], $data['password']);
@@ -31,7 +30,6 @@ class UserManager extends Manager{
 		if(isset($_POST['login-submit'])){
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-		$db = $this->dbConnect();
 	
 		if(!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])){
 			echo'Vous devez remplir les champs correctement.';
@@ -44,7 +42,7 @@ class UserManager extends Manager{
 		if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']) AND !empty($_POST['password'])){
 		$email = $_POST['email'];
 		
-		$req = $db->query('SELECT * FROM users WHERE email="'.$email.'"');
+		$req = $this->db->query('SELECT * FROM users WHERE email="'.$email.'"');
 		$req->execute(['email'=>$email]);
 		$row = $req->fetch();
 		
@@ -59,7 +57,7 @@ class UserManager extends Manager{
 		$password = $_POST['password'];
 		$hashedpassword = password_hash($password, PASSWORD_DEFAULT);
 		
-		$req = $db->prepare("INSERT INTO users(email, password) values(?,?)");
+		$req = $this->db->prepare("INSERT INTO users(email, password) values(?,?)");
 		$req->execute(array(($_POST['email']), $hashedpassword));
 		echo'Vous êtes bien inscrits!';
 		header('Location: index.php');

@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Resultats de recherche{% endblock %}
+
+{% block content %}
+<div class="content_size">
+	<div id="top"></div>
+    {% for result in results %}
+    {{ result.title | raw }} :
+    {{ result.article | raw }}
+    <hr>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,8 @@
-<?php $title = 'Article'; ?>
+{% extends "base.html.twig" %}
 
-<?php ob_start(); ?>
+{% block title %}Le blog{% endblock %}
+
+{% block content %}
 <div class="content_size">
   <div id="top"></div>
 <div class="page_post">
@@ -10,23 +12,21 @@
     <div class="post">
 
             <div class="present_post">
-              <?php
-              while ($donnees = $post->fetch(PDO::FETCH_ASSOC))
-        {
-      ?>
-       <p><h4><?php echo $donnees['title']; ?></h4></p>
-       <p><?php echo $donnees['article']; ?></p>
+        {% for post in posts %}
+            
+       <p><h4>{{ post.title | raw }}</h4></p>
+       <p>{{ post.article | raw }}</p>
+       {{ post.author | raw }}
+       {{ post.creation_date | raw }}
         <p>
-        <?php 
-        $timestamp = strtotime($donnees['creation_date']); 
+        
+        $timestamp = strtotime({{ post.creation_date | raw }}); 
         $my_date = date('d/m/Y', $timestamp);
-        echo $donnees['author'].' le '. $my_date;
-        ?>
+        {{ post.author | raw }}.' le '. $my_date;
+        
           
         </p>
-        <?php
-        }
-        ?>
+        {% endfor %}
       
           </div>
     </div>
@@ -52,25 +52,19 @@
       
       <div>
         <div>
-<?php
-      while ($donnees = $comments->fetch(PDO::FETCH_ASSOC))
-    {
-    ?>
+        {% for comment in comments %}
     <div class="comments_display">
-         <div><?php echo htmlspecialchars($donnees['comment']); ?></div>
+         <div>{{ comment.comment | raw }}</div>
          <div class="together">
         <div class="button_five_front">
-            <a href="index.php?action=reportComment&amp;id=<?php echo $donnees['id']; ?>&comment=<?php echo $donnees['id_post']; ?>" name="report", id="report">
+            <a href="index.php?action=reportComment&amp;id={{ comment.id | raw }}&comment={{ comment.id_post | raw }}" name="report", id="report">
               <span class="fas fa-comment-slash"></span>
               <span id="tooltip_six">Signaler</span>
             </a>
         </div>
       </div>
     </div>
-    <?php
-    }
-
-?>
+        {% endfor %}
 </div>
 </div>
     </div>
@@ -78,29 +72,22 @@
   <div id="listing_post">
     <div id="last_publications_post"><div class="header_title_post">Articles récents</div>
       <div class="title_listing_post">
-       <?php
-  while($row= $byTitle->fetch(PDO::FETCH_ASSOC)) {
-      ?>
+      {% for byTitle in byTitles %}
+    
       <div> -   
-      <a href="index.php?action=postandcomments&amp;id=<?= $row['id'] ?>"><?php echo $row['title'];?></a>
+      <a href="index.php?action=postandcomments&amp;id={{ byTitle.id | raw }}">{{ byTitle.title | raw }}</a>
       </div>  
-      <?php
-      } 
-      ?>
+{% endfor %}
       </div>
 
     </div>
     <div id="popular_publications_post"> <div class="header_title_post">Articles populaires</div>
       <div class="title_listing_post">
-        <?php
-  while($row= $popularity->fetch(PDO::FETCH_ASSOC)) {
-      ?>
+        {% for pop in popularity %}
       <div> -   
-      <a href="index.php?action=postandcomments&amp;id=<?= $row['id'] ?>"><?php echo $row['title'];?></a>
+      <a href="index.php?action=postandcomments&amp;id={{ pop.id | raw }}">{{ pop.title | raw }}</a>
       </div>  
-      <?php
-      } 
-      ?>
+{% endfor %}
       </div>
     </div>
   </div>
@@ -108,6 +95,4 @@
 
     </div>
 </div>
-  <?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
+{% endblock %}

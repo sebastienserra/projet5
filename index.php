@@ -26,7 +26,7 @@ try { // On essaie de faire des choses
         }
         elseif ($_GET['action'] == 'postandcomments') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                $frontendController->post();
             }
             else {
                 // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
@@ -43,16 +43,16 @@ try { // On essaie de faire des choses
             }
         }
         elseif ($_GET['action'] == 'blog') {
-                    blog();
+                    $frontendController->blog();
                 }
         elseif ($_GET['action'] == 'contact') {
-                    contact();
+                     $frontendController->contact();
                 }
         elseif ($_GET['action'] == 'query') {
-                    query();
+                    $frontendController->query();
                 }                
         elseif ($_GET['action'] == 'all_maine_coons') {
-                   displayAllMaineCoons();
+                   $frontendController->displayAllMaineCoons();
                 }
         elseif ($_GET['action'] == 'search_by_coat') {
                    displayCatsByCoat();
@@ -70,10 +70,10 @@ try { // On essaie de faire des choses
                     displayAllYoungsters();
                 }                
         elseif ($_GET['action'] == 'login') {
-                    login();
+                    $frontendController->login();
                  }
         elseif ($_GET['action'] == 'signup') {
-                    signup();
+                    $frontendController->signup();
                 }  
         elseif ($_GET['action'] == 'register') {
                     register();
@@ -93,7 +93,7 @@ try { // On essaie de faire des choses
                 
             }
         elseif ($_GET['action'] == 'login_error') {
-                loginError();  
+                $frontendController->loginError();  
             }
         elseif ($_GET['action'] == 'reportComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {

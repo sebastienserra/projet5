@@ -6,13 +6,6 @@ require_once('./model/UserManager.php');
 require_once('./model/CatManager.php');
 
 
-
-function home(){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $articles = $postManager->lastPosts();
-    $nber_of_pages = $postManager->paginate();
-	require('./view/frontend/home_view.php');
-}
 function listPostsAdmin(){
     $postManager = new \Sebastien\Blog\Model\PostManager();
     $posts = $postManager->getAllPostsAdmin();
@@ -21,25 +14,13 @@ function listPostsAdmin(){
 function admin_cats(){
     require('./view/backend/admin_cats.php');
 }
-function contact(){
-    require('./view/frontend/contact_view.php');
-}
-function signup(){
-    require('./view/frontend/signup.php');
-}
+
 function register(){
 $user = new \Sebastien\Blog\Model\UserManager();
 $row = $user->checkEmailExists();
 }
-function blog(){
-    require('./view/frontend/blog.php');
-}
-function login(){
-    require('./view/frontend/login.php');
-}
-function loginError(){
-     require('./view/frontend/login_error.php');
-}
+
+
 function connect(){
     $user = new \Sebastien\Blog\Model\UserManager();
     $data = $user->getUser();
@@ -59,25 +40,9 @@ function updatePost($category,$article,$title,$author,$id){
         header('Location: index.php?action=admin');
     }
 }
-function post(){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $commentManager = new \Sebastien\Blog\Model\CommentManager(); 
-	$post = $postManager->getPost($_GET['id']);
-	$comments = $commentManager->getComments($_GET['id']);
-    $byTitle = $postManager->newPosts();
-    $popularity = $postManager->popularPosts();
-	require('./view/frontend/post_page.php');
-}
-function titlesList(){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $byTitle = $postManager->allTitles();
-    require('./view/frontend/articles.php');
-}
-function query(){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $req = $postManager->searchQuery();
-    require('./view/frontend/query_results.php');
-}
+
+
+
 function deletePost($id){
     $postManager = new \Sebastien\Blog\Model\PostManager();
     $erase = $postManager->destroy($id);
@@ -142,41 +107,13 @@ function addCat(){
     $catManager = new \Sebastien\Blog\Model\CatManager();
     $req = $catManager->insertCatPictureAndData();
 }
-function displayAllMaineCoons(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllCats();
-    require('./view/frontend/view_all_maine_coons.php');
-}
+
 function displayAllCatsBack(){
     $catManager = new \Sebastien\Blog\Model\CatManager();
     $req = $catManager->getAllCats();
     require('./view/backend/display_cats.php');
 }
-function displayCatsByCoat(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->loadCoat();
-    require('./view/frontend/filtre.php');
-}
-function displayAllBoys(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllBoys();
-    require('./view/frontend/maine_coon_boys_view.php');
-}
-function displayAllGirls(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllGirls();
-    require('./view/frontend/maine_coon_girls_view.php');
-}
-function displayAllYoungsters(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllYoungsters();
-    require('./view/frontend/maine_coon_youngsters_view.php');
-}
-function displayAllKittens(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllKittens();
-    require('./view/frontend/maine_coon_kittens_view.php');
-}
+
 function editCat($id){
     $catManager = new \Sebastien\Blog\Model\CatManager();
     $result = $catManager->editOneCat($id);

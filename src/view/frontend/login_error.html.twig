@@ -1,6 +1,8 @@
-<?php $title = 'Login Error'; ?>
+{% extends "base.html.twig" %}
 
-<?php ob_start(); ?>
+{% block title %}Erreur de connection{% endblock %}
+
+{% block content %}
 <div id="login_image"></div>
 
 	<form action="index.php?action=connect" method="post" id="login_form">
@@ -12,6 +14,4 @@
     </form>    
     
 </div>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template.php'); ?>
+{% endblock %}
