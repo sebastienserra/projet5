@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Chattons Maine Coon{% endblock %}
+
+
+{% block content %}
+<div class="content_size">
+	<div id="top"></div>
+{% for kitten in kittens %}
+		<div>	
+			<div id="cat_presentation">
+			<div id="cat_picture"><img src="./uploads/{{ kitten.image }}"></div>
+			<div id="cat_info">
+				<p><span class="info_title">Prénom:</span>{{ kitten.name }}</p>
+				<p><span class="info_title">Sexe:</span>{{ kitten.gender }}</p>
+				<p><span class="info_title">Robe:</span>{{ kitten.coat_color }}</p>
+				<p><span class="info_title">Date de naissance:</span>{{ kitten.dob }}</p>
+				<p><span class="info_title">Description:</span>{{ kitten.description }}</p>
+			</div>
+		</div>
+{% endfor %}
+{% endblock %}

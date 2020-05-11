@@ -10,20 +10,20 @@ class CatManager extends Manager
 	return $allCats;
 	}
 	public function getAllBoys(){
-	$req = $this->db->query("SELECT * FROM cat_data WHERE age_category ='adultem' ORDER BY id DESC"); 
-	return $req;
+	$boys = $this->db->query("SELECT * FROM cat_data WHERE age_category ='adultem' ORDER BY id DESC"); 
+	return $boys;
 	}
 	public function getAllGirls(){
-	$req = $this->db->query("SELECT * FROM cat_data WHERE age_category ='adultef' ORDER BY id DESC"); 
-	return $req;
+	$girls = $this->db->query("SELECT * FROM cat_data WHERE age_category ='adultef' ORDER BY id DESC"); 
+	return $girls;
 	}
 	public function getAllYoungsters(){
-	$req = $this->db->query("SELECT * FROM cat_data WHERE age_category ='youngster' ORDER BY id DESC"); 
-	return $req;
+	$youngsters = $this->db->query("SELECT * FROM cat_data WHERE age_category ='youngster' ORDER BY id DESC"); 
+	return $youngsters;
 	}
 	public function getAllKittens(){
-	$req = $this->db->query("SELECT * FROM cat_data WHERE age_category ='kitten' ORDER BY id DESC"); 
-	return $req;
+	$kittens = $this->db->query("SELECT * FROM cat_data WHERE age_category ='kitten' ORDER BY id DESC"); 
+	return $kittens;
 	}
   	public function editOneCat($id){
 	$result = $this->db->prepare("SELECT * FROM cat_data WHERE id=?");
@@ -41,9 +41,9 @@ class CatManager extends Manager
     return $request;
   	}
 	public function loadCoat(){
-	$req = $this->db->query("SELECT DISTINCT coat_color FROM cat_data"); //DISTINCT evite de repeter black 2 fois par exemple
-	$req->execute();
-	return $req;
+	$coats = $this->db->query("SELECT DISTINCT coat_color FROM cat_data"); //DISTINCT evite de repeter black 2 fois par exemple
+	$coats->execute();
+	return $coats;
 	}
 	public function insertCatPictureAndData(){
 		if(isset($_POST['submit'])){

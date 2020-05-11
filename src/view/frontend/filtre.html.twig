@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Recherche Maine Coon par robe{% endblock %}
+
+{% block content %}
+<div class="content_size">
+	<div id="top"></div>
+ 	<div id="filter">Trouver un Maine Coon avec la robe qui vous plaît:
+		<div id="wrapper">
+		<form method="post" class="display">
+			 <select id="coats" name="coats">
+				
+				{% for coat in coats %}
+                echo'<option id="{{ coat.id }}" value="{{ coat.coat_color }}">{{ coat.coat_color }}</option>';
+					
+				{% endfor %}
+			</select>
+		</form>
+		</div>
+	</div> 
+<div id="present_results">Les résultats seront présentés ici.</div>
+</div>
+	</div>
+</div>
+{% endblock %}

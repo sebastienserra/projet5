@@ -81,29 +81,39 @@ class FrontendController
         ]);
     }
     function displayCatsByCoat(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->loadCoat();
-    require('./view/frontend/filtre.php');
+    $catManager = new CatManager();
+    $coats = $catManager->loadCoat();
+        echo $this->twig->render('frontend/filtre.html.twig', [
+            'coats' => $coats,
+        ]);
 }
 function displayAllBoys(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllBoys();
-    require('./view/frontend/maine_coon_boys_view.php');
+    $catManager = new CatManager();
+    $boys = $catManager->getAllBoys();
+    echo $this->twig->render('frontend/maine_coon_boys.html.twig', [
+            'boys' => $boys,
+        ]);
 }
 function displayAllGirls(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllGirls();
-    require('./view/frontend/maine_coon_girls_view.php');
+    $catManager = new CatManager();
+    $girls = $catManager->getAllGirls();
+    echo $this->twig->render('frontend/maine_coon_girls.html.twig', [
+            'girls' => $girls,
+        ]);
 }
 function displayAllYoungsters(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllYoungsters();
-    require('./view/frontend/maine_coon_youngsters_view.php');
+    $catManager = new CatManager();
+    $youngsters = $catManager->getAllYoungsters();
+    echo $this->twig->render('frontend/maine_coon_youngsters.html.twig', [
+            'youngsters' => $youngsters,
+        ]);
 }
 function displayAllKittens(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllKittens();
-    require('./view/frontend/maine_coon_kittens_view.php');
+    $catManager = new CatManager();
+    $kittens = $catManager->getAllKittens();
+    echo $this->twig->render('frontend/maine_coon_kittens.html.twig', [
+            'kittens' => $kittens,
+        ]);
 }
 
 }

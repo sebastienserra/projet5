@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Jeunes Maine Coon{% endblock %}
+
+
+{% block content %}
+<div class="content_size">
+	<div id="top"></div>
+{% for youngster in youngsters %}
+		<div>	
+			<div id="cat_presentation">
+			<div id="cat_picture"><img src="./uploads/{{ youngster.image }}"></div>
+			<div id="cat_info">
+				<p><span class="info_title">Prénom:</span>{{ youngster.name }}</p>
+				<p><span class="info_title">Sexe:</span>{{ youngster.gender }}</p>
+				<p><span class="info_title">Robe:</span>{{ youngster.coat_color }}</p>
+				<p><span class="info_title">Date de naissance:</span>{{ youngster.dob }}</p>
+				<p><span class="info_title">Description:</span>{{ youngster.description }}</p>
+			</div>
+		</div>
+{% endfor %}
+{% endblock %}

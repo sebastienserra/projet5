@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Males Maine Coon{% endblock %}
+
+{% block content %}
+<div class="content_size">
+	<div id="top"></div>
+{% for boy in boys %}
+		<div>	
+			<div id="cat_presentation">
+			<div id="cat_picture"><img src="./uploads/{{ boy.image }}"></div>
+			<div id="cat_info">
+				<p><span class="info_title">Prénom:</span>{{ boy.name }}</p>
+				<p><span class="info_title">Sexe:</span>{{ boy.gender }}</p>
+				<p><span class="info_title">Robe:</span>{{ boy.coat_color }}</p>
+				<p><span class="info_title">Date de naissance:</span>{{ boy.dob }}</p>
+				<p><span class="info_title">Description:</span>{{ boy.description }}</p>
+			</div>
+		</div>
+{% endfor %}
+{% endblock %}

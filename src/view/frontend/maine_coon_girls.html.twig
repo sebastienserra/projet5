@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Femelles Maine Coon{% endblock %}
+
+{% block content %}
+
+<div class="content_size">
+	<div id="top"></div>
+{% for girl in girls %}
+		<div>	
+			<div id="cat_presentation">
+			<div id="cat_picture"><img src="./uploads/{{ girl.image }}"></div>
+			<div id="cat_info">
+				<p><span class="info_title">Prénom:</span>{{ girl.name }}</p>
+				<p><span class="info_title">Sexe:</span>{{ girl.gender }}</p>
+				<p><span class="info_title">Robe:</span>{{ girl.coat_color }}</p>
+				<p><span class="info_title">Date de naissance:</span>{{ girl.dob }}</p>
+				<p><span class="info_title">Description:</span>{{ girl.description }}</p>
+			</div>
+		</div>
+{% endfor %}
+{% endblock %}
+

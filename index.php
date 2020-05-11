@@ -55,19 +55,19 @@ try { // On essaie de faire des choses
                    $frontendController->displayAllMaineCoons();
                 }
         elseif ($_GET['action'] == 'search_by_coat') {
-                   displayCatsByCoat();
+                   $frontendController->displayCatsByCoat();
                 }                
         elseif ($_GET['action'] == 'maine_coon_boys') {
-                   displayAllBoys();
+                   $frontendController->displayAllBoys();
                 }
         elseif ($_GET['action'] == 'maine_coon_girls') {
-                   displayAllGirls();
+                   $frontendController->displayAllGirls();
                 }
         elseif ($_GET['action'] == 'maine_coon_kittens') {
-                    displayAllKittens();
+                    $frontendController->displayAllKittens();
                 }
         elseif ($_GET['action'] == 'maine_coon_youngsters') {
-                    displayAllYoungsters();
+                    $frontendController->displayAllYoungsters();
                 }                
         elseif ($_GET['action'] == 'login') {
                     $frontendController->login();
