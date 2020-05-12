@@ -27,22 +27,14 @@ function addPost($article,$title,$author,$category){
     $postManager = new \Sebastien\Blog\Model\PostManager();
     $affectedLinesPost = $postManager->saveRecords($article,$title,$author,$category);
     if ($affectedLinesPost === false) {
-        throw new Exception('Impossible d\'ajouter le post !');
+        //throw new Exception('Impossible d\'ajouter le post !');
+        header('Location: index.php?action=admin&success=false');
     }
     else {
         header('Location: index.php?action=admin');
     }
 }
-function addComment($comment,$postId){
-    $commentManager = new \Sebastien\Blog\Model\CommentManager();
-    $affectedLines = $commentManager->postComment($comment,$postId);
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d ajouter le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=postandcomments&id=' . $postId);
-    }
-}
+
 
 function destroyReportedComment($id){
     $commentManager = new \Sebastien\Blog\Model\CommentManager();

@@ -3,96 +3,93 @@
 {% block title %}Le blog{% endblock %}
 
 {% block content %}
-<div class="content_size">
-  <div id="top"></div>
-<div class="page_post">
+    <div class="content_size">
+        <div id="top"></div>
+        <div class="page_post">
 
-  <div class="block_post">
+            <div class="block_post">
 
-    <div class="post">
+                <div class="post">
 
-            <div class="present_post">
-        {% for post in posts %}
-            
-       <p><h4>{{ post.title | raw }}</h4></p>
-       <p>{{ post.article | raw }}</p>
-       {{ post.author | raw }}
-       {{ post.creation_date | raw }}
-        <p>
-        
-        $timestamp = strtotime({{ post.creation_date | raw }}); 
-        $my_date = date('d/m/Y', $timestamp);
-        {{ post.author | raw }}.' le '. $my_date;
-        
-          
-        </p>
-        {% endfor %}
-      
-          </div>
-    </div>
-    <div class="comment_form">
-        <h4>Laisser un commentaire: </h4>  
- <form action="index.php?action=addComment&amp;id=<?php echo $_GET['id'] ?>" method="post" id="form_comments">
+                    <div class="present_post">
 
-    <div class="form-group">
-    <p>
-      <textarea name="comment" id="comment" class="form-control" rows="3" cols="40" maxlength="250" placeholder="Laisser un commentaire.">
+                        <p><h4>{{ post.title | raw }}</h4></p>
+                        <p>{{ post.article | raw }}</p>
+                        {{ post.author }} le {{ post.creation_date | date('d/m/Y') }}
+                    </div>
+                </div>
+                <div class="comment_form">
+                    <h4>Laisser un commentaire: </h4>
+                    <form action="index.php?action=addComment&amp;id={{ post.id }}" method="post" id="form_comments">
+
+                        <div class="form-group">
+                            <p>
+      <textarea name="comment" id="comment" class="form-control" rows="3" cols="40" maxlength="250"
+                placeholder="Laisser un commentaire.">
       </textarea>
-    </p>
-    </div>
-    <p>
-      <input class="btn btn-primary" name="button_comment" id="button_comment" type="submit" value="Envoi">
-    </p>
-  </form>
+                            </p>
+                        </div>
+                        <p>
+                            <input class="btn btn-primary" name="button_comment" id="button_comment" type="submit"
+                                   value="Envoi">
+                        </p>
+                    </form>
 
-    <h2 id="commentaires">Commentaires associés</h2>
+                    <h2 id="commentaires">Commentaires associés</h2>
 
-    </div>
-    <div>
-      
-      <div>
-        <div>
-        {% for comment in comments %}
-    <div class="comments_display">
-         <div>{{ comment.comment | raw }}</div>
-         <div class="together">
-        <div class="button_five_front">
-            <a href="index.php?action=reportComment&amp;id={{ comment.id | raw }}&comment={{ comment.id_post | raw }}" name="report", id="report">
-              <span class="fas fa-comment-slash"></span>
-              <span id="tooltip_six">Signaler</span>
-            </a>
+                </div>
+                <div>
+
+                    <div>
+                        <div>
+                            {% for comment in comments %}
+                                <div class="comments_display">
+                                    <div>{{ comment.comment | raw }}</div>
+                                    <div class="together">
+                                        <div class="button_five_front">
+                                            {% if not comment.date_of_reporting %}
+                                            <a href="index.php?action=reportComment&amp;id={{ comment.id | raw }}&comment={{ comment.id_post | raw }}"
+                                               name="report" , id="report">
+                                                <span class="fas fa-comment-slash"></span>
+                                                <span id="tooltip_six">Signaler</span>
+                                            </a>
+                                                {% else %}
+                                                <small>Déjà signalé</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="listing_post">
+                <div id="last_publications_post">
+                    <div class="header_title_post">Articles récents</div>
+                    <div class="title_listing_post">
+                        {% for byTitle in byTitles %}
+
+                            <div> -
+                                <a href="index.php?action=postandcomments&amp;id={{ byTitle.id | raw }}">{{ byTitle.title | raw }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div id="popular_publications_post">
+                    <div class="header_title_post">Articles populaires</div>
+                    <div class="title_listing_post">
+                        {% for pop in popularity %}
+                            <div> -
+                                <a href="index.php?action=postandcomments&amp;id={{ pop.id | raw }}">{{ pop.title | raw }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-        {% endfor %}
-</div>
-</div>
-    </div>
-  </div>
-  <div id="listing_post">
-    <div id="last_publications_post"><div class="header_title_post">Articles récents</div>
-      <div class="title_listing_post">
-      {% for byTitle in byTitles %}
-    
-      <div> -   
-      <a href="index.php?action=postandcomments&amp;id={{ byTitle.id | raw }}">{{ byTitle.title | raw }}</a>
-      </div>  
-{% endfor %}
-      </div>
 
     </div>
-    <div id="popular_publications_post"> <div class="header_title_post">Articles populaires</div>
-      <div class="title_listing_post">
-        {% for pop in popularity %}
-      <div> -   
-      <a href="index.php?action=postandcomments&amp;id={{ pop.id | raw }}">{{ pop.title | raw }}</a>
-      </div>  
-{% endfor %}
-      </div>
     </div>
-  </div>
-</div>
-
-    </div>
-</div>
 {% endblock %}

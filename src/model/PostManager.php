@@ -34,9 +34,9 @@ class PostManager extends Manager
          return $getAllPostsAdmin;
   }
   public function getPost($postId){	
-    		$posts = $this->db->prepare("SELECT id, article, author, title, creation_date FROM posts WHERE id = ?");
-    		$posts->execute(array($postId));
-    		return $posts;	
+    		$query = $this->db->prepare("SELECT id, article, author, title, creation_date FROM posts WHERE id = ?");
+    		$query->execute(array($postId));
+    		return $query->fetch();
   }
   public function allTitles(){
          $titles = $this->db->query("SELECT * FROM posts ORDER BY id");

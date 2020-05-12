@@ -1,18 +1,47 @@
-document.getElementById("coats").addEventListener("click", catCoat);
-function catCoat() {
-  // create XHR (Ajax) object
-  let xhr = new XMLHttpRequest();
-  // we want to call OPEN, mais il y a d'autres etats
+var coatsSelect = document.getElementById("coats");
 
-  xhr.open(
-    "GET",
-    "view/frontend/fetch.php?coat_color=" +
-      document.getElementById("coats").value,
-    false
-  );
-  xhr.send(null);
+window.addEventListener("DOMContentLoaded", function (event) {
+    displayCats(coatsSelect.value)
+});
 
-  document.getElementById("present_results").innerHTML = xhr.responseText; //HTML en MAJUSCULES
+coatsSelect.addEventListener('change', function (event) {
+    displayCats(event.target.value)
+})
 
-  console.log(xhr.responseText);
+function displayCats(coat) {
+    var results = document.querySelector('#results');
+    results.innerHTML = '';
+    getCatByCoat(coat).then(
+        // Resolve
+        function (data) {
+            data.forEach(function (cat) {
+                var catElement = document.createElement("div");
+                catElement.innerHTML = '<div>' +
+                    '<div>Nom: </div> <div>' + cat.name + '</div>' +
+                    '</div>'
+                results.appendChild(catElement)
+            })
+        },
+        // Reject
+        function(){
+            alert('ERROR')
+        })
+}
+
+function getCatByCoat(coat) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "?action=getCatByCoat&coat=" + coat);
+        xhr.send(null);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if(xhr.status === 200){
+                    resolve(JSON.parse(xhr.response)); // Par défault une DOMString
+                } else {
+                    reject()
+                }
+            }
+        }
+    })
 }
