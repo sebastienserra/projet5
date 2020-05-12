@@ -17,9 +17,8 @@ $twig->addExtension(new StringExtension());
 $frontendController = new FrontendController($twig);
 $backendController = new BackendController($twig);
 
-//require('./controller/controller.php');
 
-try { // On essaie de faire des choses
+try { 
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'home_view') {
             $frontendController->home();
@@ -85,11 +84,11 @@ try { // On essaie de faire des choses
                 updateCat($_POST['id'],$_POST['name'],$_POST['breeder'],$_POST['gender'],$_POST['dob'],$_POST['coat_color'],$_POST['hair_type'],$_POST['tabby_marking'],$_POST['eye_coloration'],$_POST['pattern_of_coat'],$_POST['breed'],$_POST['status'],$_POST['cat_shows'],$_POST['location'],$_POST['identification'],$_FILES['monfichier']['name'],$_POST['description']);
         }
         elseif ($_GET['action'] == 'update') {
-                updatePost($_POST['category'],$_POST['article'],$_POST['title'],$_POST['author'],$_POST['id']);
+                $backendController->updatePost($_POST['category'],$_POST['article'],$_POST['title'],$_POST['author'],$_POST['id']);
                 
             }  
         elseif ($_GET['action'] == 'moderate') {
-                listReportedComments();
+                $backendController->listReportedComments();
                 
             }
         elseif ($_GET['action'] == 'login_error') {
@@ -102,30 +101,30 @@ try { // On essaie de faire des choses
             }
         elseif ($_GET['action'] == 'edit') {
              if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    editPost($_GET['id']);
+                    $backendController->editPost($_GET['id']);
                 }
             }
         elseif ($_GET['action'] == 'comments') {
-                    listComments();
+                    $backendController->listComments();
                 }
         elseif ($_GET['action'] == 'articles') {
                     titlesList();
                 }
         elseif ($_GET['action'] == 'admin') {
-                    listPostsAdmin();
+                    $backendController->listPostsAdmin();
                 }
         elseif ($_GET['action'] == 'admin_cats') {
-                    admin_cats();
+                    $backendController->admin_cats();
                 }
         elseif ($_GET['action'] == 'display_cats') {
-                    displayAllCatsBack();
+                    $backendController->displayAllCatsBack();
                 }
         elseif ($_GET['action'] == 'save_cat_data') {
                     addCat();
                 }
         elseif ($_GET['action'] == 'edit_cat') {
              if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    editCat($_GET['id']);
+                    $backendController->editCat($_GET['id']);
                 }
             }
         elseif ($_GET['action'] == 'addPost') {
@@ -137,7 +136,7 @@ try { // On essaie de faire des choses
                     deletePost($_GET['id']);   
                 }
         elseif ($_GET['action'] == 'erase_cat') {
-                    eraseTheCat($_GET['id']);   
+                    $backendController->eraseTheCat($_GET['id']);   
                 }
         elseif ($_GET['action'] == 'moderateComment') {
                     destroyReportedComment($_GET['id']);   

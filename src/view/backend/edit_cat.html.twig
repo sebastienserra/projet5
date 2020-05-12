@@ -1,12 +1,11 @@
-<?php $title = 'Modifications'; ?>
+{% extends "basebackend.html.twig" %}
 
-<?php ob_start(); ?>
-<div class="content_size">
+{% block title %}Modification profil Maine Coon{% endblock %}
+
+{% block content %}
+    <div class="content_size">
 <div id="top"></div>
-<?php
-while($donnees =$result->fetch(PDO::FETCH_ASSOC))
-         {
-          ?>
+{% for res in results %}
           <form action="index.php?action=update_cat" method="post" enctype="multipart/form-data">
       <h2>Formulaire insertion chat en base de donnees:</h2>
       <fieldset> 
@@ -17,7 +16,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             <label>First Name</label>
           </div>
           <div>
-            <input type="text" name="name" id="name" size="13" maxlength="13" value="<?php echo $donnees['name']; ?>"/>
+            <input type="text" name="name" id="name" size="13" maxlength="13" value="{{ res.name }}"/>
         </div>
       </div>
 
@@ -26,7 +25,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             <label>Breeder</label>
           </div>
           <div>
-            <input type="text" name="breeder" id="breeder" size="13" maxlength="13" value="<?php echo $donnees['breeder']; ?>" />
+            <input type="text" name="breeder" id="breeder" size="13" maxlength="13" value="{{ res.breeder }}" />
         </div>
       </div>
 
@@ -37,7 +36,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
           </div>
             <div>
               <select name="gender" id="gender">
-                <option value="<?php echo $donnees['gender']; ?>"><?php echo $donnees['gender']; ?></option>
+                <option value="{{ res.gender }}">{{ res.gender }}</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
               </select>
@@ -49,7 +48,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
               <label> D.O.B</label>
             </div>
             <div>
-              <input type="date" name="dob" id="dob" size="13" maxlength="13" value="<?php echo $donnees['dob']; ?>">
+              <input type="date" name="dob" id="dob" size="13" maxlength="13" value="{{ res.dob }}">
             </div>
           </div>
 
@@ -60,7 +59,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             </div>
             <div>
               <select name="coat" id="coat" >
-                <option value="<?php echo $donnees['coat_color']; ?>"><?php echo $donnees['coat_color']; ?></option>
+                <option value="{{ res.coat_color }}">{{ res.coat_color }}</option>
                   <option value="black">Black</option>
                   <option value="silver">Silver</option>
                   <option value="red">Red</option>
@@ -82,7 +81,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
           </div>
             <div>
               <select name="hair_type" id="hair_type">
-                <option value="<?php echo $donnees['hair_type']; ?>"><?php echo $donnees['hair_type']; ?></option>
+                <option value="{{ res.hair_type }}">{{ res.hair_type }}</option>
                   <option value="long">Long-haired</option>
                   <option value="short">Short-haired</option>
                   <option value="hairless">Hairless</option>
@@ -96,7 +95,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
           </div>
             <div>
               <select name="tabby_marking" id="tabby_marking">
-                <option value="<?php echo $donnees['tabby_marking']; ?>"><?php echo $donnees['tabby_marking']; ?></option>
+                <option value="{{ res.tabby_marking }}">{{ res.tabby_marking }}</option>
                   <option value="mackeral">Mackeral</option>
                   <option value="classic">Classic</option>
                   <option value="spotted">Spotted</option>
@@ -112,7 +111,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
           </div>
             <div>
               <select name="eye_coloration" id="eye_coloration">
-                <option value="<?php echo $donnees['eye_coloration']; ?>"><?php echo $donnees['eye_coloration']; ?></option>
+                <option value="{{ res.eye_coloration }}">{{ res.eye_coloration }}</option>
                   <option value="brown">Brown</option>
                   <option value="gold">Gold</option>
                   <option value="hazel">Hazel</option>
@@ -130,7 +129,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
           </div>
             <div>
               <select name="pattern" id="pattern">
-                <option value="<?php echo $donnees['pattern_of_coat']; ?>"><?php echo $donnees['pattern_of_coat']; ?></option>
+                <option value="{{ res.pattern_of_coat }}">{{ res.pattern_of_coat }}</option>
                   <option value="solid">Solid</option>
                   <option value="tabby">Tabby</option>
                   <option value="colourpoint">Colour point</option>
@@ -147,7 +146,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             </div>
             <div>
               <select name="breed" id="breed">
-                <option value="<?php echo $donnees['breed']; ?>"><?php echo $donnees['breed']; ?></option>
+                <option value="{{ res.breed }}">{{ res.breed }}</option>
                   <option value="maine_coon">Maine Coon</option>
                   <option value="siamese">Siamese</option>
                   <option value="persian">Persian</option>
@@ -168,7 +167,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             </div>
             <div>
               <select name="status" id="status">
-                <option value="<?php echo $donnees['status']; ?>"><?php echo $donnees['status']; ?></option>
+                <option value="{{ res.status }}">{{ res.gender }}</option>
                   <option value="breeder">Breeder</option>
                   <option value="sterelized">Sterelized</option>
               </select>
@@ -182,7 +181,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             </div>
             <div>
               <select name="cat_shows" id="cat_shows">
-                <option value="<?php echo $donnees['cat_shows']; ?>"><?php echo $donnees['cat_shows']; ?></option>
+                <option value="{{ res.cat_shows }}">{{ res.cat_shows }}</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
               </select>
@@ -196,7 +195,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
             </div>
             <div>
             <select name="pays" id="pays">
-              <option value="<?php echo $donnees['location']; ?>"><?php echo $donnees['location']; ?></option>
+              <option value="{{ res.location }}">{{ res.location }}</option>
                  <option value="france">France</option>
                  <option value="espagne">Espagne</option>
                  <option value="allemagne">Allemagne</option>
@@ -237,7 +236,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
               </label>
             </div>
             <div>
-              <input type="text" name="identification" id="identification" size="13" maxlength="13" value="<?php echo $donnees['identification']; ?>"/>
+              <input type="text" name="identification" id="identification" size="13" maxlength="13" value="{{ res.identification }}"/>
           </div>
         </div>
 
@@ -257,7 +256,7 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
                 <label for="description">Short description</label>
               </div>
               <div>
-                <textarea name="description" id="description" rows="10" cols="53" maxlength="200" ><?php echo $donnees['description']; ?>
+                <textarea name="description" id="description" rows="10" cols="53" maxlength="200" >{{ res.description }}
                 </textarea>
             </div>
           </div>
@@ -270,11 +269,8 @@ while($donnees =$result->fetch(PDO::FETCH_ASSOC))
           <button type="submit" name="update" value="update">update</button>
       </div>
     </form>
-    <?php 
-         }
-?>
+	{% endfor %}
 </div>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template_backend.php'); ?>
+</div>
+</div>
+{% endblock %}

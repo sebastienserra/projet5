@@ -41,13 +41,13 @@ class CommentManager extends Manager{
 	}
 
 	public function displayReportedComments(){
-			$report = $this->db->query('SELECT comments.id, comments.comment, comments.id_post, reported_comments.id_comment
+			$reports = $this->db->query('SELECT comments.id, comments.comment, comments.id_post, reported_comments.id_comment
 			FROM comments 
 			JOIN reported_comments
 			ON comments.id = reported_comments.id_comment
 			ORDER BY reported_comments.id_comment DESC
 			');
-			return $report;
+			return $reports;
 	}
 	public function eraseReportedComment($id){
 			$eraseReported = $this->db->prepare('DELETE comments, reported_comments

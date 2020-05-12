@@ -1,0 +1,17 @@
+{% extends "basebackend.html.twig" %}
+
+{% block title %}Commentaires{% endblock %}
+
+{% block content %}
+
+<div class="content_size">
+	<div id="top"></div>
+	<div class="present_titles">
+    {% for commentBack in commentsBack %}
+		<div class="present">
+   			 <div>{{ commentBack.comment }}</div>
+		</div>
+	{% endfor %}
+</div>
+</div>
+{% endblock %}

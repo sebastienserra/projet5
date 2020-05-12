@@ -1,0 +1,69 @@
+{% extends "basebackend.html.twig" %}
+
+{% block title %}Listing Maine Coons{% endblock %}
+
+{% block content %}
+
+<div class="content_size">
+	<div id="top"></div>
+	    <table>  
+	    <tr>
+        <th>Update</th>
+        <th>Erase</th>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Breeder</th>
+        <th>D.O.B</th>
+        <th>Gender</th>
+        <th>Coat color</th>
+        <th>Hair type</th>
+        <th>Tabby marking</th>
+        <th>Eye coloration</th>
+        <th>Pattern of coat</th>
+        <th>Breed</th>
+        <th>Status</th>
+        <th>Cat shows</th>
+        <th>Location</th>
+        <th>Identification</th>
+        <th>Description</th>
+        <th>Age category</th>
+      </tr>
+    {% for allCat in allCats %}
+      <tr>
+        <td>
+          <a href="index.php?action=edit_cat&amp;id={{ allCat.id }}" id="control_four">
+            <span class="fas fa-edit"></span>
+            <span id="tooltip_four">Modifier</span>
+          </a>
+        </td>
+        <td>
+          <a href="index.php?action=erase_cat&amp;id={{ allCat.id }}" id="confirmation">
+            <span class="fas fa-trash-alt"></span>
+            <span id="tooltip_three">Supprimer</span>
+          </a>
+        </td>
+        <td>
+          <img src="./uploads/{{ allCat.image }}" class="mini_picture_of_cat" />
+        </td>
+        <td>{{ allCat.name }}</td>
+        <td>{{ allCat.breeder }}</td>
+        <td>{{ allCat.dob }}</td>
+        <td>{{ allCat.gender }}</td>
+        <td>{{ allCat.coat_color }}</td>
+        <td>{{ allCat.hair_type }}</td>
+        <td>{{ allCat.tabby_marking }}</td>
+        <td>{{ allCat.eye_coloration }}</td>
+        <td>{{ allCat.pattern_of_coat }}</td>
+        <td>{{ allCat.breed }}</td>
+        <td>{{ allCat.status }}</td>
+        <td>{{ allCat.cat_shows }}</td>
+        <td>{{ allCat.location }}</td>
+        <td>{{ allCat.identification }}</td>
+        <td>{{ allCat.description }}</td>
+        <td>{{ allCat.age_category }}</td>
+{% endfor %}
+		      </tr>
+    </table>
+</div>
+</div>
+{% endblock %}

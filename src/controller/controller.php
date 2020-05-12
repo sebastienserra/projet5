@@ -5,44 +5,14 @@ require_once('./model/CommentManager.php');
 require_once('./model/UserManager.php');
 require_once('./model/CatManager.php');
 
-
-function listPostsAdmin(){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $posts = $postManager->getAllPostsAdmin();
-    require('./view/backend/admin_view.php');
-}
-function admin_cats(){
-    require('./view/backend/admin_cats.php');
-}
-
 function register(){
 $user = new \Sebastien\Blog\Model\UserManager();
 $row = $user->checkEmailExists();
 }
-
-
 function connect(){
     $user = new \Sebastien\Blog\Model\UserManager();
     $data = $user->getUser();
 }
-function editPost($id){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $result = $postManager->editOnePost($id);
-    require('./view/backend/edit_view.php');
-}
-function updatePost($category,$article,$title,$author,$id){
-    $postManager = new \Sebastien\Blog\Model\PostManager();
-    $request= $postManager->update($category,$article,$title,$author,$id);
-    if ($request === false) {
-        throw new Exception('Impossible de mettre le post a jour !');
-    }
-    else {
-        header('Location: index.php?action=admin');
-    }
-}
-
-
-
 function deletePost($id){
     $postManager = new \Sebastien\Blog\Model\PostManager();
     $erase = $postManager->destroy($id);
@@ -73,16 +43,7 @@ function addComment($comment,$postId){
         header('Location: index.php?action=postandcomments&id=' . $postId);
     }
 }
-function listComments(){
-    $commentManager = new \Sebastien\Blog\Model\CommentManager();
-    $commentsBack = $commentManager->getAllComments();
-    require('./view/backend/comments.php');
-}
-function listReportedComments(){
-    $commentManager = new \Sebastien\Blog\Model\CommentManager();
-    $report = $commentManager->displayReportedComments();
-    require('./view/backend/reported_comments.php');
-}
+
 function destroyReportedComment($id){
     $commentManager = new \Sebastien\Blog\Model\CommentManager();
     $eraseReported = $commentManager->eraseReportedComment($id);
@@ -106,23 +67,6 @@ function getReportedComment($id){
 function addCat(){
     $catManager = new \Sebastien\Blog\Model\CatManager();
     $req = $catManager->insertCatPictureAndData();
-}
-
-function displayAllCatsBack(){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $req = $catManager->getAllCats();
-    require('./view/backend/display_cats.php');
-}
-
-function editCat($id){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $result = $catManager->editOneCat($id);
-    require('./view/backend/edit_cat.php');
-}
-function eraseTheCat($id){
-    $catManager = new \Sebastien\Blog\Model\CatManager();
-    $result = $catManager->eraseCat($id);
-    require('./view/backend/admin_cats.php');
 }
 function updateCat($id,$name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$image,$description){
       $catManager = new \Sebastien\Blog\Model\CatManager();

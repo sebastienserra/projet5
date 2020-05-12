@@ -1,5 +1,8 @@
-<?php $title = 'Interface d administration'; ?>
-<?php ob_start(); ?>
+{% extends "basebackend.html.twig" %}
+
+{% block title %}Interface admin Maine Coons{% endblock %}
+
+{% block content %}
 <div class="content_size">
   <div id="top"></div>
   <div><a href="index.php?action=display_cats"> voir tous les chats</a></div>
@@ -273,6 +276,4 @@
 		      <button type="submit" name="submit" value="Insert" id="insertion">Insert</button>
 		  </div>
 		</form>
-<?php $content = ob_get_clean(); ?>
-
-<?php require('template_backend.php'); ?>
+{% endblock %}
