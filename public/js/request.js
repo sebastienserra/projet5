@@ -17,7 +17,31 @@ function displayCats(coat) {
     function (data) {
       data.forEach(function (cat) {
         var catElement = document.createElement("div");
-        catElement.innerHTML = "<div> Name:" + data.name + "</div>";
+        var path = "./uploads/" + cat.image;
+        catElement.innerHTML =
+          '<div id="cat_presentation">' +
+          '<div id="cat_picture"><img src="' +
+          path +
+          '"/>' +
+          "</div>" +
+          '<div id="cat_info">' +
+          "<div> Name:" +
+          cat.name +
+          "</div>" +
+          "<div> Couleur:" +
+          cat.coat_color +
+          "</div>" +
+          "<div> Sexe:" +
+          cat.gender +
+          "</div>" +
+          "<div> Naissance:" +
+          cat.dob +
+          "</div>" +
+          "<div> Description:" +
+          cat.description +
+          "</div>" +
+          "</div>" +
+          "</div>";
         results.appendChild(catElement);
       });
     },
@@ -37,7 +61,8 @@ function getCatByCoat(coat) {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          return resolve(JSON.parse(xhr.response)); // Par défault une DOMString
+          console.log(xhr.response);
+          resolve(JSON.parse(xhr.response)); // Par défault une DOMString
         } else {
           reject();
         }
