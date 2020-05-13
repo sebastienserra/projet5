@@ -10,6 +10,9 @@
       <h2>Formulaire insertion chat en base de donnees:</h2>
       <fieldset> 
        <legend>Données concernant le chat</legend>
+       	<p>
+		  <input type="hidden" name="id" id="id" value="{{ res.id }}">
+	    </p>
        
         <div class="contain">
           <div>
@@ -167,7 +170,7 @@
             </div>
             <div>
               <select name="status" id="status">
-                <option value="{{ res.status }}">{{ res.gender }}</option>
+                <option value="{{ res.status }}">{{ res.status }}</option>
                   <option value="breeder">Breeder</option>
                   <option value="sterelized">Sterelized</option>
               </select>
@@ -245,7 +248,7 @@
             <label for="description">Photo du chat:</label>
           </div>
           <div>
-          <p><input type="file" name="monfichier"></p>
+          <p><input type="file" name="monfichier"></p><img src="./uploads/{{ res.image }}" class="mini_picture_of_cat" />
         </div>
       </div>
 

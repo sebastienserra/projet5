@@ -10,7 +10,7 @@
 
 <form action="index.php?action=update" method="post" id="edit_form">
 	<p>
-		<input type="hidden" name="id" id="id" value="<?php echo $_GET['id']; ?>">
+		<input type="hidden" name="id" id="id" value="{{ onePost.id }}">
 	</p>
 	<p> 
 		<input type="text" name="title" id="title" rows="1" cols="50" maxlength="250" value="{{ onePost.title }}"/>

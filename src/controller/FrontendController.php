@@ -5,26 +5,35 @@ namespace Projet5\Controller;
 use Projet5\Model\PostManager;
 use Projet5\Model\CommentManager;
 use Projet5\Model\CatManager;
+use Projet5\Model\UserManager;
+use Projet5\service\AuthenticationService;
 
 class FrontendController
 {
     private $twig;
+    private $postManager;
     private $commentManager;
     private $catManager;
+    private $userManager;
+   // private $authentificationService;
 
     public function __construct($twig)
     {
         /** @var \Twig\Environment $twig */
+
         $this->twig = $twig;
+        $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
         $this->catManager = new CatManager();
+        $this->userManager = new UserManager();
+       // $this->authentificationService = new AuthentificationService();
     }
 
     public function home()
     {
-        $postManager = new PostManager();
-        $articles = $postManager->lastPosts();
-        $nbPosts = $postManager->paginate();
+        
+        $articles = $this->postManager->lastPosts();
+        $nbPosts = $this->postManager->paginate();
         echo $this->twig->render('frontend/home.html.twig', [
             'articles' => $articles,
             'nbPosts' => $nbPosts,
@@ -65,24 +74,20 @@ class FrontendController
 
         ]);
     }
-
     function query()
     {
-        $postManager = new PostManager();
-        $results = $postManager->searchQuery();
+        $results = $this->postManager->searchQuery();
         echo $this->twig->render('frontend/query_results.html.twig', [
             'results' => $results,
         ]);
     }
-
     function post()
     {
-        $postManager = new PostManager();
         $commentManager = new CommentManager();
-        $post = $postManager->getPost($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
-        $byTitles = $postManager->newPosts();
-        $popularity = $postManager->popularPosts();
+        $post = $this->postManager->getPost($_GET['id']);
+        $comments = $this->commentManager->getComments($_GET['id']);
+        $byTitles = $this->postManager->newPosts();
+        $popularity = $this->postManager->popularPosts();
         echo $this->twig->render('frontend/post_page.html.twig', [
             'post' => $post,
             'comments' => $comments,
@@ -93,8 +98,7 @@ class FrontendController
 
     function displayAllMaineCoons()
     {
-        $catManager = new CatManager();
-        $allCats = $catManager->getAllCats();
+        $allCats = $this->catManager->getAllCats();
         echo $this->twig->render('frontend/all_maine_coons.html.twig', [
             'allCats' => $allCats,
         ]);
@@ -102,8 +106,7 @@ class FrontendController
 
     function displayCatsByCoat()
     {
-        $catManager = new CatManager();
-        $coats = $catManager->loadCoat();
+        $coats = $this->catManager->loadCoat();
         echo $this->twig->render('frontend/filtre.html.twig', [
             'coats' => $coats,
         ]);
@@ -111,8 +114,7 @@ class FrontendController
 
     function displayAllBoys()
     {
-        $catManager = new CatManager();
-        $boys = $catManager->getAllBoys();
+        $boys = $this->catManager->getAllBoys();
         echo $this->twig->render('frontend/maine_coon_boys.html.twig', [
             'boys' => $boys,
         ]);
@@ -120,8 +122,7 @@ class FrontendController
 
     function displayAllGirls()
     {
-        $catManager = new CatManager();
-        $girls = $catManager->getAllGirls();
+        $girls = $this->catManager->getAllGirls();
         echo $this->twig->render('frontend/maine_coon_girls.html.twig', [
             'girls' => $girls,
         ]);
@@ -129,8 +130,7 @@ class FrontendController
 
     function displayAllYoungsters()
     {
-        $catManager = new CatManager();
-        $youngsters = $catManager->getAllYoungsters();
+        $youngsters = $this->catManager->getAllYoungsters();
         echo $this->twig->render('frontend/maine_coon_youngsters.html.twig', [
             'youngsters' => $youngsters,
         ]);

@@ -5,6 +5,7 @@ namespace Projet5\Controller;
 use Projet5\Model\PostManager;
 use Projet5\Model\CommentManager;
 use Projet5\Model\CatManager;
+use Projet5\Model\UserManager;
 
 class BackendController
 {
@@ -23,6 +24,85 @@ class BackendController
         $this->catManager = new CatManager();
     }
 
+    function addPost($article,$title,$author,$category)
+    {
+    $affectedLinesPost = $this->postManager->saveRecords($article,$title,$author,$category);
+    
+    if ($affectedLinesPost === false) {
+        //header("location:".  $_SERVER['HTTP_REFERER']); 
+        echo 'error';
+        //var_dump($affectedLinesPost);   
+    }
+    else{
+        echo'success';
+            //header('Location: index.php?action=admin&success=true');
+    }
+    }
+    function editPost($id)
+    {
+        $result = $this->postManager->editOnePost($id);
+        echo $this->twig->render('backend/edit.html.twig', [
+            'result' => $result,
+        ]);
+    }
+
+    function updatePost($category, $article, $title, $author, $id)
+    {
+        $request = $this->postManager->update($category, $article, $title, $author, $id);
+        if ($request === false) {
+        //throw new Exception('Impossible de supprimer le commentaire !');
+        echo'error';
+    }
+    else {
+        //header('Location: index.php?action=moderate');
+        echo'success';
+    }
+    }
+    function updateCat($id,$name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$description,$image,$age_category)
+    {
+    $request= $this->catManager->updateCat($id,$name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$description,$image,$age_category);
+    if ($request === false) {
+        //throw new Exception('Impossible de supprimer le commentaire !');
+        echo'error';
+    }
+    else {
+        //header('Location: index.php?action=moderate');
+        echo'success';
+    }
+}
+    function deletePost($id){
+    $erase = $this->postManager->destroy($id);
+    if ($erase === false) {
+        //header("location:".  $_SERVER['HTTP_REFERER']); 
+        echo 'error';
+        //var_dump($affectedLinesPost);   
+    }
+    else{
+        echo'success';
+            //header('Location: index.php?action=admin&success=true');
+    }
+    }
+    function listReportedComments()
+    {
+        $reports = $this->commentManager->getReportedComments();
+        echo $this->twig->render('backend/reported_comments.html.twig', [
+            'reports' => $reports,
+        ]);
+    }
+    function destroyReportedComment($id)
+    {
+  
+    $eraseReported = $this->commentManager->eraseReportedComment($id);
+    if ($eraseReported === false) {
+        //throw new Exception('Impossible de supprimer le commentaire !');
+        echo'error';
+    }
+    else {
+        //header('Location: index.php?action=moderate');
+        echo'success';
+    }
+    }
+    
     function listPostsAdmin()
     {
         $nbComments = $this->commentManager->countReportedComments();
@@ -30,14 +110,6 @@ class BackendController
         echo $this->twig->render('backend/backend.html.twig', [
             'posts' => $posts,
             'nbComments' => $nbComments
-        ]);
-    }
-
-    function editPost($id)
-    {
-        $result = $this->postManager->editOnePost($id);
-        echo $this->twig->render('backend/edit.html.twig', [
-            'result' => $result,
         ]);
     }
 
@@ -49,21 +121,10 @@ class BackendController
         ]);
     }
 
-    function admin_cats()
+    function addCat($name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$image,$description,$age_category)
     {
-        echo $this->twig->render('backend/admin_cats.html.twig', [
-
-        ]);
+        $req = $this->catManager->insertCatPictureAndData($name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$image,$description,$age_category);
     }
-
-    function displayAllCatsBack()
-    {
-        $allCats = $this->catManager->getAllCats();
-        echo $this->twig->render('backend/display_cats.html.twig', [
-            'allCats' => $allCats,
-        ]);
-    }
-
     function editCat($id)
     {
         $result = $this->catManager->editOneCat($id);
@@ -79,24 +140,19 @@ class BackendController
 
         ]);
     }
-
-    function listReportedComments()
+    function admin_cats()
     {
-        $reports = $this->commentManager->getReportedComments();
-        echo $this->twig->render('backend/reported_comments.html.twig', [
-            'reports' => $reports,
+        echo $this->twig->render('backend/admin_cats.html.twig', [
+
         ]);
     }
 
-    function updatePost($category, $article, $title, $author, $id)
+    function displayAllCatsBack()
     {
-        $request = $this->postManager->update($category, $article, $title, $author, $id);
-        if ($request === false) {
-            throw new Exception('Impossible de mettre le post a jour !');
-        } else {
-
-            header('Location: index.php?action=admin');
-        }
+        $allCats = $this->catManager->getAllCats();
+        echo $this->twig->render('backend/display_cats.html.twig', [
+            'allCats' => $allCats,
+        ]);
     }
 
 }

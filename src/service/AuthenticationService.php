@@ -6,7 +6,7 @@ namespace Projet5\service;
 
 use Projet5\Model\UserManager;
 
-class AuthenticationService
+class AuthenticationService extends Manager
 {
     private $userManager;
 

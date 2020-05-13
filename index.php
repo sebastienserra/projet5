@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Projet5\Controller\BackendController;
 use Projet5\Controller\FrontendController;
+use Projet5\service\AuthentificationService;
 use Twig\Environment;
 use Twig\Extra\String\StringExtension;
 use Twig\Loader\FilesystemLoader;
@@ -16,6 +17,7 @@ $twig->addExtension(new StringExtension());
 /* Controller as class */
 $frontendController = new FrontendController($twig);
 $backendController = new BackendController($twig);
+//$authentificationService = new AuthentificationService($twig);
 
 
 try {
@@ -61,11 +63,12 @@ try {
         } elseif ($_GET['action'] == 'getCatByCoat') {
             $frontendController->getCatByCoat($_GET['coat']);
         } elseif ($_GET['action'] == 'register') {
-            register();
+            //$authentificationService->register();
+            //$authentificationService->checkEmailExists();
         } elseif ($_GET['action'] == 'connect') {
             connect();
         } elseif ($_GET['action'] == 'update_cat') {
-            updateCat($_POST['id'], $_POST['name'], $_POST['breeder'], $_POST['gender'], $_POST['dob'], $_POST['coat_color'], $_POST['hair_type'], $_POST['tabby_marking'], $_POST['eye_coloration'], $_POST['pattern_of_coat'], $_POST['breed'], $_POST['status'], $_POST['cat_shows'], $_POST['location'], $_POST['identification'], $_FILES['monfichier']['name'], $_POST['description']);
+            $backendController->updateCat($_POST['id'], $_POST['name'], $_POST['breeder'], $_POST['gender'], $_POST['dob'], $_POST['coat_color'], $_POST['hair_type'], $_POST['tabby_marking'], $_POST['eye_coloration'], $_POST['pattern_of_coat'], $_POST['breed'], $_POST['status'], $_POST['cat_shows'], $_POST['location'], $_POST['identification'], $_FILES['monfichier']['name'], $_POST['description'], $_POST['age_category']);
         } elseif ($_GET['action'] == 'update') {
             $backendController->updatePost($_POST['category'], $_POST['article'], $_POST['title'], $_POST['author'], $_POST['id']);
 
@@ -93,21 +96,21 @@ try {
         } elseif ($_GET['action'] == 'display_cats') {
             $backendController->displayAllCatsBack();
         } elseif ($_GET['action'] == 'save_cat_data') {
-            addCat();
+            $backendController->addCat($_POST['name'], $_POST['breeder'], $_POST['gender'], $_POST['dob'], $_POST['coat'], $_POST['hair_type'], $_POST['tabby_marking'], $_POST['eye_coloration'], $_POST['pattern'], $_POST['breed'], $_POST['status'], $_POST['cat_shows'], $_POST['pays'], $_POST['identification'], $_FILES['monfichier']['name'], $_POST['description'], $_POST['age_category']);
         } elseif ($_GET['action'] == 'edit_cat') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $backendController->editCat($_GET['id']);
             }
         } elseif ($_GET['action'] == 'addPost') {
             if (!empty($_POST['article'])) {
-                addPost($_POST['article'], $_POST['title'], $_POST['author'], $_POST['category']);
+                $backendController->addPost($_POST['article'], $_POST['title'], $_POST['author'], $_POST['category']);
             }
         } elseif ($_GET['action'] == 'deletePost') {
-            deletePost($_GET['id']);
+            $backendController->deletePost($_GET['id']);
         } elseif ($_GET['action'] == 'erase_cat') {
             $backendController->eraseTheCat($_GET['id']);
         } elseif ($_GET['action'] == 'moderateComment') {
-            destroyReportedComment($_GET['id']);
+            $backendController->destroyReportedComment($_GET['id']);
         }
     } else {
         $frontendController->home();

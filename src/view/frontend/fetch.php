@@ -29,9 +29,10 @@ class CatManager
 		 	$req->execute(['coat_color'=>$coat_color]);
 		 	while($data= $req->fetch(PDO::FETCH_ASSOC)){
 		 	  ?>
-		 	  <div>	
+		 	<div>	
 			<div id="cat_presentation">
-			<div id="cat_picture"><img src="./uploads/<?php echo $data['image'];?>"></div>
+			<div id="cat_picture"><img src="./uploads/<?php echo $data['image'];?>">
+			</div>
 			<div id="cat_info">
 				<p><span class="info_title">Prénom:</span><?php echo $data['name'];?></p>
 				<p><span class="info_title">Sexe:</span><?php echo $data['gender'];?></p>

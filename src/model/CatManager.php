@@ -51,13 +51,6 @@ class CatManager extends Manager
         return $erase;
     }
 
-    public function updateCat($id, $name, $breeder, $gender, $dob, $coat_color, $hair_type, $tabby_marking, $eye_coloration, $pattern_of_coat, $breed, $status, $cat_shows, $location, $identification, $description)
-    {
-        $update = $this->db->prepare("UPDATE cat_data SET id=:id, name=:name, breeder=:breeder, gender=:gender, dob=:dob, coat_color=:coat_color, hair_type=:hair_type, tabby_marking=:tabby_marking, eye_coloration=:eye_coloration, pattern_of_coat=:pattern_of_coat, breed=:breed, status=:status,cat_shows=:cat_shows, location=:location, identification=:identification, description=:description WHERE id=:id");
-        $request = $update->execute(array(":id" => $id, ":name" => $name, ":breeder" => $breeder, ":gender" => $gender, ":dob" => $dob, ":coat_color" => $coat_color, ":hair_type" => $hair_type, ":tabby_marking" => $tabby_marking, ":eye_coloration" => $eye_coloration, ":pattern_of_coat" => $pattern_of_coat, ":breed" => $breed, ":status" => $status, ":cat_shows" => $cat_shows, ":location" => $location, ":identification" => $identification, ":description" => $description));
-        return $request;
-    }
-
     public function loadCoat()
     {
         $coats = $this->db->query("SELECT DISTINCT coat_color FROM cat_data"); //DISTINCT evite de repeter black 2 fois par exemple
@@ -67,15 +60,46 @@ class CatManager extends Manager
 
     public function getCatByCoat($coat)
     {
-        $req = $this->db->prepare("
+        $req= $this->db->prepare("
             SELECT DISTINCT id,name,gender, coat_color,dob,description,image 
             FROM cat_data 
             WHERE coat_color=:coat_color");
         $req->execute(['coat_color'=>$coat]);
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function updateCat($id, $name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$image,$description,$age_category)
+    {
+        
+        if (isset($_POST['update'])) {
+            // testons si le fichier a bien ete envoye et s'il n'y a pas d'erreur
+            if (isset($_FILES['monfichier']) and $_FILES['monfichier']['error'] == 0) {
+                if (isset($_FILES['monfichier']['size']) <= 1000000) {
 
-    public function insertCatPictureAndData()
+                    $image = $_FILES['monfichier']['name'];
+                    //testons si l'extension est autorisee
+
+                    $infosfichier = pathinfo($_FILES['monfichier']['name']);
+                    $extension_upload = $infosfichier['extension'];
+                    $extensionsautorisees = array('jpg', 'jpeg', 'gif', 'png');
+                    
+                    //unlink('uploads/'. $infosfichier);
+                    if (in_array($extension_upload, $extensionsautorisees)) {
+                        //on peut valider le fichier et le stocker dans fichier uploads
+                        move_uploaded_file($_FILES['monfichier']['tmp_name'], 'uploads/' . basename($_FILES['monfichier']['name']));
+                        $update = $this->db->prepare("UPDATE cat_data SET id=:id,name=:name,breeder=:breeder,gender=:gender,dob=:dob,coat_color=:coat_color,hair_type=:hair_type,tabby_marking=:tabby_marking,eye_coloration=:eye_coloration,pattern_of_coat=:pattern_of_coat,breed=:breed,status=:status,cat_shows=:cat_shows,location=:location,identification=:identification,description=:description,image=:image,age_category=:age_category WHERE id=:id");
+                        $request = $update->execute(array(":id" => $id, ":name" => $name, ":breeder" => $breeder, ":gender" => $gender, ":dob" => $dob, ":coat_color" => $coat_color, ":hair_type" => $hair_type, ":tabby_marking" => $tabby_marking, ":eye_coloration" => $eye_coloration, ":pattern_of_coat" => $pattern_of_coat, ":breed" => $breed, ":status" => $status, ":cat_shows" => $cat_shows, ":location" => $location, ":identification" => $identification, ":description" => $description, ":image" => $image, ":age_category" => $age_category));
+                        
+                    } else {
+                        echo 'Une erreur a eu lieu';
+                    }
+                }
+
+            }
+        }
+
+    }
+    public function insertCatPictureAndData($name,$breeder,$gender,$dob,$coat_color,$hair_type,$tabby_marking,$eye_coloration,$pattern_of_coat,$breed,$status,$cat_shows,$location,$identification,$image,$description,$age_category)
     {
         if (isset($_POST['submit'])) {
             // testons si le fichier a bien ete envoye et s'il n'y a pas d'erreur
@@ -97,7 +121,6 @@ class CatManager extends Manager
                         move_uploaded_file($_FILES['monfichier']['tmp_name'], 'uploads/' . basename($_FILES['monfichier']['name']));
 
                         echo 'Envoi effectué';
-                        header("Location: index.php?action=admin_cats");
                     } else {
                         echo 'Une erreur a eu lieu';
                     }

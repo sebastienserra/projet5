@@ -2,8 +2,6 @@
 
 namespace Projet5\Model;
 
-require_once('./model/Manager.php');
-
 class UserManager extends Manager{
 	public function getUser(){//pb avec cette fonction meme si tout ok m envois sur page d erreur
 
