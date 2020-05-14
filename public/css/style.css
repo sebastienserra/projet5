@@ -1091,6 +1091,33 @@ tr:nth-child(even) {
   height: 70px;
 }
 /*end style present all cats backend*/
+/*start style for contact page*/
+#contact_title {
+  font-size: 35px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+#contain_guardians {
+  width: 80%;
+  margin: 0 auto;
+  height: auto;
+}
+#guardians {
+  width: auto;
+  min-height: 130px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  border: solid blue 0px;
+}
+#guardians img {
+  width: 12%;
+  height: 12%;
+  border-radius: 50%;
+  float: left;
+  margin-right: 30px;
+}
+/*end style for contact page*/
 /*start style new presentation articles*/
 .page_post {
   width: 100%;
