@@ -17,8 +17,8 @@ $twig->addExtension(new StringExtension());
 /* Controller as class */
 $frontendController = new FrontendController($twig);
 $backendController = new BackendController($twig);
-//$authentificationService = new AuthentificationService($twig);
 
+session_start();
 
 try {
     if (isset($_GET['action'])) {
@@ -63,12 +63,11 @@ try {
         } elseif ($_GET['action'] == 'getCatByCoat') {
             $frontendController->getCatByCoat($_GET['coat']);
         } elseif ($_GET['action'] == 'register') {
-            //$authentificationService->register();
-            //$authentificationService->checkEmailExists();
+            $frontendController->register($_POST['email'], $_POST['password']);
         } elseif ($_GET['action'] == 'connect') {
-            connect();
+            $frontendController->connect($_POST['email'], $_POST['password']);
         } elseif ($_GET['action'] == 'update_cat') {
-            $backendController->updateCat($_POST['id'], $_POST['name'], $_POST['breeder'], $_POST['gender'], $_POST['dob'], $_POST['coat_color'], $_POST['hair_type'], $_POST['tabby_marking'], $_POST['eye_coloration'], $_POST['pattern_of_coat'], $_POST['breed'], $_POST['status'], $_POST['cat_shows'], $_POST['location'], $_POST['identification'], $_FILES['monfichier']['name'], $_POST['description'], $_POST['age_category']);
+            $backendController->updateCat($_POST, $_FILES['monfichier']);
         } elseif ($_GET['action'] == 'update') {
             $backendController->updatePost($_POST['category'], $_POST['article'], $_POST['title'], $_POST['author'], $_POST['id']);
 
@@ -96,7 +95,7 @@ try {
         } elseif ($_GET['action'] == 'display_cats') {
             $backendController->displayAllCatsBack();
         } elseif ($_GET['action'] == 'save_cat_data') {
-            $backendController->addCat($_POST['name'], $_POST['breeder'], $_POST['gender'], $_POST['dob'], $_POST['coat'], $_POST['hair_type'], $_POST['tabby_marking'], $_POST['eye_coloration'], $_POST['pattern'], $_POST['breed'], $_POST['status'], $_POST['cat_shows'], $_POST['pays'], $_POST['identification'], $_FILES['monfichier']['name'], $_POST['description'], $_POST['age_category']);
+            $backendController->addCat($_POST, $_FILES['monfichier']);
         } elseif ($_GET['action'] == 'edit_cat') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $backendController->editCat($_GET['id']);

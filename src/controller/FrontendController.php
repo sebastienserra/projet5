@@ -6,7 +6,7 @@ use Projet5\Model\PostManager;
 use Projet5\Model\CommentManager;
 use Projet5\Model\CatManager;
 use Projet5\Model\UserManager;
-use Projet5\service\AuthenticationService;
+use Projet5\Service\AuthenticationService;
 
 class FrontendController
 {
@@ -15,7 +15,7 @@ class FrontendController
     private $commentManager;
     private $catManager;
     private $userManager;
-   // private $authentificationService;
+    private $authenticationService;
 
     public function __construct($twig)
     {
@@ -26,7 +26,7 @@ class FrontendController
         $this->commentManager = new CommentManager();
         $this->catManager = new CatManager();
         $this->userManager = new UserManager();
-       // $this->authentificationService = new AuthentificationService();
+        $this->authenticationService = new AuthenticationService();
     }
 
     public function home()
@@ -50,29 +50,25 @@ class FrontendController
     function signup()
     {
         echo $this->twig->render('frontend/signup.html.twig', [
-
+            'error' => $_GET['success'] == 'false'
         ]);
     }
 
     function blog()
     {
-        echo $this->twig->render('frontend/blog.html.twig', [
-
-        ]);
+        echo $this->twig->render('frontend/blog.html.twig', []);
     }
 
     function login()
     {
         echo $this->twig->render('frontend/login.html.twig', [
-
+            'error' => $_GET['success'] == 'false'
         ]);
     }
 
     function loginError()
     {
-        echo $this->twig->render('frontend/login_error.html.twig', [
-
-        ]);
+        echo $this->twig->render('frontend/login_error.html.twig', []);
     }
     function query()
     {
@@ -83,7 +79,6 @@ class FrontendController
     }
     function post()
     {
-        $commentManager = new CommentManager();
         $post = $this->postManager->getPost($_GET['id']);
         $comments = $this->commentManager->getComments($_GET['id']);
         $byTitles = $this->postManager->newPosts();
@@ -170,6 +165,30 @@ class FrontendController
         header('Content-Type: application/json');
         $cats = $this->catManager->getCatByCoat($coat);
         echo json_encode($cats);
+    }
+
+    public function register($email, $password)
+    {
+        $result = $this->authenticationService->signup($email, $password);
+        if($result){
+            $_SESSION['admin'] = true;
+            header('Location: index.php?action=admin');
+        } else {
+            $_SESSION['admin'] = false;
+            header('Location: index.php?action=signup&success=false');
+        }
+    }
+
+    public function connect($email, $password)
+    {
+        $result = $this->authenticationService->signin($email, $password);
+        if($result){
+            $_SESSION['admin'] = true;
+            header('Location: index.php?action=admin');
+        } else {
+            $_SESSION['admin'] = false;
+            header('Location: index.php?action=login&success=false');
+        }
     }
 
 }

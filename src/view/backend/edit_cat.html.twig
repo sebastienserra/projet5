@@ -248,7 +248,11 @@
             <label for="description">Photo du chat:</label>
           </div>
           <div>
-          <p><input type="file" name="monfichier"></p><img src="./uploads/{{ res.image }}" class="mini_picture_of_cat" />
+          <p>
+              <input type="file" name="monfichier">
+          </p>
+              <img src="./uploads/{{ res.image }}" class="mini_picture_of_cat" />
+              <input type="hidden" name="previous_image" value="{{ res.image }}">
         </div>
       </div>
 

@@ -1,12 +1,10 @@
 <?php
 
-
-namespace Projet5\service;
-
+namespace Projet5\Service;
 
 use Projet5\Model\UserManager;
 
-class AuthenticationService extends Manager
+class AuthenticationService
 {
     private $userManager;
 
@@ -15,14 +13,30 @@ class AuthenticationService extends Manager
         $this->userManager = new UserManager();
     }
 
-    public function register()
+    public function signin($email, $password)
     {
-        $row = $this->userManager->checkEmailExists();
+        $user = $this->userManager->getUser($email);
+        if (!$user) {
+            return false;
+        }
+        return password_verify($password, $user['password']);
     }
 
-    public function connect()
+    public function signup($email, $password)
     {
-        $data = $this->userManager->getUser();
+        $emailExists = $this->userManager->emailExists($email);
+        if ($emailExists) {
+            return false;
+        }
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $nbResults = $this->userManager->createUser($email, $passwordHash);
+        return $nbResults > 0;
+
+    }
+
+    public function isConnected()
+    {
+        return isset($_SESSION['admin']) && $_SESSION['admin'];
     }
 
 }
