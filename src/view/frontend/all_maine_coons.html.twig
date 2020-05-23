@@ -4,27 +4,33 @@
 
 {% block content %}
 <div class="content_size">
-	<div id="top">
+ 	<div id="top">
     </div>
     <div id="coat_search"><a href="index.php?action=search_by_coat">Trouver un Maine Coon par sa couleur</a>
-    </div> 
+    </div>
 
-	
 
 {% for allCat in allCats %}
 
-		<div>	
+
+			<div id="contain_cat">
 			<div id="cat_presentation">
+		
+			<div id="cat_display">
 			<div id="cat_picture"><img src="./uploads/{{ allCat.image | raw }}">
             </div>
+				
 			<div id="cat_info">
 				<p><span class="info_title">Prénom:</span>{{ allCat.name | raw }}</p>
 				<p><span class="info_title">Sexe:</span>{{ allCat.gender | raw }}</p>
 				<p><span class="info_title">Robe:</span>{{ allCat.coat_color | raw }}</p>
 				<p><span class="info_title">Date de naissance:</span>{{ allCat.dob | raw }}</p>
 				<p><span class="info_title">Description:</span>{{ allCat.description | raw }}</p>
-			</div>
+			</div>	
 		</div>
+	</div>					
+</div>
 {% endfor %}
+</div>
 </div>
 {% endblock %}

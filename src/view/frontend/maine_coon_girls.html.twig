@@ -1,23 +1,36 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Femelles Maine Coon{% endblock %}
+{% block title %}Femelles Maine Coons{% endblock %}
 
 {% block content %}
-
 <div class="content_size">
-	<div id="top"></div>
-{% for girl in girls %}
-		<div>	
-			<div id="cat_presentation">
-			<div id="cat_picture"><img src="./uploads/{{ girl.image }}"></div>
-			<div id="cat_info">
-				<p><span class="info_title">Prénom:</span>{{ girl.name }}</p>
-				<p><span class="info_title">Sexe:</span>{{ girl.gender }}</p>
-				<p><span class="info_title">Robe:</span>{{ girl.coat_color }}</p>
-				<p><span class="info_title">Date de naissance:</span>{{ girl.dob }}</p>
-				<p><span class="info_title">Description:</span>{{ girl.description }}</p>
-			</div>
-		</div>
-{% endfor %}
-{% endblock %}
+ 	<div id="top">
+    </div>
+    <div id="coat_search"><a href="index.php?action=search_by_coat">Trouver un Maine Coon par sa couleur</a>
+    </div>
 
+
+{% for girl in girls %}
+
+
+			<div id="contain_cat">
+			<div id="cat_presentation">
+		
+			<div id="cat_display">
+			<div id="cat_picture"><img src="./uploads/{{ girl.image | raw }}">
+            </div>
+				
+			<div id="cat_info">
+				<p><span class="info_title">Prénom:</span>{{ girl.name | raw }}</p>
+				<p><span class="info_title">Sexe:</span>{{ girl.gender | raw }}</p>
+				<p><span class="info_title">Robe:</span>{{ girl.coat_color | raw }}</p>
+				<p><span class="info_title">Date de naissance:</span>{{ girl.dob | raw }}</p>
+				<p><span class="info_title">Description:</span>{{ girl.description | raw }}</p>
+			</div>	
+		</div>
+	</div>					
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

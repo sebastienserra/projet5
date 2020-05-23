@@ -1,9 +1,7 @@
 {% extends "base.html.twig" %}
-
-{% block title %}Recherche Maine Coon par robe{% endblock %}
-
-{% block content %}
+{% block content%}
     <div class="content_size">
+   
         <div id="top"></div>
         <div id="filter">Trouver un Maine Coon avec la robe qui vous plaît:
             <div id="wrapper">
@@ -19,12 +17,8 @@
                 </form>
             </div>
         </div>
-        <div id="present_results">Les résultats seront présentés ici.</div>
-        <div id="results">
+        <div id="results">Les résultats seront présentés ici.</div>
 
         </div>
     </div>
-    {% block javascripts %}
-    <script src="public/js/request.js"></script>
     {% endblock %}
-{% endblock %}

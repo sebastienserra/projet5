@@ -19,8 +19,8 @@ function displayCats(coat) {
         var catElement = document.createElement("div");
         var path = "./uploads/" + cat.image;
         catElement.innerHTML =
-          '<div id="cat_presentation">' +
-          '<div id="cat_picture"><img src="' +
+          '<div id="contain_cat"><div id="cat_presentation">' +
+          '<div id="cat_display"><div id="cat_picture"><img src="' +
           path +
           '"/>' +
           "</div>" +
@@ -39,9 +39,9 @@ function displayCats(coat) {
           "</div>" +
           "<div> Description:" +
           cat.description +
+          "</div></div>" +
           "</div>" +
-          "</div>" +
-          "</div>";
+          "</div></div></div>";
         results.appendChild(catElement);
       });
     },
