@@ -7,22 +7,58 @@
 
 	<div id="blog_posts">
         <div id='top'></div>
-		<a href="post_page.php"><div id="header_article"><div id="main_title">Mon titre d'article</div></div></a>
+		<a href="post_page.php">
+		{% for getLastArticle in getLastArticles %}
+		<div id="header_article_blog">
+		  	<img src="./uploads/{{ getLastArticle.image }}" id="main_image" />
+		        <div id="main_title"> 
+                    {{ getLastArticle.title | raw }}
+                </div>
+			{% endfor %}		
+		</div>
+		</a>
+		
 		<div id="article_block_one">
-			<a href="post_page.php">
-			<div id="article_first_category">
-			<div class="category_title">Mon premier Maine Coon</div>
-			</div>
-			</a>
+			
+   
+				{% for subOne in subOnes %}
+				<a href="post_page.php">
+				 	<div id="article_first_category">
+						<div class="category_title">
+                        	{{ subOne.category | raw }}
+						</div>  
+							<img src="./uploads/{{ subOne.image }}" id="first_sub_article"  />
+					</div>
+				</a>
+				{% endfor %}	
+             
+			
+			{% for subTwo in subTwos %}
 			<a href="post_page.php">
 			<div id="article_second_category">
-			<div class="category_title">Soins</div>
+			<div class="category_title">{{ subTwo.category | raw }}</div>
+			<img src="./uploads/{{ subTwo.image }}" id="first_sub_article"/>
 			</div>
 			</a>
+			{% endfor %}
 		</div>
 		<div id="article_block_two">
-			<a href="post_page.php"><div id="article_third_category"><div class="category_title">Education</div></div></a>
-			<a href="post_page.php"><div id="article_fourth_category"><div class="category_title">Quotidien</div></div></a>
+			{% for subThree in subThrees %}
+			<a href="post_page.php">
+			<div id="article_third_category">
+			<div class="category_title">{{ subThree.category | raw }}</div>
+			<img src="./uploads/{{ subThree.image }}" id="first_sub_article"/>
+			</div>
+			</a>
+			{% endfor %}
+			{% for subFour in subFours %}
+			<a href="post_page.php">
+			<div id="article_fourth_category">
+			<div class="category_title">{{ subFour.category | raw }}</div>
+			<img src="./uploads/{{ subFour.image }}" id="first_sub_article"/>			
+			</div>
+			</a>
+			{% endfor %}
 		</div>
 	</div>	
     
@@ -30,24 +66,25 @@
 
 		<div id="last_publications"><div class="header_title">Articles récents</div>
 			<div class="title_listing">
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
+				{% for byTitle in byTitles %}
+                    <div> -
+                        <a href="index.php?action=postandcomments&amp;id={{ byTitle.id | raw }}">{{ byTitle.title | raw }}</a>
+                    </div>
+				{% endfor %}
 			</div>
 
 		</div>
 		<div id="popular_publications"> <div class="header_title">Articles populaires</div>
 			<div class="title_listing">
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
-				<div>Titre titre titre</div>
+				{% for pop in popularity %}
+                    <div> -
+                        <a href="index.php?action=postandcomments&amp;id={{ pop.id | raw }}">{{ pop.title | raw }}</a>
+                    </div>
+            	{% endfor %}
 			</div>
 		</div>
 	</div>
 	
 </div>
+
 {% endblock %}

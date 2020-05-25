@@ -56,7 +56,22 @@ class FrontendController
 
     function blog()
     {
-        echo $this->twig->render('frontend/blog.html.twig', []);
+        $getLastArticles = $this->postManager->getLastArticle();
+        $byTitles = $this->postManager->newPosts();
+        $popularity = $this->postManager->popularPosts();
+        $subOnes= $this->postManager->subArticleOne();
+        $subTwos= $this->postManager->subArticleTwo();
+        $subThrees= $this->postManager->subArticleThree();
+        $subFours= $this->postManager->subArticleFour();
+        echo $this->twig->render('frontend/blog.html.twig', [
+            'getLastArticles' => $getLastArticles,
+            'byTitles' => $byTitles,
+            'popularity' => $popularity,
+            'subOnes' =>$subOnes,
+            'subTwos' =>$subTwos,
+            'subThrees' =>$subThrees,
+            'subFours' =>$subFours,
+        ]);
     }
 
     function login()
@@ -90,7 +105,6 @@ class FrontendController
             'popularity' => $popularity,
         ]);
     }
-
     function displayAllMaineCoons()
     {
         $allCats = $this->catManager->getAllCats();

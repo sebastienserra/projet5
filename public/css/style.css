@@ -840,66 +840,76 @@ h4 {
   height: auto;
   margin: 1%;
 }
-#header_article {
+#header_article_blog {
+  object-fit: contain;
   width: 100%;
   height: 300px;
   position: relative;
   left: 0px;
-  border: solid 1px white;
-  background-image: url(../images/madame.jpg);
-  background-size: cover;
 }
-#header_article:hover {
-  border: solid black 1px;
+#main_image {
+  object-fit: cover;
+  width: 100%;
+  height: 298px;
+  border: solid 2px white;
+}
+#main_image:hover {
+  border: solid 2px grey;
 }
 
 #article_block_one,
 #article_block_two {
   display: flex;
-  width: 801px;
+  width: 100%;
   height: 220px;
   justify-content: space-around;
+  margin: 0 auto;
 }
 #article_first_category {
-  width: 400px;
+  width: auto;
   height: 210px;
   margin-right: 3px;
   margin-top: 1%;
   margin-bottom: 1%;
-  border: solid black 2px;
-  background-image: url(../images/premier_mc3.jpg);
+  object-fit: cover;
+  /* background-image: url(../images/premier_mc3.jpg);
   background-size: cover;
-  background-position: top 15% right 0%;
+  background-position: top 15% right 0%;*/
+}
+#first_sub_article {
+  width: 397px;
+  height: 205px;
+  position: relative;
+  top: -40px;
+  z-index: 0;
+  border: solid black 2px;
 }
 #article_second_category {
-  width: 400px;
+  width: auto;
   height: 210px;
-  border: solid black 2px;
   margin-left: 3px;
   margin-top: 1%;
   margin-bottom: 1%;
-  background-image: url(../images/soins.jpg);
-  background-size: cover;
+  /* background-image: url(../images/soins.jpg);
+  background-size: cover;*/
 }
 #article_third_category {
   width: 400px;
   height: 210px;
-  border: solid black 2px;
   margin-right: 3px;
   margin-top: 1%;
   margin-bottom: 1%;
-  background-image: url(../images/education.jpg);
-  background-size: cover;
+  /*background-image: url(../images/education.jpg);
+  background-size: cover;*/
 }
 #article_fourth_category {
   width: 400px;
   height: 210px;
-  border: solid black 2px;
   margin-left: 3px;
   margin-top: 1%;
   margin-bottom: 1%;
-  background-image: url(../images/quotidien.jpg);
-  background-size: cover;
+  /*background-image: url(../images/quotidien.jpg);
+  background-size: cover;*/
 }
 .title_listing div {
   width: 80%;
@@ -909,7 +919,6 @@ h4 {
   font-size: 1.2rem;
   font-weight: 300;
   color: white;
-  text-align: center;
   margin-top: 2%;
 }
 #listing {
@@ -939,6 +948,7 @@ h4 {
   height: 400px;
 }
 .category_title {
+  width: 99%;
   height: 40px;
   color: white;
   padding: 5px;
@@ -946,12 +956,15 @@ h4 {
   font-size: 1.5rem;
   font-weight: 500;
   opacity: 0.5;
+  position: relative;
+  z-index: 3;
+  margin: 0 auto;
 }
 #main_title {
   width: 50%;
   height: 50px;
   position: relative;
-  top: 50%;
+  bottom: 40%;
   color: white;
   padding: 5px;
   background-color: black;
@@ -1382,13 +1395,23 @@ div.comments_display {
     margin-top: 5%;
   }
   .title_listing div {
+    width: 99%;
     height: auto;
     font-size: 1rem;
     line-height: 12px;
   }
-  .category_title,
-  #main_title {
+  #first_sub_article {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: -40px;
+    z-index: 0;
+    border: solid black 2px;
+  }
+  #main_title,
+  .category_title {
     font-size: 1rem;
+    width: 100%;
   }
   .header_title {
     font-size: 1rem;
@@ -1416,7 +1439,7 @@ div.comments_display {
   #article_third_category,
   #article_fourth_category {
     width: auto;
-    height: 200px;
+    height: auto;
   }
   #article_block_one {
     display: block;
@@ -1500,6 +1523,7 @@ div.comments_display {
     margin: 0;
     padding-left: 10px;
   }
+
   /*end_articles*/
 }
 
@@ -1548,6 +1572,15 @@ div.comments_display {
     margin: 0;
     padding-left: 10px;
   }
+  #first_sub_article {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    top: -40px;
+    z-index: 0;
+    border: solid black 2px;
+  }
+
   /*end_articles*/
 
   /*start blog*/
@@ -1586,19 +1619,18 @@ div.comments_display {
   #article_third_category,
   #article_fourth_category {
     width: 350px;
-    height: 200px;
-    position: relative;
-    left: 30px;
+    height: 100%;
     margin-left: 0px;
     margin-right: 6px;
+    position: relative;
   }
   #article_block_one {
-    width: 95%;
+    width: 100%;
     height: 200px;
     margin-bottom: 1%;
   }
   #article_block_two {
-    width: 95%;
+    width: 100%;
     height: 200px;
     margin-bottom: 2%;
   }
@@ -1672,8 +1704,8 @@ div.comments_display {
   #article_second_category,
   #article_third_category,
   #article_fourth_category {
-    width: 480px;
-    height: 350px;
+    width: 100%;
+    height: 200px;
     margin-left: 0px;
     margin-right: 6px;
   }

@@ -20,7 +20,7 @@ class PostManager extends Manager
         return $getAllPosts;
   }
   public function getAllPostsAdmin(){
-         $getAllPostsAdmin = $this->db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 0,5");       
+         $getAllPostsAdmin = $this->db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 0,20");       
          return $getAllPostsAdmin;
   }
   public function getPost($postId){	
@@ -85,10 +85,8 @@ class PostManager extends Manager
             'category' => $post['category'],
             'image' => $post['image'],
         ]);
-        return $nbResults;
-        
+        return $nbResults;  
     }
-
     public function update($post)
     {
         $req = $this->db->prepare("UPDATE posts 
@@ -104,6 +102,26 @@ class PostManager extends Manager
             'image' => $post['image'],
         ]);
         return $nbResults;
+    }
+    public function getLastArticle(){
+         $getLastArticles = $this->db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 0,1");       
+         return $getLastArticles;
+    }
+    public function subArticleOne(){
+         $subOnes = $this->db->query("SELECT * FROM posts WHERE id=2");        
+         return $subOnes;
+    }
+    public function subArticleTwo(){
+         $subTwos = $this->db->query("SELECT * FROM posts WHERE id=3");        
+         return $subTwos;
+    }
+    public function subArticleThree(){
+         $subThrees = $this->db->query("SELECT * FROM posts WHERE id=4");        
+         return $subThrees;
+    }
+    public function subArticleFour(){
+         $subFours = $this->db->query("SELECT * FROM posts WHERE id=5");        
+         return $subFours;
     }
         
 }
