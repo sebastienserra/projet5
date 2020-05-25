@@ -69,7 +69,9 @@ try {
         } elseif ($_GET['action'] == 'update_cat') {
             $backendController->updateCat($_POST, $_FILES['monfichier']);
         } elseif ($_GET['action'] == 'update') {
-            $backendController->updatePost($_POST['category'], $_POST['article'], $_POST['title'], $_POST['author'], $_POST['id']);
+            //var_dump($_POST);
+            //var_dump($_FILES['myfile']);
+            $backendController->updatePost($_POST, $_FILES['myfile']);
 
         } elseif ($_GET['action'] == 'moderate') {
             $backendController->listReportedComments();
@@ -101,9 +103,7 @@ try {
                 $backendController->editCat($_GET['id']);
             }
         } elseif ($_GET['action'] == 'addPost') {
-            if (!empty($_POST['article'])) {
-                $backendController->addPost($_POST['article'], $_POST['title'], $_POST['author'], $_POST['category']);
-            }
+            $backendController->addPost($_POST, $_FILES['myfile']);
         } elseif ($_GET['action'] == 'deletePost') {
             $backendController->deletePost($_GET['id']);
         } elseif ($_GET['action'] == 'erase_cat') {

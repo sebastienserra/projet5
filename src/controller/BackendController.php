@@ -8,6 +8,7 @@ use Projet5\Model\CatManager;
 use Projet5\Model\UserManager;
 use Projet5\Service\AuthenticationService;
 use Projet5\Service\CatService;
+use Projet5\Service\PostService;
 
 class BackendController
 {
@@ -18,6 +19,7 @@ class BackendController
     private $catManager;
     private $authenticationService;
     private $catService;
+    private $postService;
 
     public function __construct($twig)
     {
@@ -28,23 +30,18 @@ class BackendController
         $this->catManager = new CatManager();
         $this->authenticationService = new AuthenticationService();
         $this->catService = new CatService();
+        $this->postService = new PostService();
     }
 
-    function addPost($article, $title, $author, $category)
+    
+    function addPost($postData, $image)
     {
-        if(!$this->authenticationService->isConnected()){
+        if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
         }
-        $affectedLinesPost = $this->postManager->saveRecords($article, $title, $author, $category);
 
-        if ($affectedLinesPost === false) {
-            //header("location:".  $_SERVER['HTTP_REFERER']);
-            echo 'error';
-            //var_dump($affectedLinesPost);
-        } else {
-            echo 'success';
-            //header('Location: index.php?action=admin&success=true');
-        }
+        $this->postService->addPost($postData, $image);
+        header('Location: index.php?action=admin');
     }
 
     function editPost($id)
@@ -52,25 +49,30 @@ class BackendController
         if(!$this->authenticationService->isConnected()){
             header('Location: index.php?action=login');
         }
-        $result = $this->postManager->editOnePost($id);
+        $results = $this->postManager->editOnePost($id);
         echo $this->twig->render('backend/edit.html.twig', [
-            'result' => $result,
+            'results' => $results,
+        ]);
+    }
+        function editCat($id)
+    {
+        if (!$this->authenticationService->isConnected()) {
+            header('Location: index.php?action=login');
+        }
+        $results = $this->catManager->editOneCat($id);
+        echo $this->twig->render('backend/edit_cat.html.twig', [
+            'results' => $results,
         ]);
     }
 
-    function updatePost($category, $article, $title, $author, $id)
+    function updatePost($postData, $image)
     {
-        if(!$this->authenticationService->isConnected()){
+        if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
         }
-        $request = $this->postManager->update($category, $article, $title, $author, $id);
-        if ($request === false) {
-            //throw new Exception('Impossible de supprimer le commentaire !');
-            echo 'error';
-        } else {
-            //header('Location: index.php?action=moderate');
-            echo 'success';
-        }
+
+        $this->postService->editPost($postData, $image);
+        header('Location: index.php?action=admin');
     }
 
     function updateCat($catData, $image)
@@ -89,14 +91,12 @@ class BackendController
             header('Location: index.php?action=login');
         }
         $erase = $this->postManager->destroy($id);
-        if ($erase === false) {
-            //header("location:".  $_SERVER['HTTP_REFERER']);
-            echo 'error';
-            //var_dump($affectedLinesPost);
-        } else {
-            echo 'success';
-            //header('Location: index.php?action=admin&success=true');
-        }
+        $posts = $this->postManager->getAllPostsAdmin();
+        echo $this->twig->render('backend/backend.html.twig', [
+            'posts' => $posts,
+            'erase' => $erase,
+        ]);
+        
     }
 
     function listReportedComments()
@@ -157,17 +157,6 @@ class BackendController
 
         $this->catService->addCat($catData, $image);
         header('Location: index.php?action=admin_cats');
-    }
-
-    function editCat($id)
-    {
-        if (!$this->authenticationService->isConnected()) {
-            header('Location: index.php?action=login');
-        }
-        $result = $this->catManager->editOneCat($id);
-        echo $this->twig->render('backend/edit_cat.html.twig', [
-            'results' => $result,
-        ]);
     }
 
     function eraseTheCat($id)

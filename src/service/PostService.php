@@ -4,15 +4,15 @@
 namespace Projet5\Service;
 
 
-use Projet5\Model\CatManager;
+use Projet5\Model\PostManager;
 
-class CatService
+class PostService
 {
-    private $catManager;
+    private $postManager;
 
     public function __construct()
     {
-        $this->catManager = new CatManager();
+        $this->postManager = new PostManager();
     }
 
 
@@ -34,30 +34,29 @@ class CatService
 
     }
 
-    public function addCat($catData, $image)
+    public function addPost($postData, $image)
     {
         $destination = $this->uploadPhoto($image);
         if ($destination) {
-            $catData['image'] = $destination;
-            $nbResults = $this->catManager->create($catData);
+            $postData['image'] = $destination;
+            $nbResults = $this->postManager->create($postData);
             return $nbResults > 0;
         }
         return false;
     }
-
-    public function editCat($catData, $image)
+    public function editPost($postData, $image)
     {
-        $destination = $catData['previous_image'];
+        $destination = $postData['previous_image'];
         if(!empty($image['tmp_name'])) { // si le fichier temporaire existe ca signifie qu une image a ete uploader donc on efface l image precedente definie avant le if
-            unlink('uploads/' . $catData['previous_image']);
+            unlink('uploads/' . $postData['previous_image']);
             $destination = $this->uploadPhoto($image);
         }
         if ($destination) {
-            $catData['image'] = $destination;
-            $nbResults = $this->catManager->update($catData);
+            $postData['image'] = $destination;
+            $nbResults = $this->postManager->update($postData);
             return $nbResults > 0;
         }
         return false;
     }
-
+    
 }

@@ -62,7 +62,7 @@ class FrontendController
     function login()
     {
         echo $this->twig->render('frontend/login.html.twig', [
-            'error' => $_GET['success'] == 'false'
+            //'error' => $_GET['success'] == 'false'
         ]);
     }
 

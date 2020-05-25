@@ -973,7 +973,6 @@ h4 {
   padding-bottom: 20px;
   top: 0%;
   z-index: 10;
-  opacity: 0.7;
 }
 /*start style backend form insert cat in db */
 #cat_form form {
@@ -1120,6 +1119,15 @@ tr:nth-child(even) {
 }
 /*end style for contact page*/
 /*start style new presentation articles*/
+.picture_of_cat {
+  object-fit: contain;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+}
+.article_first_image {
+  text-align: center;
+}
 .page_post {
   width: 100%;
   margin: 0 auto;
@@ -1146,10 +1154,13 @@ tr:nth-child(even) {
 }
 div.comments_display {
   width: 90%;
+  position: relative;
+  left: 3%;
+  justify-content: center;
   background-color: white;
   border-radius: 5px;
   padding: 10px;
-  margin: 0 auto;
+  margin-bottom: 10px;
 }
 .comment_form,
 .comments_display {
@@ -1678,7 +1689,6 @@ div.comments_display {
     justify-content: space-around;
     margin-bottom: 2%;
   }
-
   /*end blog*/
 
   .wrapping img {
@@ -1881,15 +1891,15 @@ and also iPads specifically.
     content: "Expositions";
   }
   td:nth-of-type(16):before {
-    content: "Localisation";
-  }
-  td:nth-of-type(17):before {
     content: "Pays";
   }
-  td:nth-of-type(18):before {
+  td:nth-of-type(17):before {
     content: "Identifiant";
   }
-  td:nth-of-type(19):before {
+  td:nth-of-type(18):before {
     content: "Description";
+  }
+  td:nth-of-type(19):before {
+    content: "Categorie âge";
   }
 }

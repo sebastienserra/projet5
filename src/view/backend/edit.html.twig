@@ -6,15 +6,18 @@
 
 <div class="content_size">
 <div id="top"></div>
-{% for onePost in result %}	
+{% for onePost in results %}	
 
-<form action="index.php?action=update" method="post" id="edit_form">
+<form action="index.php?action=update" method="post" enctype="multipart/form-data" id="edit_form">
 	<p>
 		<input type="hidden" name="id" id="id" value="{{ onePost.id }}">
 	</p>
 	<p> 
 		<input type="text" name="title" id="title" rows="1" cols="50" maxlength="250" value="{{ onePost.title }}"/>
 		<input type="text" name="category" id="category" rows="1" cols="50" maxlength="250" value="{{ onePost.category }}"/>
+		<input type="file" name="myfile">
+        <img src="./uploads/{{ onePost.image }}" class="mini_picture_of_cat" />
+        <input type="hidden" name="previous_image" value="{{ res.image }}">
 
 		<textarea name="article" id="article"  rows="10" cols="50" maxlength="250">
 			{{ onePost.article }}			

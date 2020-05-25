@@ -4,26 +4,16 @@ namespace Projet5\Model;
 
 class PostManager extends Manager
 {
-
-  public function saveRecords($article,$title,$author,$category){
-        $savePost = $this->db->prepare("INSERT INTO posts(article, title, author, category) values(?,?,?,?)");
-        $affectedLinesPost = $savePost->execute(array($article,$title,$author,$category));
-        return $affectedLinesPost;
-  }
   public function destroy($id){
         $erase = $this->db->prepare("DELETE FROM posts WHERE id=?");
         $erase->execute(array($id));
         return $erase;
   }
+
   public function editOnePost($id){
-        $result = $this->db->prepare("SELECT article, title, author,category, id FROM posts WHERE id=?");
+        $result = $this->db->prepare("SELECT * FROM posts WHERE id=?");
         $result->execute(array($id));
         return $result;
-  }
-  public function update($category,$article,$title,$author,$id){
-        $update = $this->db->prepare("UPDATE posts SET category=:category, article=:article, title=:title, author=:author, id=:id WHERE id=:id");
-        $request= $update->execute(array(":category"=>$category,":article"=>$article, ":title"=>$title, ":author"=>$author, ":id"=>$id));
-        return $request;
   }
   public function getAllPosts(){
         $getAllPosts = $this->db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 0,10");       
@@ -34,7 +24,7 @@ class PostManager extends Manager
          return $getAllPostsAdmin;
   }
   public function getPost($postId){	
-    		$query = $this->db->prepare("SELECT id, article, author, title, creation_date FROM posts WHERE id = ?");
+    		$query = $this->db->prepare("SELECT * FROM posts WHERE id = ?");
     		$query->execute(array($postId));
     		return $query->fetch();
   }
@@ -82,5 +72,38 @@ class PostManager extends Manager
       return $results;
     }
    }
+ public function create($post)
+    {
+        $req = $this->db->prepare("
+            INSERT INTO posts(article,creation_date,title,author,category,image)
+            values(:article,:creation_date,:title,:author,:category,:image)");
+        $nbResults = $req->execute([
+            'article' => $post['article'],
+            'creation_date' => $post['creation_date'],             
+            'title' => $post['title'],
+            'author' => $post['author'],
+            'category' => $post['category'],
+            'image' => $post['image'],
+        ]);
+        return $nbResults;
+        
+    }
 
+    public function update($post)
+    {
+        $req = $this->db->prepare("UPDATE posts 
+        SET id=:id,article=:article,creation_date=:creation_date,title=:title,author=:author,category=:category,image=:image 
+        WHERE id=:id");
+        $nbResults = $req->execute([
+            'id' => $post['id'],
+            'article' => $post['article'],
+            'creation_date' => $post['creation_date'],
+            'title' => $post['title'],
+            'author' => $post['author'],
+            'category' => $post['category'],
+            'image' => $post['image'],
+        ]);
+        return $nbResults;
+    }
+        
 }

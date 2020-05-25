@@ -13,6 +13,7 @@
                     <div class="text_back">{{ post.category }}</div>
                     <div class="text_back">{{ post.article | raw }}</div>
                     <div class="text_back">{{ post.author }}</div>
+                     <div class="text_back"> <img src="./uploads/{{ post.image }}" class="mini_picture_of_cat" /></div>
                     <div class="together">
                         <div class="button_one_back">
                             <a href="index.php?action=deletePost&amp;id={{ post.id }}" id="confirmation">
@@ -33,12 +34,20 @@
 
                 <a href="index.php?action=moderate">Modérer les commentaires ({{ nbComments }})</a>
             </div>
-            <form action="index.php?action=addPost" method="post">
+            <form action="index.php?action=addPost" method="post" enctype="multipart/form-data">
                 <div id="edit_block">
 
                     <input type="text" name="title" id="title" rows="1" cols="50" maxlength="250" placeholder="Titre">
                     <input type="text" name="category" id="category" rows="1" cols="50" maxlength="250"
                            placeholder="Category">
+            <div class="contain_description">
+				<div>
+  	 				<label for="description">Photo du chat:</label>
+  	 			</div>
+  	 			<div>
+					<p><input type="file" name="myfile"></p>
+				</div>
+			</div>
                     <textarea name="article" id="article" rows="10" cols="50" maxlength="250"
                               placeholder="Ecrivez vos articles ici.">
 			
