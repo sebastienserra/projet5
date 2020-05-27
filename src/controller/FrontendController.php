@@ -71,6 +71,7 @@ class FrontendController
         $subTwos= $this->postManager->subArticleTwo();
         $subThrees= $this->postManager->subArticleThree();
         $subFours= $this->postManager->subArticleFour();
+
         echo $this->twig->render('frontend/blog.html.twig', [
             'getLastArticles' => $getLastArticles,
             'byTitles' => $byTitles,
@@ -231,14 +232,34 @@ class FrontendController
 
     public function connect($email, $password)
     {
-        $result = $this->authenticationService->signin($email, $password);
+        $result = $this->authenticationService->signinAdmin($email, $password);
+        
         if($result){
             $_SESSION['admin'] = true;
             header('Location: index.php?action=admin');
+            
         } else {
             $_SESSION['admin'] = false;
+            
             header('Location: index.php?action=login&success=false');
         }
+
     }
+    public function connectUser($email, $password)
+    {
+        $result = $this->authenticationService->signinUser($email, $password);
+        
+        if($result){
+            $_SESSION['user'] = true;
+            header('Location: index.php?action=blog');
+            
+        } else {
+            $_SESSION['user'] = false;
+            
+            header('Location: index.php?action=login&success=false');
+        }
+
+    }
+    
 
 }

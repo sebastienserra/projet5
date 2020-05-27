@@ -13,7 +13,15 @@ class AuthenticationService
         $this->userManager = new UserManager();
     }
 
-    public function signin($email, $password)
+    public function signinAdmin($email, $password)
+    {
+        $admin = $this->userManager->getAdmin($email);
+        if (!$admin) {
+            return false;
+        }
+        return password_verify($password, $admin['password']);
+    }
+    public function signinUser($email, $password)
     {
         $user = $this->userManager->getUser($email);
         if (!$user) {
@@ -37,6 +45,10 @@ class AuthenticationService
     public function isConnected()
     {
         return isset($_SESSION['admin']) && $_SESSION['admin'];
+    }
+    public function userIsConnected()
+    {
+        return isset($_SESSION['user']) && $_SESSION['user'];
     }
 
 }

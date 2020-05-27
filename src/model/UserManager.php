@@ -11,6 +11,12 @@ class UserManager extends Manager
         $req->execute(['email' => $email]);
         return $req->fetch();
     }
+    public function getAdmin($email)
+    {
+        $req = $this->db->prepare('SELECT * FROM users WHERE email="seb@cats.com"');
+        $req->execute(['email' => $email]);
+        return $req->fetch();
+    }
 
     public function emailExists($email)
     {
@@ -20,7 +26,7 @@ class UserManager extends Manager
 
         return $row['nb_user'] > 0;
     }
-
+    
     public function createUser($email, $password)
     {
         $req = $this->db->prepare("INSERT INTO users(email, password) values(?,?)");

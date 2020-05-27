@@ -76,16 +76,13 @@ try {
             $frontendController->register($_POST['email'], $_POST['password']);
         } elseif ($_GET['action'] == 'connect') {
             $frontendController->connect($_POST['email'], $_POST['password']);
+            //$frontendController->connectUser($_POST['email'], $_POST['password']);
         } elseif ($_GET['action'] == 'update_cat') {
             $backendController->updateCat($_POST, $_FILES['monfichier']);
         } elseif ($_GET['action'] == 'update') {
-            //var_dump($_POST);
-            //var_dump($_FILES['myfile']);
             $backendController->updatePost($_POST, $_FILES['myfile']);
-
         } elseif ($_GET['action'] == 'moderate') {
             $backendController->listReportedComments();
-
         } elseif ($_GET['action'] == 'login_error') {
             $frontendController->loginError();
         } elseif ($_GET['action'] == 'reportComment') {
