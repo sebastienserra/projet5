@@ -1130,6 +1130,66 @@ tr:nth-child(even) {
   width: 800px;
   height: auto;
 }
+#contact_form {
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+}
+#contact_form input {
+  display: flex;
+  width: 99%;
+  height: 100%;
+  margin-bottom: 1%;
+}
+#contact_form textarea {
+  width: 99%;
+  height: 250px;
+}
+input#button_contact_form {
+  width: 80px;
+  line-height: 2rem;
+  margin: 0 auto;
+}
+#compulsory_fields {
+  font-size: 0.6rem;
+}
+.map {
+  position: relative;
+}
+.mapouter {
+  position: relative;
+  text-align: right;
+  height: 600px;
+  width: 100%;
+  margin-top: 6%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(51, 133, 255, 0.4);
+}
+.gmap_canvas {
+  height: 600px;
+  width: 100%;
+}
+iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+  margin: 0;
+  position: relative;
+  top: 0%;
+}
+.couleur_transparente {
+  width: 100%;
+  height: 600px;
+  background-color: transparent;
+  opacity: 1;
+}
+.couleur_transparente:hover {
+  width: 100%;
+  height: 600px;
+  background-color: transparent;
+  opacity: 1;
+}
 /*end style for contact page*/
 /*start style new presentation articles*/
 .picture_of_cat {

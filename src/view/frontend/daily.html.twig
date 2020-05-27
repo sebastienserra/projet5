@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Le blog{% endblock %}
+
+{% block content %}
+    <div class="content_size">
+        <div id="top"></div>
+    <h4> Tous les articles de la categorie Quotidien</h4>
+                    <div class="present_titles">
+                        {% for category in categories %}
+                            <div> -
+                                <a href="index.php?action=postandcomments&amp;id={{ category.id | raw }}">{{ category.title | raw }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+
+
+    </div>
+{% endblock %}

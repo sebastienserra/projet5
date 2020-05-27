@@ -27,6 +27,12 @@ class UserManager extends Manager
         $nbResults = $req->execute([$email, $password]);
         return $nbResults;
     }
+    public function message($object_message,$first_name,$last_name,$email, $message_text)
+    {
+        $req = $this->db->prepare("INSERT INTO messages(object_message, first_name, last_name,email, message_text) values(?,?,?,?,?)");
+        $message = $req->execute([$object_message,$first_name,$last_name,$email, $message_text]);
+        return $message;
+    }
 
 
 }

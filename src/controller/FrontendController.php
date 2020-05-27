@@ -46,6 +46,14 @@ class FrontendController
 
         ]);
     }
+        function message($object_message,$first_name,$last_name,$email, $message_text)
+    {
+        $message = $this->userManager->message($object_message,$first_name,$last_name,$email, $message_text);
+        echo $this->twig->render('frontend/contact.html.twig', [
+            'message' => $message,
+
+        ]);
+    }
 
     function signup()
     {
@@ -57,7 +65,7 @@ class FrontendController
     function blog()
     {
         $getLastArticles = $this->postManager->getLastArticle();
-        $byTitles = $this->postManager->newPosts();
+        $byTitles = $this->postManager->newPosts();        
         $popularity = $this->postManager->popularPosts();
         $subOnes= $this->postManager->subArticleOne();
         $subTwos= $this->postManager->subArticleTwo();
@@ -72,6 +80,34 @@ class FrontendController
             'subThrees' =>$subThrees,
             'subFours' =>$subFours,
         ]);
+    }
+    function myFirstMaineCoon(){
+        $categories = $this->postManager->categoryMyfirstMc();
+         echo $this->twig->render('frontend/my_first_maine_coon.html.twig', 
+            [
+                'categories' => $categories,
+            ]);
+    }
+    function health(){
+        $categories = $this->postManager->categoryHealth();
+         echo $this->twig->render('frontend/maine_coon_health.html.twig', 
+            [
+                'categories' => $categories,
+            ]);
+    }
+    function daily(){
+        $categories = $this->postManager->categoryDaily();
+         echo $this->twig->render('frontend/daily.html.twig', 
+            [
+                'categories' => $categories,
+            ]);
+    }
+    function education(){
+        $categories = $this->postManager->categoryEducation();
+         echo $this->twig->render('frontend/maine_coon_education.html.twig', 
+            [
+                'categories' => $categories,
+            ]);
     }
 
     function login()

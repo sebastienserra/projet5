@@ -6,9 +6,9 @@
 <div id="blog_presentation">
 
 	<div id="blog_posts">
-        <div id='top'></div>
-		<a href="post_page.php">
-		{% for getLastArticle in getLastArticles %}
+        <div id='top'></div>{% for getLastArticle in getLastArticles %}
+		<a href="index.php?action=postandcomments&amp;id={{ getLastArticle.id }}">
+		
 		<div id="header_article_blog">
 		  	<img src="./uploads/{{ getLastArticle.image }}" id="main_image" />
 		        <div id="main_title"> 
@@ -22,10 +22,10 @@
 			
    
 				{% for subOne in subOnes %}
-				<a href="post_page.php">
+				<a href="index.php?action=my_first_maine_coon">
 				 	<div id="article_first_category">
 						<div class="category_title">
-                        	{{ subOne.category | raw }}
+                        	Mon premier Maine Coon
 						</div>  
 							<img src="./uploads/{{ subOne.image }}" id="first_sub_article"  />
 					</div>
@@ -34,9 +34,9 @@
              
 			
 			{% for subTwo in subTwos %}
-			<a href="post_page.php">
+			<a href="index.php?action=health">
 			<div id="article_second_category">
-			<div class="category_title">{{ subTwo.category | raw }}</div>
+			<div class="category_title">Soins</div>
 			<img src="./uploads/{{ subTwo.image }}" id="first_sub_article"/>
 			</div>
 			</a>
@@ -44,17 +44,17 @@
 		</div>
 		<div id="article_block_two">
 			{% for subThree in subThrees %}
-			<a href="post_page.php">
+			<a href="index.php?action=daily">
 			<div id="article_third_category">
-			<div class="category_title">{{ subThree.category | raw }}</div>
+			<div class="category_title">Quotidien</div>
 			<img src="./uploads/{{ subThree.image }}" id="first_sub_article"/>
 			</div>
 			</a>
 			{% endfor %}
 			{% for subFour in subFours %}
-			<a href="post_page.php">
+			<a href="index.php?action=education">
 			<div id="article_fourth_category">
-			<div class="category_title">{{ subFour.category | raw }}</div>
+			<div class="category_title">Education</div>
 			<img src="./uploads/{{ subFour.image }}" id="first_sub_article"/>			
 			</div>
 			</a>

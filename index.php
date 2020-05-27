@@ -40,8 +40,18 @@ try {
             }
         } elseif ($_GET['action'] == 'blog') {
             $frontendController->blog();
+        } elseif ($_GET['action'] == 'my_first_maine_coon') {
+            $frontendController->myFirstMaineCoon(); 
+        } elseif ($_GET['action'] == 'health') {
+            $frontendController->health();
+        } elseif ($_GET['action'] == 'daily') {
+            $frontendController->daily();
+        } elseif ($_GET['action'] == 'education') {
+            $frontendController->education();     
         } elseif ($_GET['action'] == 'contact') {
             $frontendController->contact();
+        } elseif ($_GET['action'] == 'message') {
+            $frontendController->message($_POST['object_message'], $_POST['first_name'],$_POST['last_name'], $_POST['email'], $_POST['message_text']);
         } elseif ($_GET['action'] == 'query') {
             $frontendController->query();
         } elseif ($_GET['action'] == 'all_maine_coons') {

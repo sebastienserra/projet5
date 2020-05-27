@@ -123,5 +123,21 @@ class PostManager extends Manager
          $subFours = $this->db->query("SELECT * FROM posts WHERE id=5");        
          return $subFours;
     }
+    public function categoryMyfirstMc(){
+         $categories = $this->db->query("SELECT * FROM posts WHERE category='Mon premier Maine Coon'");        
+         return $categories;
+    }
+    public function categoryHealth(){
+         $categories = $this->db->query("SELECT * FROM posts WHERE category='Soins'");        
+         return $categories;
+    }
+    public function categoryDaily(){
+         $categories = $this->db->query("SELECT * FROM posts WHERE category='Quotidien'");        
+         return $categories;
+    }
+    public function categoryEducation(){
+         $categories = $this->db->query("SELECT * FROM posts WHERE category='Education'");        
+         return $categories;
+    }
         
 }
