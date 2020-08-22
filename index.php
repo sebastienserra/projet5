@@ -41,13 +41,13 @@ try {
         } elseif ($_GET['action'] == 'blog') {
             $frontendController->blog();
         } elseif ($_GET['action'] == 'my_first_maine_coon') {
-            $frontendController->myFirstMaineCoon(); 
+            $frontendController->postsByCategory('my_first_maine_coon');
         } elseif ($_GET['action'] == 'health') {
-            $frontendController->health();
+            $frontendController->postsByCategory('health');
         } elseif ($_GET['action'] == 'daily') {
-            $frontendController->daily();
+            $frontendController->postsByCategory('daily');
         } elseif ($_GET['action'] == 'education') {
-            $frontendController->education();     
+            $frontendController->postsByCategory('education');
         } elseif ($_GET['action'] == 'contact') {
             $frontendController->contact();
         } elseif ($_GET['action'] == 'message') {
