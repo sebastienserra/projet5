@@ -16,6 +16,7 @@ class FrontendController
     private $catManager;
     private $userManager;
     private $authenticationService;
+    private $postPerPage = 5;
 
     public function __construct($twig)
     {
@@ -31,14 +32,14 @@ class FrontendController
 
     public function home()
     {
-        
+
         $articles = $this->postManager->lastPosts();
         $nber_of_pages = $this->postManager->paginate();
         //var_dump($nbPosts);
         echo $this->twig->render('frontend/home.html.twig', [
-           'articles' => $articles,
-           'nber_of_pages' => $nber_of_pages,
-       ]);
+            'articles' => $articles,
+            'nber_of_pages' => $nber_of_pages,
+        ]);
     }
 
     function contact()
@@ -47,9 +48,10 @@ class FrontendController
 
         ]);
     }
-        function message($object_message,$first_name,$last_name,$email, $message_text)
+
+    function message($object_message, $first_name, $last_name, $email, $message_text)
     {
-        $message = $this->userManager->message($object_message,$first_name,$last_name,$email, $message_text);
+        $message = $this->userManager->message($object_message, $first_name, $last_name, $email, $message_text);
         echo $this->twig->render('frontend/contact.html.twig', [
             'message' => $message,
 
@@ -57,61 +59,58 @@ class FrontendController
     }
 
 
-
     public function blog()
     {
         $getLastArticles = $this->postManager->getLastArticle();
-        $byTitles = $this->postManager->newPosts();        
+        $byTitles = $this->postManager->newPosts();
         $popularity = $this->postManager->popularPosts();
-        $subOnes= $this->postManager->subArticleOne();
-        $subTwos= $this->postManager->subArticleTwo();
-        $subThrees= $this->postManager->subArticleThree();
-        $subFours= $this->postManager->subArticleFour();
+        $subOnes = $this->postManager->subArticleOne();
+        $subTwos = $this->postManager->subArticleTwo();
+        $subThrees = $this->postManager->subArticleThree();
+        $subFours = $this->postManager->subArticleFour();
 
         echo $this->twig->render('frontend/blog.html.twig', [
             'getLastArticles' => $getLastArticles,
             'byTitles' => $byTitles,
             'popularity' => $popularity,
-            'subOnes' =>$subOnes,
-            'subTwos' =>$subTwos,
-            'subThrees' =>$subThrees,
-            'subFours' =>$subFours,
+            'subOnes' => $subOnes,
+            'subTwos' => $subTwos,
+            'subThrees' => $subThrees,
+            'subFours' => $subFours,
         ]);
     }
-    public function editOnePost($id){
+
+    public function editOnePost($id)
+    {
         $db = $this->dbConnect();
         $result = $db->prepare("SELECT article, title, author, id FROM posts WHERE id=?");
         $result->execute(array($id));
         return $result;
-  }
-    function myFirstMaineCoon(){
-        $categories = $this->postManager->categoryMyfirstMc();
-         echo $this->twig->render('frontend/my_first_maine_coon.html.twig', 
+    }
+
+    function postsByCategory($actionCategory)
+    {
+        $mapCategory = [
+            'health' => ['category' => 'Soins', 'template' => 'maine_coon_health.html.twig'],
+            'daily' => ['category' => 'Quotidien', 'template' => 'daily.html.twig'],
+            'education' => ['category' => 'Education', 'template' => 'maine_coon_education.html.twig'],
+            'my_first_maine_coon' => ['category' => 'Mon premier Maine Coon', 'template' => 'my_first_maine_coon.html.twig'],
+        ];
+        $categoryName = $mapCategory[$actionCategory]['category'];
+        $template = $mapCategory[$actionCategory]['template'];
+
+        $page = $_GET['page'] ?? 1;
+        $offset = (intval($page) - 1) * $this->postPerPage;
+        $categories = $this->postManager->getPostsByCategory($categoryName, $this->postPerPage, $offset);
+        $categoriesCount = $this->postManager->countPostsByCategory($categoryName);
+        $nbPages = ceil(intval($categoriesCount['nb']) / $this->postPerPage);
+        echo $this->twig->render("frontend/{$template}",
             [
+                'total' => $nbPages,
                 'categories' => $categories,
             ]);
     }
-    function health(){
-        $categories = $this->postManager->categoryHealth();
-         echo $this->twig->render('frontend/maine_coon_health.html.twig', 
-            [
-                'categories' => $categories,
-            ]);
-    }
-    function daily(){
-        $categories = $this->postManager->categoryDaily();
-         echo $this->twig->render('frontend/daily.html.twig', 
-            [
-                'categories' => $categories,
-            ]);
-    }
-    function education(){
-        $categories = $this->postManager->categoryEducation();
-         echo $this->twig->render('frontend/maine_coon_education.html.twig', 
-            [
-                'categories' => $categories,
-            ]);
-    }
+
     function query()
     {
         $results = $this->postManager->searchQuery();
@@ -119,6 +118,7 @@ class FrontendController
             'results' => $results,
         ]);
     }
+
     function post()
     {
         $post = $this->postManager->getPost($_GET['id']);
@@ -132,6 +132,7 @@ class FrontendController
             'popularity' => $popularity,
         ]);
     }
+
     function displayAllMaineCoons()
     {
         $allCats = $this->catManager->getAllCats();
@@ -195,7 +196,7 @@ class FrontendController
     {
         $affectedLines = $this->commentManager->reportComment($id);
         if ($affectedLines === false) {
-            header('Location:' . $_SERVER['HTTP_REFERER']. '&success=false');
+            header('Location:' . $_SERVER['HTTP_REFERER'] . '&success=false');
         } else {
             header('Location:' . $_SERVER['HTTP_REFERER']);
         }
@@ -207,56 +208,58 @@ class FrontendController
         $cats = $this->catManager->getCatByCoat($coat);
         echo json_encode($cats);
     }
-    
-    public function login() 
-    {   if($_GET['action']==='login'){
+
+    public function login()
+    {
+        if ($_GET['action'] === 'login') {
             echo $this->twig->render('frontend/login.html.twig', [
 
-        ]);
-        echo $this->twig->render('frontend/login.html.twig', [
-            'error' => $_GET['success'] == 'false'
-        ]);
+            ]);
+            echo $this->twig->render('frontend/login.html.twig', [
+                'error' => $_GET['success'] == 'false'
+            ]);
         }
     }
+
     public function signup()
     {
-        if($_GET['action']==='signup'){
+        if ($_GET['action'] === 'signup') {
             echo $this->twig->render('frontend/signup.html.twig', [
 
-        ]);
+            ]);
         }
         echo $this->twig->render('frontend/signup.html.twig', [
-          'error' => $_GET['success'] == 'false'
+            'error' => $_GET['success'] == 'false'
         ]);
     }
+
     public function register($email, $password)
     {
         $result = $this->authenticationService->signup($email, $password);
-        if($result){
+        if ($result) {
             $_SESSION['admin'] = true;
             header('Location: index.php?action=admin');
-        }else {
-           $_SESSION['admin'] === false;
-           header('Location: index.php?action=signup&success=false');
+        } else {
+            $_SESSION['admin'] === false;
+            header('Location: index.php?action=signup&success=false');
         }
     }
 
     public function connect($email, $password)
     {
         $result = $this->authenticationService->signinAdmin($email, $password);
-        if($result){
-            
-            $_SESSION['admin'] =true;
-            $_SESSION['email']= $result['email'];
-           // var_dump($result['email']);
-                                    
-           header('Location: index.php?action=admin&success=true');
-            
-        } 
-        
+        if ($result) {
+
+            $_SESSION['admin'] = true;
+            $_SESSION['email'] = $result['email'];
+            // var_dump($result['email']);
+
+            header('Location: index.php?action=admin&success=true');
+
+        }
+
 
     }
-    
-    
+
 
 }

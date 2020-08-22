@@ -14,7 +14,13 @@
                         {% endfor %}
                     </div>
 
-
+        <ul>
+            {% for i in range(1, total) %}
+                <li>
+                    <a href="?action=education&page={{ i }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+        </ul>
 
     </div>
 {% endblock %}
