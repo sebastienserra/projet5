@@ -5,17 +5,18 @@ namespace Projet5\Model;
 class UserManager extends Manager
 {
 
-    public function getUser($email)
+/*     public function getUser($email)
     {
         $req = $this->db->prepare('SELECT * FROM users WHERE email=:email');
         $req->execute(['email' => $email]);
         return $req->fetch();
-    }
+    } */
     public function getAdmin($email)
     {
         $req = $this->db->prepare('SELECT * FROM users WHERE email="seb@cats.com"');
         $req->execute(['email' => $email]);
-        return $req->fetch();
+        $result = $req->fetch();
+        return $result;
     }
 
     public function emailExists($email)

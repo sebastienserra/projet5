@@ -1,0 +1,64 @@
+{% extends "basebackend.html.twig" %}
+
+{% block title %}Ajouter une recette{% endblock %}
+
+{% block content %}
+<div class="content_size">
+  <div id="top"></div>
+  <h2>Ajoutez une recette:</h2>
+<form method="post" action="index.php?action=new_credit">
+<div id="fields_vet">
+	<div class="contain_vet">
+	<div>
+		<label>Date de valeur</label>
+	</div>
+	<div>
+		<input type="date" name="date_credit" id="date_credit" size="13" maxlength="15" placeholder="YYYY/MM/DD">
+	</div>
+	</div>
+    <div class="contain_vet">
+		<div>
+			<label>Libellé</label>
+		</div>
+		<div>
+			<input type="text" name="item_credit" id="item_credit" size="13" maxlength="50" placeholder="Description" autofocus/>
+	</div>
+	</div>
+    <div class="contain_vet">
+		<div>
+			<label>Nom du chat</label>
+		</div>
+		<div>
+			<input type="text" name="cat_name" id="cat_name" size="13" maxlength="50" placeholder="Name" autofocus/>
+	</div>
+	</div>
+        <div class="contain_vet">
+		<div>
+			<label>Valeur en euros</label>
+		</div>
+		<div>
+			<input type="text" name="amount_credit" id="amount_credit" size="13" maxlength="50" placeholder="Amount" autofocus/>
+	</div>
+	</div>
+	</div>
+
+	<div id="observation_credit">
+	<div>
+ 			<label for="observation_credit">Observation</label>
+ 		</div>
+ 		<div>
+			<textarea name="observation_credit" id="obs_credit" rows="2" cols="53" maxlength="200" placeholder="Observation">
+			</textarea>
+		</div>
+	</div>
+
+
+		   <div class="btn_ajouter">
+		   <input type="submit" name="submit" value="Ajouter" id="ajouter">
+		  </div>
+		  </form>
+
+
+
+  </div>
+{% endblock %}

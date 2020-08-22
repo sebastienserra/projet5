@@ -21,14 +21,14 @@ class AuthenticationService
         }
         return password_verify($password, $admin['password']);
     }
-    public function signinUser($email, $password)
+    /* public function signinUser($email, $password)
     {
         $user = $this->userManager->getUser($email);
         if (!$user) {
             return false;
         }
         return password_verify($password, $user['password']);
-    }
+    } */
 
     public function signup($email, $password)
     {
@@ -43,12 +43,14 @@ class AuthenticationService
     }
 
     public function isConnected()
-    {
+    {  
+        
         return isset($_SESSION['admin']) && $_SESSION['admin'];
+        
     }
-    public function userIsConnected()
+    /* public function userIsConnected()
     {
-        return isset($_SESSION['user']) && $_SESSION['user'];
-    }
+        return isset($_SESSION['blog']) && $_SESSION['blog'];
+    } */
 
 }

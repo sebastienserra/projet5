@@ -1,0 +1,50 @@
+{% extends "basebackend.html.twig" %}
+
+{% block title %}Suivi régulier des chattons{% endblock %}
+
+{% block content %}
+<div class="content_size">
+  <div id="top"></div>
+  <h2>Suivi journalier:</h2>
+<form method="post" action="index.php?action=daily_followup">
+<div id="fields_vet">
+    <div class="contain_info_kitten">
+		   		<div>
+		   			<label>Kitten's name</label>
+		   		</div>
+		   		<div>
+		   			<input type="text" name="cat_name" id="kitten_name" size="13" maxlength="13" placeholder="Full name" autofocus/>
+				</div>
+			</div>
+			<div class="contain_info_kitten">
+		   		<div>
+		   			<label>Weight in g.</label>
+		   		</div>
+		   		<div>
+		   			<input type="text" name="weight" id="weight" size="13" maxlength="13" placeholder="weight" autofocus/>
+				</div>
+			</div>
+    </div>
+    
+	
+<div id="daily_observation">
+	<div>
+ 			<label for="daily_observation">Observation quotidienne</label>
+ 		</div>
+ 		<div>
+			<textarea name="daily_observation" id="daily_obs" rows="2" cols="53" maxlength="200" placeholder="diagnostic">
+			</textarea>
+		</div>
+	</div>
+
+
+
+		   <div class="btn_ajouter">
+		   <input type="submit" name="submit" value="Ajouter" id="ajouter">
+		  </div>
+		  </form>
+
+
+
+  </div>
+{% endblock %}

@@ -8,11 +8,11 @@
 	<form action="index.php?action=connect" method="post" id="login_form">
 		<h2>Connectez vous</h2> 
   		<input type="email" name="email" id="email" placeholder="identifiant">
-		<input type="password" name="password" id="password" placeholder="Mot de passe">
+		<input type="password" name="password" id="password" pattern="[a-zA-Z-0-9]{3,10}" placeholder="Mot de passe">
 		<button type="submit" name="login-submit" value="valider">valider</button>
 
 		{% if error %}
-			<p>Une erreur se produite lors de l'inscription</p>
+			<p>Une erreur s'est produite lors de la connection</p>
 		{% endif %}
     </form>    
     

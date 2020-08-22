@@ -10,11 +10,6 @@ class PostManager extends Manager
         return $erase;
   }
 
-  public function editOnePost($id){
-        $result = $this->db->prepare("SELECT * FROM posts WHERE id=?");
-        $result->execute(array($id));
-        return $result;
-  }
   public function getAllPosts(){
         $getAllPosts = $this->db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 0,10");       
         return $getAllPosts;
@@ -61,8 +56,19 @@ class PostManager extends Manager
         $nb_posts=$donnees['nb_posts'];
         $results_per_page=3;
         $nber_of_pages=ceil($nb_posts/$results_per_page);
+        
+
         return $nber_of_pages;
   }
+   public function finishOnWord($string, $limit, $stop=" "){
+      if(strlen($string) <= $limit) return $string;
+        if(false !== ($stoppoint = strpos($string, $stop, $limit))) {
+          if($stoppoint < strlen($string) - 1) {
+            $string = substr($string, 0, $stoppoint);
+          }
+        }
+        return $string;
+      }
   public function searchQuery(){
 
     if(isset($_POST['submit_search'])){
@@ -75,8 +81,8 @@ class PostManager extends Manager
  public function create($post)
     {
         $req = $this->db->prepare("
-            INSERT INTO posts(article,creation_date,title,author,category,image)
-            values(:article,:creation_date,:title,:author,:category,:image)");
+            INSERT INTO posts(article,creation_date,title,author,category,image,imgdescription)
+            values(:article,:creation_date,:title,:author,:category,:image,:imgdescription)");
         $nbResults = $req->execute([
             'article' => $post['article'],
             'creation_date' => $post['creation_date'],             
@@ -84,13 +90,14 @@ class PostManager extends Manager
             'author' => $post['author'],
             'category' => $post['category'],
             'image' => $post['image'],
+            'imgdescription' => $post['imgdescription'],
         ]);
         return $nbResults;  
     }
     public function update($post)
     {
         $req = $this->db->prepare("UPDATE posts 
-        SET id=:id,article=:article,creation_date=:creation_date,title=:title,author=:author,category=:category,image=:image 
+        SET id=:id,article=:article,creation_date=:creation_date,title=:title,author=:author,category=:category,image=:image,imgdescription=:imgdescription 
         WHERE id=:id");
         $nbResults = $req->execute([
             'id' => $post['id'],
@@ -100,6 +107,7 @@ class PostManager extends Manager
             'author' => $post['author'],
             'category' => $post['category'],
             'image' => $post['image'],
+            'imgdescription' => $post['imgdescription'],
         ]);
         return $nbResults;
     }

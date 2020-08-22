@@ -33,11 +33,11 @@ class FrontendController
     {
         
         $articles = $this->postManager->lastPosts();
-        $nber_of_pages = $this->postManager->paginate();
+        $nbPosts = $this->postManager->paginate();
         //var_dump($nbPosts);
         echo $this->twig->render('frontend/home.html.twig', [
            'articles' => $articles,
-           'nber_of_pages' => $nber_of_pages,
+           'nbPosts' => $nbPosts,
        ]);
     }
 
@@ -78,12 +78,6 @@ class FrontendController
             'subFours' =>$subFours,
         ]);
     }
-    public function editOnePost($id){
-        $db = $this->dbConnect();
-        $result = $db->prepare("SELECT article, title, author, id FROM posts WHERE id=?");
-        $result->execute(array($id));
-        return $result;
-  }
     function myFirstMaineCoon(){
         $categories = $this->postManager->categoryMyfirstMc();
          echo $this->twig->render('frontend/my_first_maine_coon.html.twig', 
@@ -208,17 +202,17 @@ class FrontendController
         echo json_encode($cats);
     }
     
-    public function login() 
+    public function login() //pose probleme erreur
     {   if($_GET['action']==='login'){
             echo $this->twig->render('frontend/login.html.twig', [
 
         ]);
         echo $this->twig->render('frontend/login.html.twig', [
-            'error' => $_GET['success'] == 'false'
+            'error' => $_GET['success'] == 'false'// je suis pas sur de comprendre a quoi ca correspond exactement
         ]);
         }
     }
-    public function signup()
+    public function signup()//pose probleme affichage
     {
         if($_GET['action']==='signup'){
             echo $this->twig->render('frontend/signup.html.twig', [
@@ -241,7 +235,7 @@ class FrontendController
         }
     }
 
-    public function connect($email, $password)
+    public function connect($email, $password)//pose probleme
     {
         $result = $this->authenticationService->signinAdmin($email, $password);
         if($result){
@@ -253,10 +247,29 @@ class FrontendController
            header('Location: index.php?action=admin&success=true');
             
         } 
-        
+        //else {
+        //    $_SESSION['admin'] = false;            
+        //    header('Location: index.php?action=login&success=false');
+        //s}
 
     }
-    
+    // public function connectUser($email, $password)//pose probleme
+    // {
+    //     $check = $this->authenticationService->signinUser($email, $password);
+        
+    //     if($result){
+    //         $_SESSION['blog'] = true;
+    //          $_SESSION['mail'] = $email;
+    //       header('Location: index.php?action=blog');
+            
+    //     } else {
+    //         $_SESSION['blog'] = false;
+            
+    //         header('Location: index.php?action=login&success=false');
+    //     }
+        
+
+    //}
     
 
 }

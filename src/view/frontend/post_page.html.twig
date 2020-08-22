@@ -13,8 +13,9 @@
 
                     <div class="present_post">
 
-                        <p><h4>{{ post.title | raw }}</h4></p>
+                        <div class="title_position">{{ post.title | raw }}</div>
                         <div class="article_first_image">  <img src="./uploads/{{ post.image }}" class="picture_of_cat" /></div>
+                        <div class="article_img_description">{{ post.imgdescription | raw }}</div>
                         <p>{{ post.article | raw }}</p>
                         {{ post.author }} le {{ post.creation_date | date('d/m/Y') }}
                     </div>

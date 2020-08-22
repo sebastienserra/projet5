@@ -83,8 +83,6 @@ try {
             $backendController->updatePost($_POST, $_FILES['myfile']);
         } elseif ($_GET['action'] == 'moderate') {
             $backendController->listReportedComments();
-        } elseif ($_GET['action'] == 'login_error') {
-            $frontendController->loginError();
         } elseif ($_GET['action'] == 'reportComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $frontendController->reportComment($_GET['id']);
@@ -103,8 +101,30 @@ try {
             $backendController->admin_cats();
         } elseif ($_GET['action'] == 'display_cats') {
             $backendController->displayAllCatsBack();
+        } elseif ($_GET['action'] == 'cat_register') {
+            $backendController->registerCats();
+        } elseif ($_GET['action'] == 'add_veterinarian') {
+            $backendController->veterinarian();
         } elseif ($_GET['action'] == 'save_cat_data') {
             $backendController->addCat($_POST, $_FILES['monfichier']);
+        } elseif ($_GET['action'] == 'veterinarian') {
+            $backendController->addVisit($_POST['date_visit'], $_POST['cat_name'],$_POST['gender'], $_POST['age_category'], $_POST['vet_name'], $_POST['diagnostic'], $_POST['treatment'], $_POST['cost'], $_POST['intervention']);
+        } elseif ($_GET['action'] == 'edit_veterinarian') {
+            $backendController->editVisits();
+        } elseif ($_GET['action'] == 'cat_form') {
+            $backendController->formCat();
+        } elseif ($_GET['action'] == 'add_litter') {
+            $backendController->addLitter(); 
+        } elseif ($_GET['action'] == 'litter') {
+            $backendController->litter($_POST['father'], $_POST['mother'],$_POST['litter_number'], $_POST['mating_date'], $_POST['parturition_date'], $_POST['females_number'], $_POST['males_number'], $_POST['total_kittens'], $_POST['general_observation'], $_POST['parturition_observation'], $_POST['gestation_observation']);
+        } elseif ($_GET['action'] == 'cat_litters') {
+            $backendController->editLitters();  
+        } elseif ($_GET['action'] == 'kitten_daily') {
+            $backendController->kittenDaily(); 
+        } elseif ($_GET['action'] == 'edit_observations') {
+            $backendController->editObservations();
+        } elseif ($_GET['action'] == 'daily_followup') {
+            $backendController->addDailyObservation($_POST['cat_name'], $_POST['weight'],$_POST['daily_observation']);
         } elseif ($_GET['action'] == 'edit_cat') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $backendController->editCat($_GET['id']);
@@ -117,7 +137,21 @@ try {
             $backendController->eraseTheCat($_GET['id']);
         } elseif ($_GET['action'] == 'moderateComment') {
             $backendController->destroyReportedComment($_GET['id']);
-        }
+        } elseif ($_GET['action'] == 'add_credit') {
+            $backendController->creditForm();
+        } elseif ($_GET['action'] == 'add_debit') {
+            $backendController->debitForm();
+        } elseif ($_GET['action'] == 'new_credit') {
+            $backendController->addCredit($_POST['date_credit'], $_POST['item_credit'],$_POST['cat_name'],$_POST['amount_credit'],$_POST['observation_credit']);
+                } elseif ($_GET['action'] == 'new_debit') {
+            $backendController->addDebit($_POST['date_debit'], $_POST['item_debit'],$_POST['cat_name'],$_POST['amount_debit'],$_POST['observation_debit']);
+        } elseif ($_GET['action'] == 'edit_credit') {
+            $backendController->editCredit();
+        } elseif ($_GET['action'] == 'edit_debit') {
+            $backendController->editDebit();
+        } elseif ($_GET['action'] == 'edit_total_debit') {
+            $backendController->editTotalDebit();
+        }      
     } else {
         $frontendController->home();
     }

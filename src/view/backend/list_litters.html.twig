@@ -1,0 +1,47 @@
+{% extends "basebackend.html.twig" %}
+
+{% block title %}Liste de toutes les portées{% endblock %}
+
+{% block content %}
+
+<div class="content_size">
+	<div id="top"></div>
+    <h2>Liste de toutes les portées</h2>
+    <div class="adding">Ajouter une nouvelle portée: <a href="index.php?action=add_litter"><input class="adding_btn" type="button" value="Add"></a></div>
+	    
+	    <table>  
+      <thead>
+	    <tr>
+        <th>Père</th>
+        <th>Mère</th>
+        <th>Num. portée</th>
+        <th>Date accouplement</th>
+        <th>Date mise-bas</th>
+        <th>Nb. femelles</th>
+        <th>Nb. mâles</th>
+        <th>Total chattons</th>
+        <th>Etat général</th>
+        <th>Observations mise-bas</th>
+        <th>Observations gestation</th>
+      </tr>
+      </thead>
+    {% for allLitter in allLitters %}
+      <tr>
+        <td>{{ allLitter.father }}</td>
+        <td>{{ allLitter.mother }}</td>
+        <td>{{ allLitter.litter_number }}</td>
+        <td>{{ allLitter.mating_date | date('d/m/Y') }}</td>
+        <td>{{ allLitter.parturition_date| date('d/m/Y') }}</td>
+        <td>{{ allLitter.females_number }}</td>
+        <td>{{ allLitter.males_number }}</td>
+        <td>{{ allLitter.total_kittens }}</td>
+        <td>{{ allLitter.general_observation }}</td>
+        <td>{{ allLitter.parturition_observation }}</td>
+        <td>{{ allLitter.gestation_observation }}</td>
+        
+{% endfor %}
+		      </tr>
+    </table>
+</div>
+</div>
+{% endblock %}

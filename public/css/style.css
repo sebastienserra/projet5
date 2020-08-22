@@ -14,11 +14,12 @@ body {
   height: 6em;
 }
 /*menu*/
+
 #nav_bar {
   top: -2%;
   width: 100%;
   margin: 0 auto;
-  height: 10%;
+  height: 11%;
   position: fixed;
   z-index: 4;
   padding-bottom: 5px;
@@ -42,7 +43,7 @@ body {
 }
 #query button {
   position: absolute;
-  top: -5px;
+  top: -4px;
   left: 100px;
   width: 35px;
   height: 29px;
@@ -92,7 +93,14 @@ body {
 .navigation {
   text-align: right;
 }
-label {
+span.fas fa-bars {
+  margin-left: 25%;
+  margin-top: 10%;
+  font-size: 1.5em;
+  display: none;
+  /* visibility: hidden;*/
+}
+#label_hamburger {
   width: 26px;
   float: left;
   margin-right: 30px;
@@ -363,10 +371,16 @@ h3 {
   font-size: 1em;
 }
 /*front*/
+.contain_pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 2%;
+}
 .link {
-  margin-bottom: -2%;
   text-align: center;
-  height: 100px;
+  height: 50px;
+  margin-right: 15px;
 }
 .link a {
   color: rgb(0, 99, 206);
@@ -525,7 +539,7 @@ span {
 }
 #button_form {
   margin-left: 11%;
-  margin-top: 1%;
+  margin-top: 7%;
 }
 #edit_block {
   width: 80%;
@@ -677,14 +691,17 @@ button:hover {
 }
 #title,
 #author,
-#category {
+#category,
+#imgdescription {
   width: 100%;
 }
+
 /*3eme block*/
 #block_pictures {
   width: 100%;
   height: auto;
   margin-left: 0;
+  margin-top: 5%;
   background-image: url(../images/background_block3.jpg);
 }
 .wrapping {
@@ -912,10 +929,10 @@ h4 {
   background-size: cover;*/
 }
 .title_listing div {
-  width: 80%;
+  width: 90%;
   height: auto;
   position: relative;
-  left: 10%;
+  left: 3%;
   font-size: 1.2rem;
   font-weight: 300;
   color: white;
@@ -1028,14 +1045,16 @@ input#insertion {
   display: block;
 }
 .contain_description {
-  width: 80%;
+  width: 100%;
   height: auto;
   margin: 0 auto;
   text-align: left;
   border: solid grey 1px;
   padding: 5px;
 }
-textarea#description {
+
+textarea#description,
+textarea#rip_description {
   width: 100%;
 }
 label {
@@ -1066,6 +1085,121 @@ select,
 }
 /*end style backend form insert cat in db */
 
+/*start style form vet and litter and kitten follow-up*/
+#fields_vet {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+div.contain_vet {
+  width: 250px;
+  height: 100px;
+  border: solid grey 2px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  border: solid grey 1px;
+  padding: 5px;
+  margin: 5px;
+}
+div.contain_info_kitten {
+  width: 400px;
+  height: 100px;
+  border: solid grey 2px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  border: solid grey 1px;
+  padding: 5px;
+  margin: 5px;
+}
+input#kitten_name {
+  width: 250px;
+}
+#diagno_description,
+#treatment_description,
+#intervention_description,
+#general_observation,
+#parturition_observation,
+#gestation_observation,
+#daily_observation,
+#observation_credit,
+#observation_debit {
+  width: 80%;
+  margin: 0 auto;
+}
+#diagnostic,
+#treatment,
+#intervention,
+#general_obs,
+#parturition_obs,
+#gestation_obs,
+#daily_obs,
+#obs_credit,
+#obs_debit {
+  width: 100%;
+  margin: 0 auto;
+}
+.btn_ajouter {
+  position: absolute;
+  left: 48%;
+}
+#ajouter {
+  height: 30px;
+  width: 90px;
+  margin: 0 auto;
+}
+th#title_date,
+th#title_name,
+th#title_weight {
+  width: 200px;
+}
+table#financial_result {
+  width: 400px;
+  margin-left: 10%;
+}
+tr#debit_total_result {
+  font-size: 1.2em;
+  background-color: rgb(244, 187, 95);
+  opacity: 0.7;
+}
+tr#sold {
+  font-size: 1.2em;
+  background-color: rgb(133, 226, 137);
+  opacity: 0.7;
+}
+/*th#debit_total {
+  width: 300px;
+}*/
+.column_table,
+th#debit_result {
+  width: 100px;
+}
+/*end style form vet and litter and kitten follow-up*/
+/* start style page admin_cats*/
+
+#present_cat_admin {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 4%;
+}
+.contain_categories_admin {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 2%;
+}
+.admin_category {
+  width: 40%;
+  border: solid rgb(57, 163, 201) 1px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 7px;
+}
+/* end style page admin_cats*/
+
 /*start style present all cats backend*/
 table {
   font-family: arial, sans-serif;
@@ -1090,6 +1224,44 @@ tr:nth-child(even) {
   object-fit: contain;
   width: 70px;
   height: 70px;
+}
+.adding {
+  /*border: blue solid 2px;
+  border-radius: 5px;*/
+  width: 400px;
+  line-height: 25px;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  left: 10%;
+  margin-bottom: 1%;
+  text-decoration: none;
+}
+.adding_btn {
+  /*border: blue solid 2px;*/
+  border-radius: 20px;
+  border: none;
+  width: 80px;
+  line-height: 20px;
+  background-color: rgb(57, 163, 201);
+  text-align: center;
+  color: white;
+  padding: 3px;
+  position: relative;
+  left: 10%;
+}
+.adding_btn:hover {
+  /*border: blue solid 2px;*/
+  border-radius: 20px;
+  border: hidden;
+  width: 80px;
+  line-height: 20px;
+  background-color: rgb(29, 161, 242);
+  text-align: center;
+  color: white;
+  padding: 3px;
+  position: relative;
+  left: 10%;
 }
 /*end style present all cats backend*/
 /*start style for contact page*/
@@ -1194,11 +1366,19 @@ iframe {
 /*start style new presentation articles*/
 .picture_of_cat {
   object-fit: contain;
-  width: 150px;
-  height: 150px;
+  width: 40%;
+  height: auto;
   border-radius: 5px;
 }
+.title_position {
+  text-align: center;
+  font-size: 2rem;
+}
 .article_first_image {
+  text-align: center;
+}
+.article_img_description {
+  font-size: 0.7rem;
   text-align: center;
 }
 .page_post {
@@ -1307,11 +1487,12 @@ div.comments_display {
   }
 
   /*menu hamburger debut*/
+
   #nav_bar {
     background-color: transparent;
     box-shadow: none;
   }
-  label {
+  #label_hamburger {
     display: block;
     margin-top: 2%;
     margin-left: 1%;
@@ -1390,7 +1571,7 @@ div.comments_display {
     width: 80%;
   }
   #button_form {
-    margin-top: -2%;
+    margin-top: 13%;
   }
   #joint {
     display: flex;
@@ -1583,7 +1764,12 @@ div.comments_display {
     margin: 0;
     padding-left: 10px;
   }
-
+  #upload {
+    width: auto;
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   /*end_articles*/
 }
 
@@ -1701,7 +1887,7 @@ div.comments_display {
   }
 
   #button_form {
-    margin-top: 0;
+    margin-top: 6%;
     margin-left: 10%;
   }
   .group {
@@ -1719,7 +1905,7 @@ div.comments_display {
   }
 }
 
-@media all and (min-width: 1024px) and (max-width: 1100px) {
+@media all and (min-width: 1025px) and (max-width: 1100px) {
   #registration {
     left: 68%;
     margin-top: 1%;

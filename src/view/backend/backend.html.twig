@@ -1,12 +1,17 @@
+
 {% extends "basebackend.html.twig" %}
 
 {% block title %}Interface d'administration{% endblock %}
 
 {% block content %}
 
+
     <div class="content_size">
         <div id="top"></div>
         <table border=1>
+        	{% if result %}
+			<p> var_dump($_SESSION['admin']);</p>
+		{% endif %}
             {% for post in posts %}
                 <div class="present">
                     <div class="text_back">{{ post.title }}</div>
@@ -14,6 +19,7 @@
                     <div class="text_back">{{ post.article | raw }}</div>
                     <div class="text_back">{{ post.author }}</div>
                      <div class="text_back"> <img src="./uploads/{{ post.image }}" class="mini_picture_of_cat" /></div>
+                    <div class="text_back">{{ post.imgdescription }}</div>
                     <div class="together">
                         <div class="button_one_back">
                             <a href="index.php?action=deletePost&amp;id={{ post.id }}" id="confirmation">
@@ -41,13 +47,12 @@
                     <input type="text" name="category" id="category" rows="1" cols="50" maxlength="250"
                            placeholder="Category">
             <div class="contain_description">
-				<div>
-  	 				<label for="description">Photo du chat:</label>
-  	 			</div>
-  	 			<div>
+  	 			<div id="upload">
 					<p><input type="file" name="myfile"></p>
 				</div>
 			</div>
+            <input type="text" name="imgdescription" id="imgdescription" rows="1" cols="50" maxlength="250"
+                           placeholder="Description of image">
                     <textarea name="article" id="article" rows="10" cols="50" maxlength="250"
                               placeholder="Ecrivez vos articles ici.">
 			

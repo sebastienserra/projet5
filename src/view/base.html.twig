@@ -23,19 +23,19 @@
       <button type="submit" name="submit_search" id="submit_search" value="Search"><i class="fas fa-search"></i></button>
     </form>
   </div>
-  <div id="registration">
+  <!--<div id="registration">
     <div id="signup">
       <button type="submit" name="signup" id="signup" value="Search"><a href="index.php?action=signup">Inscription</a></button>
     </div>
     <div id="signin">
       <button type="submit" name="signin" id="signin" value="Search"><a href="index.php?action=login">Connection</a></button>
     </div>
-  </div>
+  </div>-->
 
   <div class="navigation">
 
 
-    <label for="hamburger"><span class="fas fa-bars"></span></label>
+    <label id="label_hamburger" for="hamburger"><span class="fas fa-bars"></span></label>
     <input type="checkbox" id="hamburger">
     <nav>
       <ul>
@@ -56,16 +56,18 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
       <script src="public/js/request.js"></script>
+      <script src="./public/js/slide.js"></script>
+      <script src="./public/js/main.js"></script>
 {% endblock %}
 <footer>
 
   <div><a href="index.php">Accueil</a></div>
+  <div><a href="index.php?action=all_maine_coons">Les Chats</a></div>
   <div><a href="index.php?action=blog">Blog</a></div>
   <div><a href="index.php?action=contact">Contact</a></div>
-  <div><a href="index.php?action=admin">Admin</a></div>
   <div><a href="index.php?action=login">Interface d'administration</a></div>
   <div></div>
-  <div>Tous droits réservés - Auteur: Jean Forteroche</div>
+  <div>Tous droits réservés</div>
 
 </footer>
 </body>
