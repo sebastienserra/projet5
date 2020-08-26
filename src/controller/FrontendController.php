@@ -34,11 +34,8 @@ class FrontendController
     {
 
         $articles = $this->postManager->lastPosts();
-        $nber_of_pages = $this->postManager->paginate();
-        //var_dump($nbPosts);
         echo $this->twig->render('frontend/home.html.twig', [
             'articles' => $articles,
-            'nber_of_pages' => $nber_of_pages,
         ]);
     }
 

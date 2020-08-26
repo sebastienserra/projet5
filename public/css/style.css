@@ -1198,6 +1198,13 @@ th#debit_result {
   text-align: center;
   padding: 7px;
 }
+.admin_category_blank {
+  width: 40%;
+  border: solid transparent 1px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 7px;
+}
 /* end style page admin_cats*/
 
 /*start style present all cats backend*/

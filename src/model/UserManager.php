@@ -40,6 +40,7 @@ class UserManager extends Manager
         $message = $req->execute([$object_message,$first_name,$last_name,$email, $message_text]);
         return $message;
     }
+    
 
 
 }

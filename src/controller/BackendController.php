@@ -133,9 +133,11 @@ class BackendController
         
         $nbComments = $this->commentManager->countReportedComments();
         $posts = $this->postManager->getAllPostsAdmin();
+        
         echo $this->twig->render('backend/backend.html.twig', [
             'posts' => $posts,
-            'nbComments' => $nbComments
+            'nbComments' => $nbComments,
+            
         ]);
         
     }

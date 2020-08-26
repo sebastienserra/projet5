@@ -6,12 +6,17 @@
 {% block content %}
 
 
+
+
     <div class="content_size">
         <div id="top"></div>
         <table border=1>
-        	{% if result %}
-			<p> var_dump($_SESSION['admin']);</p>
-		{% endif %}
+        	{% for admin in admins %}
+			<p> var_dump($_SESSION['users.email']);</p>
+            <p>{{ admin.email }}</p>
+           
+		    {% endfor %}
+            <div>Hello</div>
             {% for post in posts %}
                 <div class="present">
                     <div class="text_back">{{ post.title }}</div>

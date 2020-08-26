@@ -44,7 +44,7 @@ class PostManager extends Manager
 
     public function popularPosts()
     {
-        $popularity = $this->db->query("SELECT * FROM posts ORDER BY id LIMIT 4,10");
+        $popularity = $this->db->query("SELECT * FROM posts ORDER BY id LIMIT 4,8");
         return $popularity;
     }
 
@@ -64,19 +64,6 @@ class PostManager extends Manager
         $articles = $this->db->query("SELECT * FROM posts ORDER BY id DESC limit $this_page_first_result, $results_per_page");
         return $articles->fetchAll();
     }
-
-    public function paginate()
-    {
-        $reponse = $this->db->query("SELECT COUNT(*) AS nb_posts FROM posts");
-        $donnees = $reponse->fetch();
-        $nb_posts = $donnees['nb_posts'];
-        $results_per_page = 3;
-        $nber_of_pages = ceil($nb_posts / $results_per_page);
-
-
-        return $nber_of_pages;
-    }
-
     public function finishOnWord($string, $limit, $stop = " ")
     {
         if (strlen($string) <= $limit) return $string;
