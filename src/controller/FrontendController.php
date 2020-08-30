@@ -213,9 +213,6 @@ class FrontendController
     {
         if ($_GET['action'] === 'login') {
             echo $this->twig->render('frontend/login.html.twig', [
-
-            ]);
-            echo $this->twig->render('frontend/login.html.twig', [
                 'error' => $_GET['success'] == 'false'
             ]);
         }
@@ -252,10 +249,10 @@ class FrontendController
 
             $_SESSION['admin'] = true;
             $_SESSION['email'] = $result['email'];
-            // var_dump($result['email']);
 
             header('Location: index.php?action=admin&success=true');
-
+        } else {
+            header('Location: index.php?action=login');
         }
 
 
