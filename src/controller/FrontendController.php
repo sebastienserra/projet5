@@ -209,25 +209,20 @@ class FrontendController
     public function login()
     {
         if ($_GET['action'] === 'login') {
-            echo $this->twig->render('frontend/login.html.twig', [
-
-            ]);
+            
             echo $this->twig->render('frontend/login.html.twig', [
                 'error' => $_GET['success'] == 'false'
             ]);
         }
     }
-
     public function signup()
     {
         if ($_GET['action'] === 'signup') {
             echo $this->twig->render('frontend/signup.html.twig', [
-
-            ]);
-        }
-        echo $this->twig->render('frontend/signup.html.twig', [
             'error' => $_GET['success'] == 'false'
         ]);
+        }
+        
     }
 
     public function register($email, $password)
@@ -249,14 +244,11 @@ class FrontendController
 
             $_SESSION['admin'] = true;
             $_SESSION['email'] = $result['email'];
-            // var_dump($result['email']);
 
             header('Location: index.php?action=admin&success=true');
-
+        } else {
+            header('Location: index.php?action=login');
         }
-
-
     }
-
 
 }

@@ -46,7 +46,7 @@ class BackendController
 
     function editPost($id)
     {
-        if(!$this->authenticationService->isConnected()){
+        if (!$this->authenticationService->isConnected()){
             header('Location: index.php?action=login');
         }
         $results = $this->postManager->editOnePost($id);
@@ -222,6 +222,10 @@ class BackendController
     }
     function addVisit($date_visit,$cat_name,$gender,$age_category,$vet_name,$diagnostic,$treatment,$cost,$intervention)
     {
+        if (!$this->authenticationService->isConnected()) {
+            header('Location: index.php?action=login');
+       }
+
         $visit = $this->catManager->visit($date_visit,$cat_name,$gender,$age_category,$vet_name,$diagnostic,$treatment,$cost,$intervention);
          header('Location: index.php?action=edit_veterinarian');
     }
@@ -238,7 +242,7 @@ class BackendController
     }
     function addlitter()
         {
-    if (!$this->authenticationService->isConnected()) {
+        if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
        }
         echo $this->twig->render('backend/litter.html.twig', []);
@@ -246,6 +250,9 @@ class BackendController
 
     function litter($father,$mother,$litter_number, $mating_date,$parturition_date,$females_number,$males_number,$total_kittens,$general_observation,$parturition_observation,$gestation_observation)
     {
+        if (!$this->authenticationService->isConnected()) {
+            header('Location: index.php?action=login');
+       }
         $litter= $this->catManager->litters($father,$mother,$litter_number, $mating_date,$parturition_date,$females_number,$males_number,$total_kittens,$general_observation,$parturition_observation,$gestation_observation);
         echo $this->twig->render('backend/admin_cats.html.twig', [
             'litter' => $litter,
@@ -271,6 +278,10 @@ class BackendController
     }
     function addDailyObservation($cat_name,$weight,$daily_observation)    
     {
+        if (!$this->authenticationService->isConnected()) {
+            header('Location: index.php?action=login');
+       }
+
         $kittenDaily= $this->catManager->kittensDaily($cat_name,$weight,$daily_observation);
         header('Location: index.php?action=edit_observations');
 
@@ -298,6 +309,10 @@ class BackendController
     }
     function addCredit($date_credit,$item_credit,$cat_name,$amount_credit,$observation_credit)    
     {
+        if (!$this->authenticationService->isConnected()) {
+            header('Location: index.php?action=login');
+       }
+
         $credit= $this->catManager->addNewCredit($date_credit,$item_credit,$cat_name,$amount_credit,$observation_credit);
         header('Location: index.php?action=edit_credit');
     }
@@ -325,6 +340,10 @@ class BackendController
     }
     function addDebit($date_debit,$item_debit,$cat_name,$amount_debit,$observation_debit)    
     {
+        if (!$this->authenticationService->isConnected()) {
+            header('Location: index.php?action=login');
+       }
+
         $debit= $this->catManager->addNewDebit($date_debit,$item_debit,$cat_name,$amount_debit,$observation_debit);
         header('Location: index.php?action=edit_debit');
     }
