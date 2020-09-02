@@ -13,8 +13,13 @@ class PostManager extends Manager
 
     public function getAllPosts()
     {
-        $getAllPosts = $this->db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 0,10");
-        return $getAllPosts;
+        try {
+            $getAllPosts = $this->db->prepare("SELECT * FROM posts ORDER BY id DESC LIMIT 0,10");
+            $getAllPosts->execute();
+            return $getAllPosts;
+        } catch (\PDOException $e){
+            return [];
+        }
     }
 
     public function getAllPostsAdmin()
