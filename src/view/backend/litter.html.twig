@@ -1,165 +1,162 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Ajouter une portée{% endblock %}
+{% block title %}Ajouter une portée
+{% endblock %}
 
 {% block content %}
-<div class="content_size">
-  <div id="top"></div>
-  <h2>Ajoutez une portée:</h2>
-<form method="post" action="index.php?action=litter" id="litter_form">
-<div id="fields_vet">
-    <div class="contain_vet">
-		   		<div>
-		   			<label>Father's name</label>
-		   		</div>
-		   		<div>
-		   			<input type="text" name="father" id="father" size="13" maxlength="13" placeholder="Full name" autofocus/>
+	<div class="content_size">
+		<div id="top"></div>
+		<h2>Ajoutez une portée:</h2>
+		<form method="post" action="index.php?action=litter" id="litter_form">
+			<div id="fields_vet">
+				<div class="contain_vet">
+					<div>
+						<label>Father's name</label>
+					</div>
+					<div>
+						<input type="text" name="father" id="father" size="13" maxlength="13" placeholder="Full name" autofocus/>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label>Mother's name</label>
+					</div>
+					<div>
+						<input type="text" name="mother" id="mother" size="13" maxlength="13" placeholder="Full name" autofocus/>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label for="litter_number">Litter number
+						</label>
+					</div>
+					<div>
+						<input type="text" name="litter_number" id="litter_number" size="13" maxlength="13" placeholder="New number" autofocus/>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label>date saillie</label>
+					</div>
+					<div>
+						<input type="date" name="mating_date" id="mating_date" size="13" maxlength="15" placeholder="YYYY/MM/DD">
+					</div>
+				</div>
+
+				<div class="contain_vet">
+					<div>
+						<label>date mise-bas</label>
+					</div>
+					<div>
+						<input type="date" name="parturition_date" id="parturition_date" size="13" maxlength="15" placeholder="YYYY/MM/DD">
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label for="females_number">Nb Filles
+						</label>
+					</div>
+					<div>
+						<select name="females_number" class="evaluation_scale">
+							<option value="selected">Nombre de filles</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+						</select>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label for="males_number">Nb Garçons
+						</label>
+					</div>
+					<div>
+						<select name="males_number" class="evaluation_scale">
+							<option value="selected">Nombre de garçons</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+						</select>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label for="total_kittens">Total chattons
+						</label>
+					</div>
+					<div>
+						<select name="total_kittens" class="evaluation_scale">
+							<option value="selected">Total chattons</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+						</select>
+					</div>
 				</div>
 			</div>
-			<div class="contain_vet">
-		   		<div>
-		   			<label>Mother's name</label>
-		   		</div>
-		   		<div>
-		   			<input type="text" name="mother" id="mother" size="13" maxlength="13" placeholder="Full name" autofocus/>
+
+
+			<div id="general_observation">
+				<div>
+					<label for="intervention">Etat général portée</label>
+				</div>
+				<div>
+					<textarea name="general_observation" id="general_obs" rows="2" cols="53" maxlength="200" placeholder="diagnostic"></textarea>
 				</div>
 			</div>
-            <div class="contain_vet">
-            <div> 
-              <label for="litter_number">Litter number
-              </label>
-            </div>
-            <div>
-            <input type="text" name="litter_number" id="litter_number" size="13" maxlength="13" placeholder="New number" autofocus/>
-          	</div>
-        	</div>
-    <div class="contain_vet">
-	<div>
-		<label>date saillie</label>
-	</div>
-	<div>
-		<input type="date" name="mating_date" id="mating_date" size="13" maxlength="15" placeholder="YYYY/MM/DD">
-	</div>
-	</div>
-
-	<div class="contain_vet">
-	<div>
-		<label>date mise-bas</label>
-	</div>
-	<div>
-		<input type="date" name="parturition_date" id="parturition_date" size="13" maxlength="15" placeholder="YYYY/MM/DD">
-	</div>
-	</div>
-        <div class="contain_vet">
-            <div> 
-              <label for="females_number">Nb Filles
-              </label>
-            </div>
-            <div>
-            <select name="females_number" class="evaluation_scale">
-            <option value="selected">Nombre de filles</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            </select>
-          	</div>
-        	</div>
-            <div class="contain_vet">
-            <div> 
-              <label for="males_number">Nb Garçons
-              </label>
-            </div>
-            <div>
-            <select name="males_number" class="evaluation_scale">
-            <option value="selected">Nombre de garçons</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            </select>
-          	</div>
-        	</div>
-    <div class="contain_vet">
-            <div> 
-              <label for="total_kittens">Total chattons
-              </label>
-            </div>
-            <div>
-            <select name="total_kittens" class="evaluation_scale">
-            <option value="selected">Total chattons</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            </select>
-          	</div>
-        	</div>
-            </div>
-    
-	
-<div id="general_observation">
-	<div>
- 			<label for="intervention">Etat général portée</label>
- 		</div>
- 		<div>
-			<textarea name="general_observation" id="general_obs" rows="2" cols="53" maxlength="200" placeholder="diagnostic">
-			</textarea>
-		</div>
-	</div>
-<div id="parturition_observation">
-	<div>
- 			<label for="parturition_observation">Observations mise-bas</label>
- 		</div>
- 		<div>
-			<textarea name="parturition_observation" id="parturition_obs" rows="2" cols="53" maxlength="200" placeholder="diagnostic">
-			</textarea>
-		</div>
-	</div>
-	<div id="gestation_observation">
-	<div>
- 			<label for="gestation_observation">Observations gestation</label>
- 		</div>
- 		<div>
-			<textarea name="gestation_observation" id="gestation_obs" rows="2" cols="53" maxlength="200" placeholder="treatment">
-			</textarea>
-		</div>
-	</div>
+			<div id="parturition_observation">
+				<div>
+					<label for="parturition_observation">Observations mise-bas</label>
+				</div>
+				<div>
+					<textarea name="parturition_observation" id="parturition_obs" rows="2" cols="53" maxlength="200" placeholder="diagnostic"></textarea>
+				</div>
+			</div>
+			<div id="gestation_observation">
+				<div>
+					<label for="gestation_observation">Observations gestation</label>
+				</div>
+				<div>
+					<textarea name="gestation_observation" id="gestation_obs" rows="2" cols="53" maxlength="200" placeholder="treatment"></textarea>
+				</div>
+			</div>
 
 
-		   <div class="btn_ajouter">
-		   <input type="submit" name="submit" value="Ajouter" id="ajouter">
-		  </div>
-		  </form>
+			<div class="btn_ajouter">
+				<input type="submit" name="submit" value="Ajouter" id="ajouter">
+			</div>
+		</form>
 
 
-
-  </div>
+	</div>
 {% endblock %}

@@ -1,45 +1,47 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Liste de toutes les dépenses{% endblock %}
+{% block title %}Liste de toutes les dépenses
+{% endblock %}
 
 {% block content %}
 
-<div class="content_size">
-	<div id="top"></div>
-  <h2>Liste de toutes les dépense</h2>
-  <div class="adding">Ajouter une nouvelle dépenses : <a href="index.php?action=add_debit"><input class="adding_btn" type="button" value="Add"></a></div>
-	
-	    <table>  
-      <thead>
-	    <tr>
-        <th>Date de valeur</th>
-        <th>Intitulé</th>
-        <th>Nom du chat</th>
-        <th>Montant en euros</th>
-        <th>Observation</th>
-      </tr>
-      </thead>
-    {% for allDebit in allDebits %}
-      <tr>
-        <td class="column_table">{{ allDebit.date_debit | date('d/m/Y') }}</td>
-        <td class="column_table">{{ allDebit.item_debit }}</td>
-        <td class="column_table">{{ allDebit.cat_name }}</td>
-        <td class="column_table">{{ allDebit.amount_debit }}</td>
-        <td>{{ allDebit.observation_debit }}</td>        
-{% endfor %}
-		      </tr>
-        </table>
-        <table id="financial_result">
-        <tr id="debit_total_result">
-        <th id="debit_total">Débit total</th>
-        <th id="debit_result">{{ dataDebit.totDebit }}</th>
-        </tr>
-        <tr id="sold">
-        <th id="debit_total">Solde</th>
-        <th id="debit_result">{{ data.totCredit - dataDebit.totDebit }} </th>
-        </tr>
-    </table>
-    </table>
-</div>
-</div>
-{% endblock %}
+	<div class="content_size">
+		<div id="top"></div>
+		<h2>Liste de toutes les dépense</h2>
+		<div class="adding">Ajouter une nouvelle dépenses :
+			<a href="index.php?action=add_debit"><input class="adding_btn" type="button" value="Add"></a>
+		</div>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Date de valeur</th>
+					<th>Intitulé</th>
+					<th>Nom du chat</th>
+					<th>Montant en euros</th>
+					<th>Observation</th>
+				</tr>
+			</thead>
+			{% for allDebit in allDebits %}
+				<tr>
+					<td class="column_table">{{ allDebit.date_debit | date('d/m/Y') }}</td>
+					<td class="column_table">{{ allDebit.item_debit }}</td>
+					<td class="column_table">{{ allDebit.cat_name }}</td>
+					<td class="column_table">{{ allDebit.amount_debit }}</td>
+					<td>{{ allDebit.observation_debit }}</td>
+				{% endfor %}
+			</tr>
+		</table>
+		<table id="financial_result">
+			<tr id="debit_total_result">
+				<th id="debit_total">Débit total</th>
+				<th id="debit_result">{{ dataDebit.totDebit }}</th>
+			</tr>
+			<tr id="sold">
+				<th id="debit_total">Solde</th>
+				<th id="debit_result">{{ data.totCredit - dataDebit.totDebit }}
+				</th>
+			</tr>
+		</table>
+	</table>
+</div></div>{% endblock %}

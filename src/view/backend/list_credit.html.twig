@@ -1,43 +1,46 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Liste de toutes les recettes{% endblock %}
+{% block title %}Liste de toutes les recettes
+{% endblock %}
 
 {% block content %}
 
-<div class="content_size">
-	<div id="top"></div>
-    <h2>Liste de toutes les recettes</h2>
-    <div class="adding">Ajouter une nouvelle recette: <a href="index.php?action=add_credit"><input class="adding_btn" type="button" value="Add"></a></div>
-	    <table>  
-      <thead>
-	    <tr>
-        <th>Date de valeur</th>
-        <th>Intitulé</th>
-        <th>Nom du chat</th>
-        <th>Montant en euros</th>
-        <th>Observation</th>
-      </tr>
-      </thead>
-    {% for allCredit in allCredits %}
-      <tr>
-        <td class="column_table">{{ allCredit.date_credit | date('d/m/Y') }}</td>
-        <td class="column_table">{{ allCredit.item_credit }}</td>
-        <td class="column_table">{{ allCredit.cat_name }}</td>
-        <td class="column_table">{{ allCredit.amount_credit }}</td>
-        <td>{{ allCredit.observation_credit }}</td>        
-{% endfor %}
-		      </tr>
-    </table>
-        <table id="financial_result">
-        <tr id="debit_total_result">
-        <th id="debit_total">Crédit total</th>
-        <th id="debit_result">{{ data.totCredit}}</th>
-        </tr>
-        <tr id="sold">
-        <th id="debit_total">Solde</th>
-        <th id="debit_result">{{ data.totCredit - dataDebit.totDebit }} </th>
-        </tr>
-    </table>
-</div>
-</div>
-{% endblock %}
+	<div class="content_size">
+		<div id="top"></div>
+		<h2>Liste de toutes les recettes</h2>
+		<div class="adding">Ajouter une nouvelle recette:
+			<a href="index.php?action=add_credit"><input class="adding_btn" type="button" value="Add"></a>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Date de valeur</th>
+					<th>Intitulé</th>
+					<th>Nom du chat</th>
+					<th>Montant en euros</th>
+					<th>Observation</th>
+				</tr>
+			</thead>
+			{% for allCredit in allCredits %}
+				<tr>
+					<td class="column_table">{{ allCredit.date_credit | date('d/m/Y') }}</td>
+					<td class="column_table">{{ allCredit.item_credit }}</td>
+					<td class="column_table">{{ allCredit.cat_name }}</td>
+					<td class="column_table">{{ allCredit.amount_credit }}</td>
+					<td>{{ allCredit.observation_credit }}</td>
+				{% endfor %}
+			</tr>
+		</table>
+		<table id="financial_result">
+			<tr id="debit_total_result">
+				<th id="debit_total">Crédit total</th>
+				<th id="debit_result">{{ data.totCredit}}</th>
+			</tr>
+			<tr id="sold">
+				<th id="debit_total">Solde</th>
+				<th id="debit_result">{{ data.totCredit - dataDebit.totDebit }}
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>{% endblock %}

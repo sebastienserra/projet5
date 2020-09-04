@@ -1,31 +1,34 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Commentaires signalés{% endblock %}
+{% block title %}Commentaires signalés
+{% endblock %}
 
 {% block content %}
-    <div class="content_size">
+	<div class="content_size">
 
-        <div id="top"></div>
-        {% if reports|length == 0 %}
-            <h1>
-                Aucun commentaire signalé
-            </h1>
-        {% else %}
-            <div class="present_titles">
-                {% for report in reports %}
-                    <div class="present">
-                        <div class="text_back"> {{ report.comment|e('html') }}</div>
-                        <div class="together">
-                            <div class="button_three_back">
-                                <a href="index.php?action=moderateComment&amp;id={{ report.id }}" id="control_five">
-                                    <span class="fas fa-trash-alt"></span>
-                                    <span id="tooltip_five">Supprimer</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </div>
+		<div id="top"></div>
+		{% if reports|length == 0 %}
+			<h1>
+				Aucun commentaire signalé
+			</h1>
+		{% else %}
+			<div class="present_titles">
+				{% for report in reports %}
+					<div class="present">
+						<div class="text_back">
+							{{ report.comment|e('html') }}
+						</div>
+						<div class="together">
+							<div class="button_three_back">
+								<a href="index.php?action=moderateComment&amp;id={{ report.id }}" id="control_five">
+									<span class="fas fa-trash-alt"></span>
+									<span id="tooltip_five">Supprimer</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
 {% endblock %}

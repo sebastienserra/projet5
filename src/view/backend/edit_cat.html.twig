@@ -1,299 +1,296 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Modification profil Maine Coon{% endblock %}
+{% block title %}Modification profil Maine Coon
+{% endblock %}
 
 {% block content %}
-    <div class="content_size">
-<div id="top"></div>
-{% for res in results %}
-          <form action="index.php?action=update_cat" method="post" enctype="multipart/form-data">
-      <h2>Formulaire insertion chat en base de donnees:</h2>
-      <fieldset> 
-       <legend>Données concernant le chat</legend>
-       	<p>
-		  <input type="hidden" name="id" id="id" value="{{ res.id }}">
-	    </p>
-       
-        <div class="contain">
-          <div>
-            <label>First Name</label>
-          </div>
-          <div>
-            <input type="text" name="name" id="name" size="13" maxlength="13" value="{{ res.name }}"/>
-        </div>
-      </div>
+	<div class="content_size">
+		<div id="top"></div>
+		{% for res in results %}
+			<form action="index.php?action=update_cat" method="post" enctype="multipart/form-data">
+				<h2>Formulaire insertion chat en base de donnees:</h2>
+				<fieldset>
+					<legend>Données concernant le chat</legend>
+					<p>
+						<input type="hidden" name="id" id="id" value="{{ res.id }}">
+					</p>
 
-      <div class="contain">
-          <div>
-            <label>Breeder</label>
-          </div>
-          <div>
-            <input type="text" name="breeder" id="breeder" size="13" maxlength="13" value="{{ res.breeder }}" />
-        </div>
-      </div>
+					<div class="contain">
+						<div>
+							<label>First Name</label>
+						</div>
+						<div>
+							<input type="text" name="name" id="name" size="13" maxlength="13" value="{{ res.name }}"/>
+						</div>
+					</div>
 
-      <div class="contain">
-          <div>
-            <label for="gender">Gender
-            </label>
-          </div>
-            <div> 
-              <select name="gender" id="gender">
-                <option value="{{ res.gender }}">{{ res.gender }}</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option> 
-              </select>
-          </div>
-          </div>
+					<div class="contain">
+						<div>
+							<label>Breeder</label>
+						</div>
+						<div>
+							<input type="text" name="breeder" id="breeder" size="13" maxlength="13" value="{{ res.breeder }}"/>
+						</div>
+					</div>
 
-          <div class="contain">
-            <div>
-              <label> D.O.B</label>
-            </div>
-            <div>
-              <input type="date" name="dob" id="dob" size="13" maxlength="13" value="{{ res.dob }}">
-            </div>
-          </div>
+					<div class="contain">
+						<div>
+							<label for="gender">Gender
+							</label>
+						</div>
+						<div>
+							<select name="gender" id="gender">
+								<option value="{{ res.gender }}">{{ res.gender }}</option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+						</div>
+					</div>
 
-          <div class="contain"> 
-            <div> 
-              <label for="age_category">Age category
-              </label>
-            </div>
-            <div>
-              <select name="age_category" id="age_category">
-                  <option value="{{ res.age_category }}">{{ res.age_category }}</option>
-                  <option value="adultef">Adultef</option>
-                  <option value="adultem">Adultem</option>
-                  <option value="youngster">Youngster</option>
-                  <option value="kitten">Kitten</option>
-              </select>
-          </div>
-        </div>
+					<div class="contain">
+						<div>
+							<label>
+								D.O.B</label>
+						</div>
+						<div>
+							<input type="date" name="dob" id="dob" size="13" maxlength="13" value="{{ res.dob }}">
+						</div>
+					</div>
 
-          <div class="contain"> 
-            <div> 
-              <label for="coat">Coat color
-              </label>
-            </div>
-            <div>
-              <select name="coat" id="coat" >
-                <option value="{{ res.coat_color }}">{{ res.coat_color }}</option>
-                  <option value="black">Black</option>
-                  <option value="silver">Silver</option>
-                  <option value="red">Red</option>
-                  <option value="white">White</option>
-                  <option value="blue">Blue</option>
-                  <option value="brown">Brown</option>
-                  <option value="blue">Smoke</option>
-                  <option value="fawn">Fawn</option>
-                  <option value="cinnamon">Cinnamon</option>
-                  <option value="lilac">Lilac</option>
-                  <option value="cream">Cream</option>
-              </select>
-          </div>
-        </div>
-          <div class="contain">
-          <div>
-            <label for="hair_type">Hair type
-            </label>
-          </div>
-            <div>
-              <select name="hair_type" id="hair_type">
-                <option value="{{ res.hair_type }}">{{ res.hair_type }}</option>
-                  <option value="long">Long-haired</option>
-                  <option value="short">Short-haired</option>
-                  <option value="hairless">Hairless</option>
-                </select>
-          </div>
-          </div>
-          <div class="contain">
-          <div>
-            <label for="tabby_marking">Tabby coat marking
-            </label>
-          </div>
-            <div>
-              <select name="tabby_marking" id="tabby_marking">
-                <option value="{{ res.tabby_marking }}">{{ res.tabby_marking }}</option>
-                  <option value="mackeral">Mackeral</option>
-                  <option value="classic">Classic</option>
-                  <option value="spotted">Spotted</option>
-                  <option value="ticked">Ticked</option>
-                  <option value="no_tabby">none</option>
-                </select>
-          </div>
-          </div>
-          <div class="contain">
-          <div>
-            <label for="eye_coloration">Eye coloration
-            </label>
-          </div>
-            <div>
-              <select name="eye_coloration" id="eye_coloration">
-                <option value="{{ res.eye_coloration }}">{{ res.eye_coloration }}</option>
-                  <option value="brown">Brown</option>
-                  <option value="gold">Gold</option>
-                  <option value="hazel">Hazel</option>
-                  <option value="green">Green</option>
-                  <option value="blue">Blue</option>
+					<div class="contain">
+						<div>
+							<label for="age_category">Age category
+							</label>
+						</div>
+						<div>
+							<select name="age_category" id="age_category">
+								<option value="{{ res.age_category }}">{{ res.age_category }}</option>
+								<option value="adultef">Adultef</option>
+								<option value="adultem">Adultem</option>
+								<option value="youngster">Youngster</option>
+								<option value="kitten">Kitten</option>
+							</select>
+						</div>
+					</div>
 
-                </select>
-          </div>
-          </div>
+					<div class="contain">
+						<div>
+							<label for="coat">Coat color
+							</label>
+						</div>
+						<div>
+							<select name="coat" id="coat">
+								<option value="{{ res.coat_color }}">{{ res.coat_color }}</option>
+								<option value="black">Black</option>
+								<option value="silver">Silver</option>
+								<option value="red">Red</option>
+								<option value="white">White</option>
+								<option value="blue">Blue</option>
+								<option value="brown">Brown</option>
+								<option value="blue">Smoke</option>
+								<option value="fawn">Fawn</option>
+								<option value="cinnamon">Cinnamon</option>
+								<option value="lilac">Lilac</option>
+								<option value="cream">Cream</option>
+							</select>
+						</div>
+					</div>
+					<div class="contain">
+						<div>
+							<label for="hair_type">Hair type
+							</label>
+						</div>
+						<div>
+							<select name="hair_type" id="hair_type">
+								<option value="{{ res.hair_type }}">{{ res.hair_type }}</option>
+								<option value="long">Long-haired</option>
+								<option value="short">Short-haired</option>
+								<option value="hairless">Hairless</option>
+							</select>
+						</div>
+					</div>
+					<div class="contain">
+						<div>
+							<label for="tabby_marking">Tabby coat marking
+							</label>
+						</div>
+						<div>
+							<select name="tabby_marking" id="tabby_marking">
+								<option value="{{ res.tabby_marking }}">{{ res.tabby_marking }}</option>
+								<option value="mackeral">Mackeral</option>
+								<option value="classic">Classic</option>
+								<option value="spotted">Spotted</option>
+								<option value="ticked">Ticked</option>
+								<option value="no_tabby">none</option>
+							</select>
+						</div>
+					</div>
+					<div class="contain">
+						<div>
+							<label for="eye_coloration">Eye coloration
+							</label>
+						</div>
+						<div>
+							<select name="eye_coloration" id="eye_coloration">
+								<option value="{{ res.eye_coloration }}">{{ res.eye_coloration }}</option>
+								<option value="brown">Brown</option>
+								<option value="gold">Gold</option>
+								<option value="hazel">Hazel</option>
+								<option value="green">Green</option>
+								<option value="blue">Blue</option>
 
-        <div class="contain">
-          <div>
-            <label for="pattern">Pattern of coat
-            </label>
-          </div>
-            <div>
-              <select name="pattern" id="pattern">
-                <option value="{{ res.pattern_of_coat }}">{{ res.pattern_of_coat }}</option>
-                  <option value="solid">Solid</option>
-                  <option value="tabby">Tabby</option>
-                  <option value="colourpoint">Colour point</option>
-                  <option value="bicolor">Bicolor</option>
-                  <option value="tortoise">Tortoise</option>
-              </select>
-          </div>
-          </div>
+							</select>
+						</div>
+					</div>
 
-          <div class="contain">
-            <div>
-            <label for="breed">Breed
-              </label>
-            </div>
-            <div>
-              <select name="breed" id="breed">
-                <option value="{{ res.breed }}">{{ res.breed }}</option>
-                  <option value="maine_coon">Maine Coon</option>
-                  <option value="siamese">Siamese</option>
-                  <option value="persian">Persian</option>
-                  <option value="ragdoll">Ragdoll</option>
-                  <option value="bengal">Bengal</option>
-                  <option value="birman">Birman</option>
-                  <option value="sphynx">Sphynx</option>
-                  <option value="chartreux">Chartreux</option>
-                  <option value="british_shorthair">British Shorthair</option>
-              </select>
-          </div>
-        </div>
+					<div class="contain">
+						<div>
+							<label for="pattern">Pattern of coat
+							</label>
+						</div>
+						<div>
+							<select name="pattern" id="pattern">
+								<option value="{{ res.pattern_of_coat }}">{{ res.pattern_of_coat }}</option>
+								<option value="solid">Solid</option>
+								<option value="tabby">Tabby</option>
+								<option value="colourpoint">Colour point</option>
+								<option value="bicolor">Bicolor</option>
+								<option value="tortoise">Tortoise</option>
+							</select>
+						</div>
+					</div>
 
-        <div class="contain">
-          <div>
-            <label for="status">Status
-              </label>
-            </div>
-            <div>
-              <select name="status" id="status">
-                <option value="{{ res.status }}">{{ res.status }}</option>
-                  <option value="breeder">Breeder</option>
-                  <option value="sterelized">Sterelized</option>
-              </select>
-          </div>
-        </div>
+					<div class="contain">
+						<div>
+							<label for="breed">Breed
+							</label>
+						</div>
+						<div>
+							<select name="breed" id="breed">
+								<option value="{{ res.breed }}">{{ res.breed }}</option>
+								<option value="maine_coon">Maine Coon</option>
+								<option value="siamese">Siamese</option>
+								<option value="persian">Persian</option>
+								<option value="ragdoll">Ragdoll</option>
+								<option value="bengal">Bengal</option>
+								<option value="birman">Birman</option>
+								<option value="sphynx">Sphynx</option>
+								<option value="chartreux">Chartreux</option>
+								<option value="british_shorthair">British Shorthair</option>
+							</select>
+						</div>
+					</div>
 
-        <div class="contain">
-          <div>
-            <label for="cat_shows">Cat shows
-              </label>
-            </div>
-            <div>
-              <select name="cat_shows" id="cat_shows">
-                <option value="{{ res.cat_shows }}">{{ res.cat_shows }}</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-              </select>
-          </div>
-        </div>
+					<div class="contain">
+						<div>
+							<label for="status">Status
+							</label>
+						</div>
+						<div>
+							<select name="status" id="status">
+								<option value="{{ res.status }}">{{ res.status }}</option>
+								<option value="breeder">Breeder</option>
+								<option value="sterelized">Sterelized</option>
+							</select>
+						</div>
+					</div>
 
-        <div class="contain">
-          <div>
-              <label for="show">Location
-              </label>
-            </div>
-            <div>
-            <select name="pays" id="pays">
-              <option value="{{ res.location }}">{{ res.location }}</option>
-                 <option value="france">France</option>
-                 <option value="espagne">Espagne</option>
-                 <option value="allemagne">Allemagne</option>
-                 <option value="italie">Italie</option>
-                 <option value="irlande">Irlande</option>
-                 <option value="suede">Suede</option>
-                 <option value="autriche">Autriche</option>
-                 <option value="pays_bas">Pays Bas</option>
-                 <option value="bulgarie">Bulgarie</option>
-                 <option value="danemark">Estonie</option>
-                 <option value="lettonie">Lettonie</option>
-                 <option value="littuanie">Lituanie</option>
-                 <option value="pologne">Pologne</option>
-                 <option value="slovaquie">Slovaquie</option>
-                 <option value="roumanie">Roumanie</option>
-                 <option value="chypre">Chypre</option>
-                 <option value="malte">Malte</option>
-                 <option value="grece">Grece</option>
-                 <option value="luxembourg">Luxembourg</option>
-                 <option value="slovenie">Slovenie</option>
-                 <option value="croatie">Croatie</option>
-                 <option value="hongrie">Hongrie</option>
-                 <option value="norvege">Norvege</option>
-                 <option value="royaume-uni">Royaume-Uni</option>
-                 <option value="portugal">Portugal</option>
-                 <option value="belgique">Belgique</option>
-                 <option value="canada">Canada</option>
-                 <option value="etats-unis">États-Unis</option>
-                 <option value="chine">Chine</option>
-                 <option value="japon">Japon</option>
-             </select>
-          </div>
-        </div>
+					<div class="contain">
+						<div>
+							<label for="cat_shows">Cat shows
+							</label>
+						</div>
+						<div>
+							<select name="cat_shows" id="cat_shows">
+								<option value="{{ res.cat_shows }}">{{ res.cat_shows }}</option>
+								<option value="yes">Yes</option>
+								<option value="no">No</option>
+							</select>
+						</div>
+					</div>
 
-        <div class="contain">
-          <div>
-            <label for="identificaiton">Identification number
-              </label>
-            </div>
-            <div>
-              <input type="text" name="identification" id="identification" size="13" maxlength="13" value="{{ res.identification }}"/>
-          </div>
-        </div>
+					<div class="contain">
+						<div>
+							<label for="show">Location
+							</label>
+						</div>
+						<div>
+							<select name="pays" id="pays">
+								<option value="{{ res.location }}">{{ res.location }}</option>
+								<option value="france">France</option>
+								<option value="espagne">Espagne</option>
+								<option value="allemagne">Allemagne</option>
+								<option value="italie">Italie</option>
+								<option value="irlande">Irlande</option>
+								<option value="suede">Suede</option>
+								<option value="autriche">Autriche</option>
+								<option value="pays_bas">Pays Bas</option>
+								<option value="bulgarie">Bulgarie</option>
+								<option value="danemark">Estonie</option>
+								<option value="lettonie">Lettonie</option>
+								<option value="littuanie">Lituanie</option>
+								<option value="pologne">Pologne</option>
+								<option value="slovaquie">Slovaquie</option>
+								<option value="roumanie">Roumanie</option>
+								<option value="chypre">Chypre</option>
+								<option value="malte">Malte</option>
+								<option value="grece">Grece</option>
+								<option value="luxembourg">Luxembourg</option>
+								<option value="slovenie">Slovenie</option>
+								<option value="croatie">Croatie</option>
+								<option value="hongrie">Hongrie</option>
+								<option value="norvege">Norvege</option>
+								<option value="royaume-uni">Royaume-Uni</option>
+								<option value="portugal">Portugal</option>
+								<option value="belgique">Belgique</option>
+								<option value="canada">Canada</option>
+								<option value="etats-unis">États-Unis</option>
+								<option value="chine">Chine</option>
+								<option value="japon">Japon</option>
+							</select>
+						</div>
+					</div>
 
-        <div class="contain_description">
-        <div>
-            <label for="description">Photo du chat:</label>
-          </div>
-          <div>
-          <p>
-              <input type="file" name="monfichier">
-          </p>
-              <img src="./uploads/{{ res.image }}" class="mini_picture_of_cat" />
-              <input type="hidden" name="previous_image" value="{{ res.image }}">
-        </div>
-      </div>
+					<div class="contain">
+						<div>
+							<label for="identificaiton">Identification number
+							</label>
+						</div>
+						<div>
+							<input type="text" name="identification" id="identification" size="13" maxlength="13" value="{{ res.identification }}"/>
+						</div>
+					</div>
 
-        
-        
-          <div class="contain_description">
-            <div>
-                <label for="description">Short description</label>
-              </div>
-              <div>
-                <textarea name="description" id="description" rows="10" cols="53" maxlength="200" >{{ res.description }}
-                </textarea>
-            </div>
-          </div>
+					<div class="contain_description">
+						<div>
+							<label for="description">Photo du chat:</label>
+						</div>
+						<div>
+							<p>
+								<input type="file" name="monfichier">
+							</p>
+							<img src="./uploads/{{ res.image }}" class="mini_picture_of_cat"/>
+							<input type="hidden" name="previous_image" value="{{ res.image }}">
+						</div>
+					</div>
 
 
+					<div class="contain_description">
+						<div>
+							<label for="description">Short description</label>
+						</div>
+						<div>
+							<textarea name="description" id="description" rows="10" cols="53" maxlength="200">{{ res.description }}
+							</textarea>
+						</div>
+					</div>
 
 
-       </fieldset>
-       <div class="validate">
-          <button type="submit" name="update" value="update">update</button>
-      </div>
-    </form>
-	{% endfor %}
-</div>
-</div>
-</div>
-{% endblock %}
+				</fieldset>
+				<div class="validate">
+					<button type="submit" name="update" value="update">update</button>
+				</div>
+			</form>
+		{% endfor %}
+	</div>
+</div></div>{% endblock %}

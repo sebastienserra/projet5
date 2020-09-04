@@ -19,12 +19,12 @@ function displayCats(coat) {
         var catElement = document.createElement("div");
         var path = "./uploads/" + cat.image;
         catElement.innerHTML =
-          '<div id="contain_cat"><div id="cat_presentation">' +
-          '<div id="cat_display"><div id="cat_picture"><img src="' +
+          '<div class="contain_cat"><div class="cat_presentation">' +
+          '<div class="cat_display"><div class="cat_picture"><img src="' +
           path +
           '"/>' +
           "</div>" +
-          '<div id="cat_info">' +
+          '<div class="cat_info">' +
           "<div> Name:" +
           cat.name +
           "</div>" +
@@ -41,7 +41,7 @@ function displayCats(coat) {
           cat.description +
           "</div></div>" +
           "</div>" +
-          "</div></div></div>";
+          "</div></div>";
         results.appendChild(catElement);
       });
     },
@@ -52,6 +52,11 @@ function displayCats(coat) {
   );
 }
 
+/**
+ * @description Récupérer la liste de chats en fonction de sa robe
+ * @param string coat
+ * @returns string
+ */
 function getCatByCoat(coat) {
   return new Promise(function (resolve, reject) {
     let xhr = new XMLHttpRequest();

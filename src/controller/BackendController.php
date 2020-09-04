@@ -38,6 +38,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         $this->postService->addPost($postData, $image);
@@ -48,6 +49,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()){
             header('Location: index.php?action=login');
+            die();
         }
         $results = $this->postManager->editOnePost($id);
         echo $this->twig->render('backend/edit.html.twig', [
@@ -59,6 +61,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $results = $this->catManager->editOneCat($id);
         echo $this->twig->render('backend/edit_cat.html.twig', [
@@ -70,6 +73,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         $this->postService->editPost($postData, $image);
@@ -80,6 +84,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         $this->catService->editCat($catData, $image);
@@ -90,6 +95,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $erase = $this->postManager->destroy($id);
         $posts = $this->postManager->getAllPostsAdmin();
@@ -104,6 +110,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $reports = $this->commentManager->getReportedComments();
         echo $this->twig->render('backend/reported_comments.html.twig', [
@@ -115,6 +122,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $eraseReported = $this->commentManager->eraseReportedComment($id);
         if ($eraseReported === false) {
@@ -130,6 +138,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         $nbComments = $this->commentManager->countReportedComments();
@@ -147,6 +156,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $commentsBack = $this->commentManager->getAllComments();
         echo $this->twig->render('backend/comments.html.twig', [
@@ -158,6 +168,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         $this->catService->addCat($catData, $image);
@@ -168,6 +179,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $result = $this->catManager->eraseCat($id);
         echo $this->twig->render('backend/admin_cats.html.twig', [
@@ -179,6 +191,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         echo $this->twig->render('backend/admin_cats.html.twig', [
 
@@ -189,6 +202,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         echo $this->twig->render('backend/cat_form.html.twig', [
 
@@ -199,6 +213,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $allCats = $this->catManager->getAllCats();
         echo $this->twig->render('backend/display_cats.html.twig', [
@@ -210,6 +225,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $registerCats = $this->catManager->getAllCats();
         echo $this->twig->render('backend/cat_register.html.twig', [
@@ -221,6 +237,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         echo $this->twig->render('backend/veterinarian.html.twig', []);
@@ -230,6 +247,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
        }
 
         $visit = $this->catManager->visit($date_visit,$cat_name,$gender,$age_category,$vet_name,$diagnostic,$treatment,$cost,$intervention);
@@ -240,6 +258,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $allVisits = $this->catManager->getAllVisits();
         echo $this->twig->render('backend/list_visit_vet.html.twig', [
@@ -251,6 +270,7 @@ class BackendController
         {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         echo $this->twig->render('backend/litter.html.twig', []);
     }
@@ -259,6 +279,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
        }
         $litter= $this->catManager->litters($father,$mother,$litter_number, $mating_date,$parturition_date,$females_number,$males_number,$total_kittens,$general_observation,$parturition_observation,$gestation_observation);
         echo $this->twig->render('backend/admin_cats.html.twig', [
@@ -270,6 +291,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $allLitters = $this->catManager->getAllLitters();
         echo $this->twig->render('backend/list_litters.html.twig', [
@@ -281,6 +303,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         echo $this->twig->render('backend/kittens.html.twig', []);
@@ -290,20 +313,19 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
        }
 
         $kittenDaily= $this->catManager->kittensDaily($cat_name,$weight,$daily_observation);
         header('Location: index.php?action=edit_observations');
 
-        /* echo $this->twig->render('backend/admin_cats.html.twig', [
-             'kittenDaily' => $kittenDaily,
-         ]);*/
     }
 
     function editObservations()
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $allObservations = $this->catManager->getAllDailyObservations();
         echo $this->twig->render('backend/daily_observations.html.twig', [
@@ -311,10 +333,15 @@ class BackendController
         ]);
     }
 
+    /**
+     * 
+     * @return void
+     */
     function creditForm()
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         echo $this->twig->render('backend/credit.html.twig', []);
@@ -324,6 +351,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
        }
 
         $credit= $this->catManager->addNewCredit($date_credit,$item_credit,$cat_name,$amount_credit,$observation_credit);
@@ -334,6 +362,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $allCredits = $this->catManager->getAllCredits();
         $data = $this->catManager->totalCredits();
@@ -349,6 +378,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
 
         echo $this->twig->render('backend/debit.html.twig', []);
@@ -358,6 +388,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
        }
 
         $debit= $this->catManager->addNewDebit($date_debit,$item_debit,$cat_name,$amount_debit,$observation_debit);
@@ -368,6 +399,7 @@ class BackendController
     {
         if (!$this->authenticationService->isConnected()) {
             header('Location: index.php?action=login');
+            die();
         }
         $allDebits = $this->catManager->getAllDebits();
         $data = $this->catManager->totalCredits();

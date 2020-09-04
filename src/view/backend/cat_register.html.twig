@@ -1,66 +1,66 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Listing Maine Coons{% endblock %}
+{% block title %}Listing Maine Coons
+{% endblock %}
 
 {% block content %}
 
-<div class="content_size">
-	<div id="top"></div>
-  <h2>Registre des entrées et sorties</h2>
-	    <table>  
-      <thead>
-	    <tr>
-        <th>Update</th>
-        <th>Erase</th>
-        <th>Picture</th>
-        <th>Name</th>
-        <th>Identification</th>
-        <th>Age cat.</th>
-        <th>Breeder</th>
-        <th>Date_entrée</th>
-        <th>Origine</th>
-        <th>Date_sortie</th>
-        <th>Raison_sortie</th>
-        <th>Propriétaire</th>
-        <th>Adresse</th>
-        <th>Tel</th>
-        <th>Autre</th>
-      </tr>
-      </thead>
-    {% for registerCat in registerCats %}
-      <tr>
-        <td>
-          <a href="index.php?action=edit_cat&amp;id={{ registerCat.id }}" id="control_four">
-            <span class="fas fa-edit"></span>
-            <span id="tooltip_four">Modifier</span>
-          </a>
-        </td>
-        <td>
-          <a href="index.php?action=erase_cat&amp;id={{ registerCat.id }}" id="confirmation">
-            <span class="fas fa-trash-alt"></span>
-            <span id="tooltip_three">Supprimer</span>
-          </a>
-        </td>
-        <td>
-          <img src="./uploads/{{ registerCat.image }}" class="mini_picture_of_cat" />
-        </td>
-        <td>{{ registerCat.name }}</td>
-        <td>{{ registerCat.identification }}</td>
-        <td>{{ registerCat.age_category }}</td>
-        <td>{{ registerCat.breeder }}</td>
-        <td>{{ registerCat.enter_cattery | date('d/m/Y') }}</td>
-        <td>{{ registerCat.origin_cat }}</td>
-        <td>{{ registerCat.out_cattery | date('d/m/Y')}}</td>
-        <td>{{ registerCat.destination_cat }}</td>
-        <td>{{ registerCat.new_owner}}</td>
-        <td>{{ registerCat.new_owner_address }}</td>
-        <td>{{ registerCat.new_owner_phone }}</td>
-        <td>{{ registerCat.new_owner_other_contact }}</td>
+	<div class="content_size">
+		<div id="top"></div>
+		<h2>Registre des entrées et sorties</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Update</th>
+					<th>Erase</th>
+					<th>Picture</th>
+					<th>Name</th>
+					<th>Identification</th>
+					<th>Age cat.</th>
+					<th>Breeder</th>
+					<th>Date_entrée</th>
+					<th>Origine</th>
+					<th>Date_sortie</th>
+					<th>Raison_sortie</th>
+					<th>Propriétaire</th>
+					<th>Adresse</th>
+					<th>Tel</th>
+					<th>Autre</th>
+				</tr>
+			</thead>
+			{% for registerCat in registerCats %}
+				<tr>
+					<td>
+						<a href="index.php?action=edit_cat&amp;id={{ registerCat.id }}" id="control_four">
+							<span class="fas fa-edit"></span>
+							<span id="tooltip_four">Modifier</span>
+						</a>
+					</td>
+					<td>
+						<a href="index.php?action=erase_cat&amp;id={{ registerCat.id }}" id="confirmation">
+							<span class="fas fa-trash-alt"></span>
+							<span id="tooltip_three">Supprimer</span>
+						</a>
+					</td>
+					<td>
+						<img src="./uploads/{{ registerCat.image }}" class="mini_picture_of_cat"/>
+					</td>
+					<td>{{ registerCat.name }}</td>
+					<td>{{ registerCat.identification }}</td>
+					<td>{{ registerCat.age_category }}</td>
+					<td>{{ registerCat.breeder }}</td>
+					<td>{{ registerCat.enter_cattery | date('d/m/Y') }}</td>
+					<td>{{ registerCat.origin_cat }}</td>
+					<td>{{ registerCat.out_cattery | date('d/m/Y')}}</td>
+					<td>{{ registerCat.destination_cat }}</td>
+					<td>{{ registerCat.new_owner}}</td>
+					<td>{{ registerCat.new_owner_address }}</td>
+					<td>{{ registerCat.new_owner_phone }}</td>
+					<td>{{ registerCat.new_owner_other_contact }}</td>
 
 
-{% endfor %}
-		      </tr>
-    </table>
-</div>
-</div>
-{% endblock %}
+				{% endfor %}
+			</tr>
+		</table>
+	</div>
+</div>{% endblock %}

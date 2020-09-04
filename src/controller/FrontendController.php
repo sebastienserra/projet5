@@ -208,12 +208,12 @@ class FrontendController
 
     public function login()
     {
-        if ($_GET['action'] === 'login') {
-            
+                 
             echo $this->twig->render('frontend/login.html.twig', [
-                'error' => $_GET['success'] == 'false'
+                'error' => isset($_GET['success']) && $_GET['success'] == 'false'
             ]);
-        }
+    
+        
     }
     public function signup()
     {
@@ -247,8 +247,10 @@ class FrontendController
 
             header('Location: index.php?action=admin&success=true');
         } else {
-            header('Location: index.php?action=login');
+            header('Location: index.php?action=login&success=false');
+            
         }
-    }
+        }
+    
 
 }

@@ -1,107 +1,104 @@
 {% extends "basebackend.html.twig" %}
 
-{% block title %}Interface admin Maine Coons{% endblock %}
+{% block title %}Interface admin Maine Coons
+{% endblock %}
 
 {% block content %}
-<div class="content_size">
-  <div id="top"></div>
-  <h2>Ajoutez une visite chez le vétérinaire:</h2>
-<form method="post" action="index.php?action=veterinarian" >
-<div id="fields_vet">
-	<div class="contain_vet">
-	<div>
-		<label>date visite</label>
-	</div>
-	<div>
-		<input type="date" name="date_visit" id="date_visit" size="13" maxlength="15" placeholder="YYYY/MM/DD">
-	</div>
-	</div>
-    <div class="contain_vet">
-		<div>
-			<label>Cat's name</label>
-		</div>
-		<div>
-			<input type="text" name="cat_name" id="cat_name" size="13" maxlength="50" placeholder="Name" autofocus/>
-	</div>
-	</div>
-	<div class="contain_vet">
-	<div>
-		<label for="gender">Gender
-		</label>
-	</div>
-	<div>
-		<select name="gender" id="gender">
-			<option value="male">Male</option>
-			<option value="female">Female</option>
-	</select>
-	</div>
-	</div>
-	<div class="contain_vet"> 
-            <div> 
-              <label for="age_category">Age category
-              </label>
-            </div>
-            <div>
-              <select name="age_category" id="age_category">
-                  <option value="adultef">Adultef</option>
-                  <option value="adultem">Adultem</option>
-                  <option value="youngster">Youngster</option>
-                  <option value="kitten">Kitten</option>
-              </select>
-          </div>
-        </div>
-<div class="contain_vet">
-		   		<div>
-		   			<label>Vet's name</label>
-		   		</div>
-		   		<div>
-		   			<input type="text" name="vet_name" id="vet_name" size="13" maxlength="50" placeholder="Vet's name" autofocus/>
-				</div>
-			</div>
+	<div class="content_size">
+		<div id="top"></div>
+		<h2>Ajoutez une visite chez le vétérinaire:</h2>
+		<form method="post" action="index.php?action=veterinarian">
+			<div id="fields_vet">
 				<div class="contain_vet">
-		   		<div>
-		   			<label>Cost</label>
-		   		</div>
-		   		<div>
-		   			<input type="text" name="cost" id="cost" size="13" maxlength="50" placeholder="cost" autofocus/>
+					<div>
+						<label>date visite</label>
+					</div>
+					<div>
+						<input type="date" name="date_visit" id="date_visit" size="13" maxlength="15" placeholder="YYYY/MM/DD">
+					</div>
 				</div>
-			</div>
+				<div class="contain_vet">
+					<div>
+						<label>Cat's name</label>
+					</div>
+					<div>
+						<input type="text" name="cat_name" id="cat_name" size="13" maxlength="50" placeholder="Name" autofocus/>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label for="gender">Gender
+						</label>
+					</div>
+					<div>
+						<select name="gender" id="gender">
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label for="age_category">Age category
+						</label>
+					</div>
+					<div>
+						<select name="age_category" id="age_category">
+							<option value="adultef">Adultef</option>
+							<option value="adultem">Adultem</option>
+							<option value="youngster">Youngster</option>
+							<option value="kitten">Kitten</option>
+						</select>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label>Vet's name</label>
+					</div>
+					<div>
+						<input type="text" name="vet_name" id="vet_name" size="13" maxlength="50" placeholder="Vet's name" autofocus/>
+					</div>
+				</div>
+				<div class="contain_vet">
+					<div>
+						<label>Cost</label>
+					</div>
+					<div>
+						<input type="text" name="cost" id="cost" size="13" maxlength="50" placeholder="cost" autofocus/>
+					</div>
+				</div>
 			</div>
 			<div id="intervention_description">
-	<div>
- 			<label for="intervention">Type d'intervention</label>
- 		</div>
- 		<div>
-			<textarea name="intervention" id="intervention" rows="2" cols="53" maxlength="200" placeholder="diagnostic">
-			</textarea>
-		</div>
+				<div>
+					<label for="intervention">Type d'intervention</label>
+				</div>
+				<div>
+					<textarea name="intervention" id="intervention" rows="2" cols="53" maxlength="200" placeholder="diagnostic"></textarea>
+				</div>
+			</div>
+			<div id="diagno_description">
+				<div>
+					<label for="diagnostic">Diagnostic</label>
+				</div>
+				<div>
+					<textarea name="diagnostic" id="diagnostic" rows="2" cols="53" maxlength="200" placeholder="diagnostic"></textarea>
+				</div>
+			</div>
+			<div id="treatment_description">
+				<div>
+					<label for="treatment">Treatment</label>
+				</div>
+				<div>
+					<textarea name="treatment" id="treatment" rows="2" cols="53" maxlength="200" placeholder="treatment"></textarea>
+				</div>
+			</div>
+
+
+			<div class="btn_ajouter">
+				<input type="submit" name="submit" value="Ajouter" id="ajouter">
+			</div>
+		</form>
+
+
 	</div>
-<div id="diagno_description">
-	<div>
- 			<label for="diagnostic">Diagnostic</label>
- 		</div>
- 		<div>
-			<textarea name="diagnostic" id="diagnostic" rows="2" cols="53" maxlength="200" placeholder="diagnostic">
-			</textarea>
-		</div>
-	</div>
-	<div id="treatment_description">
-	<div>
- 			<label for="treatment">Treatment</label>
- 		</div>
- 		<div>
-			<textarea name="treatment" id="treatment" rows="2" cols="53" maxlength="200" placeholder="treatment">
-			</textarea>
-		</div>
-	</div>
-
-
-		   <div class="btn_ajouter">
-		   <input type="submit" name="submit" value="Ajouter" id="ajouter">
-		  </div>
-		  </form>
-
-
-
-  </div>
 {% endblock %}

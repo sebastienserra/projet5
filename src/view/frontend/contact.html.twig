@@ -1,74 +1,63 @@
 {% extends "base.html.twig" %}
-
-{% block title %}Tous les Maine Coons{% endblock %}
-
+{% block title %}Contact
+{% endblock %}
 {% block content %}
-<div class="content_size">
-	<div id="top"></div>
-<div id="group_guardians">
-<h1>Nos gardiens</h1>
-      <section class="guardians">
-	  <div class="img_guardians">
-	  <img src="http://www.codesmile.fr/side_projects/pictures/andreja.jpg" alt="andreja">
-	  </div>
-	  <div class="text_guardians">
-	  ANDREJA est notre deuxième Maman. Elle est toujours à nos côtés, peu importe les bons ou les mauvais moments. Elle dit souvent qu’on lui fait la journée et on est fier de ça. Il semble qu’elle soit ravie de nous avoir ;-) Son favori parmi nous est Zucchero.
-	  </div>
-	  </section>
-	
-      <section class="guardians">
-	  <div class="img_guardians">
-	  <img src="http://www.codesmile.fr/side_projects/pictures/leonard.jpg" alt="leonard">
-	  </div>
-	  <div class="text_guardians">
-	  LEONARD est notre meilleur atout du côté humain quand il s’agit de jouer. Il nous désensibilise tous les jours et prend également soin de notre présentation aux expositions. Il prend en charge très sérieusement son travail et notre promotion à chaque aventure loin de la maison. Son favori est Zest.	  
-	  </div>
-	  </section>
-
-      <section class="guardians">
-	  <div class="img_guardians">
-	  <img src="http://www.codesmile.fr/side_projects/pictures/sebastien.jpg" alt="sebastien">
-	  </div>
-	  <div class="text_guardians">
-	  SEBASTIEN est notre parrain et il a toujours été entouré de chats depuis aussi longtemps qu’il puisse se souvenir.Son favori est Zen.
-	  </div>
-	  </section>
-
-      <section class="guardians">
-	  <div class="text_guardians">
-	  ENSEMBLE: Nous nous engageons à garantir la bonne santé de nos chats, leur sociabilité et à respecter le standard de la race Maine Coon. Ceci est important pour nous et important pour vous pour avoir une longue histoire d’amitié avec votre nouveau protégé. Nous souhaitons nous assurer que nos chatons trouvent une famille chaleureuse, accueillante, aimante et attentionnée. Notre favorite à tous est Ulala, grâce à elle nous avons découvert de nouveaux endroits, fait connaissance avec de nouveaux amis. Elle a toute notre confiance, c’est une Maman attentionnée. C’est simple: sans elle, le monde comme nous le connaissons n’existerait pas. Nous sommes fiers de l’avoir à nos côtés et de vous faire partager tout le bonheur de partager sa vie avec un Maine Coon!
-	  <div>
-	  </section>
-	  </div>
-
-	  <h3>Formulaire de contact</h3>
-		<form method="post" action="index.php?action=message" id="contact_form">
-			<input type="text" name="object_message" placeholder="Objet">
-			<input type="text" name="first_name" placeholder="Nom*">
-			<input type="text" name="last_name" placeholder="Prénom">
-			<input type="email" name="email" placeholder="E-mail*">
-			<textarea name="message_text" placeholder="Message"></textarea>
-			<div id="compulsory_fields">*: champs obligatoires</div>
-			<input type="submit" name="submit" value="Envoyer" id="button_contact_form">
-			
-		</form>
-
-		<section>
-				<div class="mapouter">
-					<div class="gmap_canvas">
-						<div class="couleur_transparente">
-						<iframe id="gmap_canvas" src="https://maps.google.com/maps?q=BUCKA&t=&z=17&ie=UTF8&iwloc=&output=embed">
-						</iframe>
-							<a href="https://www.embedgooglemap.net/blog/ipvanish-coupon/">
-							</a>
+	<div class="content_size">
+		<div id="top"></div>
+		<div id="group_guardians">
+			<h1>Nos gardiens</h1>
+			<div class="guardians">
+				<div class="img_guardians">
+					<img src="http://www.codesmile.fr/side_projects/pictures/andreja.jpg" alt="andreja">
+				</div>
+				<div class="text_guardians">
+					ANDREJA est notre deuxième Maman. Elle est toujours à nos côtés, peu importe les bons ou les mauvais moments. Elle dit souvent qu’on lui fait la journée et on est fier de ça. Il semble qu’elle soit ravie de nous avoir ;-) Son favori parmi nous est Zucchero.
+				</div>
+			</div>
+			<div class="guardians">
+				<div class="img_guardians">
+					<img src="http://www.codesmile.fr/side_projects/pictures/leonard.jpg" alt="leonard">
+				</div>
+				<div class="text_guardians">
+					LEONARD est notre meilleur atout du côté humain quand il s’agit de jouer. Il nous désensibilise tous les jours et prend également soin de notre présentation aux expositions. Il prend en charge très sérieusement son travail et notre promotion à chaque aventure loin de la maison. Son favori est Zest.
+				</div>
+			</div>
+			<div class="guardians">
+				<div class="img_guardians">
+					<img src="http://www.codesmile.fr/side_projects/pictures/sebastien.jpg" alt="sebastien">
+				</div>
+				<div class="text_guardians">
+					SEBASTIEN est notre parrain et il a toujours été entouré de chats depuis aussi longtemps qu’il puisse se souvenir.Son favori est Zen.
+				</div>
+			</div>
+			<div class="guardians">
+				<div class="text_guardians">
+					ENSEMBLE: Nous nous engageons à garantir la bonne santé de nos chats, leur sociabilité et à respecter le standard de la race Maine Coon. Ceci est important pour nous et important pour vous pour avoir une longue histoire d’amitié avec votre nouveau protégé. Nous souhaitons nous assurer que nos chatons trouvent une famille chaleureuse, accueillante, aimante et attentionnée. Notre favorite à tous est Ulala, grâce à elle nous avons découvert de nouveaux endroits, fait connaissance avec de nouveaux amis. Elle a toute notre confiance, c’est une Maman attentionnée. C’est simple: sans elle, le monde comme nous le connaissons n’existerait pas. Nous sommes fiers de l’avoir à nos côtés et de vous faire partager tout le bonheur de partager sa vie avec un Maine Coon!
+			</div>
+				</div>
+				<div>
+				<h3>Formulaire de contact</h3>
+				<form method="post" action="index.php?action=message" id="contact_form">
+					<input type="text" name="object_message" placeholder="Objet">
+					<input type="text" name="first_name" placeholder="Nom*" required>
+					<input type="text" name="last_name" placeholder="Prénom">
+					<input type="email" name="email" placeholder="E-mail* ex: email@site.com" required>
+					<textarea name="message_text" placeholder="Message"></textarea>
+					<div id="compulsory_fields">*: champs obligatoires</div>
+					<input type="submit" name="submit" value="Envoyer" id="button_contact_form">
+				</form>
+				</div>
+				<div>				
+					<div class="mapouter">
+						<div class="gmap_canvas">
+							<div class="couleur_transparente">
+								<iframe id="gmap_canvas" src="https://maps.google.com/maps?q=BUCKA&t=&z=17&ie=UTF8&iwloc=&output=embed"></iframe>
+								<a href="https://www.embedgooglemap.net/blog/ipvanish-coupon/"></a>
+							</div>
 						</div>
 					</div>
-			
 				</div>
-			</section>
-
-
-
-
-</div>
-{% endblock %}
+				</div>
+			</div>
+			
+		{% endblock %}

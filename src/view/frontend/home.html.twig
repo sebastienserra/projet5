@@ -1,113 +1,83 @@
 {% extends "base.html.twig" %}
-
-{% block title %}Accueil{% endblock %}
-
-{% block content %}
-
-
-  <div id="container">
-
-    <div class="semicircle">
-      <div class="semicircleleft">
-        <div class="leftarrow">
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <img id="diapo" src="public/images/kitten_img1.jpg" alt="diaporama">
-    </div>
-
-    <div class="semicircle">
-      <div class="semicircleright">
-        <div class="rightarrow">
-        </div>
-      </div>
-    </div>
-
-
-    <div id="pause_inside">
-      <div class="push" id="btn_pause">
-      </div>
-    </div>
-
-    <div id="play_inside">
-      <div class="push" id="btn_play">
-      </div>
-    </div>
-
-    <div id="texte_diaporama">
-    </div>
-  </div>
-
-  <div class="cards">
-    <div>
-      <h1>Elevage des Pompons</h1>
-    </div>
-
-    <div id="image_index_cards">
-      <div>
-        <h3 id="subtitle_index">Posts récents</h3>
-        <div class="button_blog">
-          <a href="index.php?action=blog">
-            Blog
-          </a>
-        </div>
-      </div>
-
-      <div id="joint">
-
-        {% for article in articles %}
-          <div class="joint">
-            <div class="my_container">
-              <div class="my_text">
-                {{ article.article | u.truncate(60, '...') | raw }}
-              </div>
-              <div class="my_buttons">
-                <div class="button_three">
-                  <a href="index.php?action=postandcomments&amp;id={{ article.id }}">
-                    Lire
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="bellow"></div>
-          </div>
-        {% endfor %}
-      </div>
-        
-  </div>
-      
-
-     
-
-	
-  	<div id="block_pictures">
-		
-		<div class="wrapping" id="first">
-			
-				<div class="cat_image"><div class="describe"><a href="index.php?action=maine_coon_kittens">Les chattons</a></div><img src="public/images/chattons_picture.jpg"></div>
-				
-			
-				<div class="cat_image"><div class="describe"><a href="index.php?action=maine_coon_boys">Les garcons</a></div><img src="public/images/zen_picture.jpg"></div>
-			
-		</div>
-
-		<div class="wrapping" id="second">
-			
-				<div class="cat_image"><div class="describe"><a href="index.php?action=maine_coon_girls">Les filles</a></div><img src="public/images/mme_butterfly.jpg"></div>
-			
-			
-				<div class="cat_image"><div class="describe"><a href="index.php?action=maine_coon_youngsters">Les ados</a></div><img src="public/images/youngsters_picture.jpg"></div>
-			
-		</div>
-    	</div>
-
-
-	</div>
-
-
+{% block title %}Accueil
 {% endblock %}
-
-
-      
+{% block content %}
+	<div id="container">
+		<div class="semicircle">
+			<div class="semicircleleft">
+				<div class="leftarrow"></div>
+			</div>
+		</div>
+		<div>
+			<img id="diapo" src="public/images/kitten_img1.jpg" alt="diaporama">
+		</div>
+		<div class="semicircle">
+			<div class="semicircleright">
+				<div class="rightarrow"></div>
+			</div>
+		</div>
+		<div id="pause_inside">
+			<div class="push" id="btn_pause"></div>
+		</div>
+		<div id="play_inside">
+			<div class="push" id="btn_play"></div>
+		</div>
+		<div id="texte_diaporama"></div>
+	</div>
+	<div class="cards">
+		<div>
+			<h1>Elevage des Pompons</h1>
+		</div>
+		<div id="image_index_cards">
+			<div>
+				<h3 id="subtitle_index">Posts récents</h3>
+				<div class="button_blog">
+					<a href="index.php?action=blog">
+						Blog
+					</a>
+				</div>
+			</div>
+			<div id="joint">
+				{% for article in articles %}
+					<div class="joint">
+						<div class="my_container">
+							<div class="my_text">
+								{{ article.article | u.truncate(60, '...') | raw }}
+							</div>
+							<div class="my_buttons">
+								<div class="button_three">
+									<a href="index.php?action=postandcomments&amp;id={{ article.id }}">
+										Lire
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="bellow"></div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div id="block_pictures">
+			<div class="wrapping" id="first">
+				<div class="cat_image">
+					<div class="describe">
+						<a href="index.php?action=maine_coon_kittens">Les chattons</a>
+					</div><img src="public/images/chattons_picture.jpg" alt="maine_coon_kittens"></div>
+				<div class="cat_image">
+					<div class="describe">
+						<a href="index.php?action=maine_coon_boys">Les garcons</a>
+					</div><img src="public/images/zen_picture.jpg" alt="maine_coon_boys"></div>
+			</div>
+			<div class="wrapping" id="second">
+				<div class="cat_image">
+					<div class="describe">
+						<a href="index.php?action=maine_coon_girls">Les filles</a>
+					</div><img src="public/images/mme_butterfly.jpg" alt="maine_coon_girls"></div>
+				<div class="cat_image">
+					<div class="describe">
+						<a href="index.php?action=maine_coon_youngsters">Les ados</a>
+					</div><img src="public/images/youngsters_picture.jpg" alt="maine_coon_youngsters"></div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
