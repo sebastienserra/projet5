@@ -126,11 +126,11 @@ class BackendController
         }
         $eraseReported = $this->commentManager->eraseReportedComment($id);
         if ($eraseReported === false) {
-            //throw new Exception('Impossible de supprimer le commentaire !');
-            echo 'error';
+            throw new Exception('Impossible de supprimer le commentaire !');
+            //echo 'error';
         } else {
-            //header('Location: index.php?action=moderate');
-            echo 'success';
+            header('Location: index.php?action=moderate');
+            //echo 'success';
         }
     }
 
